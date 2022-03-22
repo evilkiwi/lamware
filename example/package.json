@@ -1,0 +1,31 @@
+{
+    "private": true,
+    "name": "@tnotifier/lamware-example",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "yarn clean && yarn generate && yarn compile",
+        "clean": "rimraf build",
+        "compile": "NODE_ENV=production ts-node dev/build.ts",
+        "dev": "nodemon dev/index.ts",
+        "start-dev": "concurrently \"yarn watch\" \"yarn dev\"",
+        "watch": "NODE_ENV=development ts-node dev/build.ts"
+    },
+    "dependencies": {
+        "aws-sdk": "^2.1096.0",
+        "lambda-warmer": "^1.2.2"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.93",
+        "@types/cookie": "^0.4.1",
+        "@types/cors": "^2.8.12",
+        "@types/vhost": "^3.0.4",
+        "concurrently": "^7.0.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.3",
+        "lambda-local": "^2.0.2",
+        "nodemon": "^2.0.15",
+        "rimraf": "^3.0.2",
+        "ts-node": "^10.7.0",
+        "vhost": "^3.0.2"
+    }
+}

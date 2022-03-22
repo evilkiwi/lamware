@@ -1,0 +1,13 @@
+{
+    "packages": [
+        "packages/*"
+    ],
+    "npmClient": "yarn",
+    "npmClientArgs": ["--no-lockfile"],
+    "version": "independent",
+    "command": {
+        "version": {
+            "message": "chore(release): publish"
+        }
+    }
+}

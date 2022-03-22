@@ -1,0 +1,51 @@
+name: Publish
+
+on:
+  pull_request:
+    types: [closed]
+    paths:
+      - 'packages/**'
+    branches:
+      - master
+  push:
+    paths:
+      - 'packages/**'
+    branches:
+      - master
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  publish:
+    name: Publish
+    if: github.event_name == 'push' || github.event.pull_request.merged == true
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          registry-url: https://registry.npmjs.org
+          node-version: 14
+          cache: yarn
+      - name: Check if able to publish changes
+        run: npm whoami
+      - name: Install Dependencies
+        run: yarn
+      - name: Set-up Git Credentials
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "admin@tnotifier.app"
+      - name: Ensure Core is built
+        run: yarn workspace @tnotifier/lamware build
+      - name: Increment Versions
+        run: npx lerna version --conventional-commits --create-release github --yes
+      - name: Publish to NPM
+        run: npx lerna publish from-git --yes --no-verify-access

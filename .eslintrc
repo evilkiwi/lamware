@@ -1,0 +1,74 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "ecmaVersion": 2021
+    },
+    "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:vue/vue3-recommended",
+        "@vue/typescript/recommended"
+    ],
+    "rules": {
+        "arrow-parens": "off",
+        "arrow-spacing": "error",
+        "camelcase": "off",
+        "comma-dangle": ["error", "always-multiline"],
+        "eqeqeq": ["error", "always"],
+        "indent": [0, 4],
+        "import/order": "off",
+        "import/named": "off",
+        "no-console": "off",
+        "no-unused-vars": "off",
+        "no-var": "error",
+        "padded-blocks": "off",
+        "prefer-const": "error",
+        "prefer-template": "error",
+        "quote-props": "off",
+        "quotes": ["error", "single"],
+        "require-await": "off",
+        "semi": ["error", "always"],
+        "space-before-function-paren": "off",
+        "unicorn/prefer-includes": "off",
+
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-var-requires": "off",
+
+        "vue/attributes-order": "off",
+        "vue/component-definition-name-casing": "off",
+        "vue/custom-event-name-casing": "off",
+        "vue/html-indent": ["error", 4],
+        "vue/singleline-html-element-content-newline": "off",
+        "vue/max-attributes-per-line": ["error", {
+            "singleline": 2,
+            "multiline": 2
+        }],
+        "vue/multi-word-component-names": "off",
+        "vue/multiline-html-element-content-newline": "off",
+        "vue/name-property-casing": "off",
+        "vue/no-multiple-template-root": "off",
+        "vue/no-v-html": "off",
+        "vue/no-v-for-template-key": "off",
+        "vue/order-in-components": "off",
+        "vue/require-component-is": "off",
+        "vue/require-prop-types": "off"
+    },
+    "globals": {
+        "defineProps": "readonly",
+        "defineEmits": "readonly"
+    }
+}

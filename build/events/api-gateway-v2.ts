@@ -1,0 +1,33 @@
+export default {
+    version: '2.0',
+    routeKey: 'ANY /',
+    rawPath: '/',
+    rawQueryString: '',
+    pathParameters: {},
+    queryStringParameters: {},
+    body: '{}',
+    cookies: [
+        's_fid=7AABXMPL1AFD9BBF-0643XMPL09956DE2',
+        'regStatus=pre-register',
+    ],
+    headers: {},
+    requestContext: {
+        accountId: '123456789012',
+        apiId: 'r3pmxmplak',
+        domainName: 'r3pmxmplak.execute-api.us-east-2.amazonaws.com',
+        domainPrefix: 'r3pmxmplak',
+        http: {
+            method: 'GET',
+            path: '/',
+            protocol: 'HTTP/1.1',
+            sourceIp: '192.168.100.1',
+            userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48',
+        },
+        requestId: 'JKJaXmPLvHcESHA=',
+        routeKey: 'ANY /',
+        stage: 'default',
+        time: '10/Mar/2020:05:16:23 +0000',
+        timeEpoch: 1583817383220,
+    },
+    isBase64Encoded: true,
+};
