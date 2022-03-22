@@ -1969,7 +1969,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tnotifier/lamware-appconfig@workspace:packages/appconfig"
   dependencies:
-    "@tnotifier/lamware": "*"
+    "@tnotifier/lamware": ^1.0.1
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -1984,7 +1984,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tnotifier/lamware-do-not-wait@workspace:packages/do-not-wait"
   dependencies:
-    "@tnotifier/lamware": "*"
+    "@tnotifier/lamware": ^1.0.1
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -2021,7 +2021,7 @@ __metadata:
   resolution: "@tnotifier/lamware-powertools-tracing@workspace:packages/powertools-tracing"
   dependencies:
     "@aws-lambda-powertools/tracer": ^0.7.1
-    "@tnotifier/lamware": "*"
+    "@tnotifier/lamware": ^1.0.1
     "@types/node": ^14.18.12
     aws-xray-sdk-core: ^3.3.4
     eslint: ^8.11.0
@@ -2038,7 +2038,7 @@ __metadata:
   resolution: "@tnotifier/lamware-sentry@workspace:packages/sentry"
   dependencies:
     "@sentry/serverless": ^6.18.2
-    "@tnotifier/lamware": "*"
+    "@tnotifier/lamware": ^1.0.1
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     eslint: ^8.11.0
@@ -2054,7 +2054,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tnotifier/lamware-warmer@workspace:packages/warmer"
   dependencies:
-    "@tnotifier/lamware": "*"
+    "@tnotifier/lamware": ^1.0.1
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     eslint: ^8.11.0
@@ -2067,7 +2067,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tnotifier/lamware@*, @tnotifier/lamware@workspace:packages/core":
+"@tnotifier/lamware@^1.0.1, @tnotifier/lamware@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@tnotifier/lamware@workspace:packages/core"
   dependencies:

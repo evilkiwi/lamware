@@ -3,13 +3,13 @@ import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
 import { register, runMiddleware, init, wrap, clear, compileState } from '@/middleware';
 import type { BeforeMiddlewarePayload } from '@/middleware';
-import type { FilterFunction, Instance, Options } from './types';
+import type { Instance, Options } from './types';
 
 export const lamware = <H extends Handler = Handler>(options?: Options) => {
     options = options ?? {};
 
     const instance: Instance<H> = {
-        use: (middleware, filter?: FilterFunction) => {
+        use: (middleware, filter) => {
             if (!filter || filter()) {
                 register<H>(middleware);
             }
