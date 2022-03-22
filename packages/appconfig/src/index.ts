@@ -1,4 +1,5 @@
 import type { Middleware } from '@tnotifier/lamware';
+import type { Handler } from 'aws-lambda';
 import http from 'http';
 
 export interface Options {
@@ -8,13 +9,7 @@ export interface Options {
     config: string;
 }
 
-declare module 'aws-lambda' {
-    interface Context {
-        config: any;
-    }
-}
-
-export const appconfig = ({ url, app, env, config }: Options): Middleware => {
+export const appconfig = <Config = any>({ url, app, env, config }: Options): Middleware<Handler, { config: Config }> => {
     let appconfigData: any = {};
 
     return {
@@ -33,7 +28,7 @@ export const appconfig = ({ url, app, env, config }: Options): Middleware => {
             appconfigData = JSON.parse(data);
         },
         before: async (payload) => {
-            payload.context.config = appconfigData;
+            payload.state.config = appconfigData;
 
             return payload;
         },

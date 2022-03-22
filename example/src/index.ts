@@ -7,7 +7,7 @@ import { lamware } from '@tnotifier/lamware';
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
     .use(doNotWait())
-    .use(appconfig({
+    .use(appconfig<{ hello: string }>({
         app: 'tnotifier/api',
         env: 'production',
         config: 'production',
@@ -18,7 +18,9 @@ const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         },
     }))
     .use(warmer())
-    .execute(async (event, context) => {
+    .execute(async ({ event, state }) => {
+        console.log(state.config.hello);
+
         return {
             statusCode: 200,
             body: JSON.stringify({

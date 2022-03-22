@@ -1,10 +1,12 @@
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
+import type { DestructuredHandler } from '@/instance';
 import type { Middleware, MiddlewareRegistry } from './types';
 
 let initResolvers: Promise<void>[] = [];
 const registry: MiddlewareRegistry = {
     all: {},
+    state: {},
     order: {
         before: [],
         after: [],
@@ -13,7 +15,7 @@ const registry: MiddlewareRegistry = {
 
 export const init = async () => Promise.all(initResolvers);
 
-export const wrap = (handler: Handler) => {
+export const wrap = (handler: DestructuredHandler) => {
     Object.values(registry.all).forEach(middleware => {
         if (middleware.wrap !== undefined) {
             handler = middleware.wrap(handler);
@@ -21,6 +23,16 @@ export const wrap = (handler: Handler) => {
     });
 
     return handler;
+};
+
+export const compileState = () => {
+    let state: any = {};
+
+    Object.values(registry.state).forEach(middlewareState => {
+        state = merge(state, middlewareState);
+    });
+
+    return state;
 };
 
 export const runMiddleware = async (hook: 'before'|'after', payload: any) => {
@@ -39,7 +51,11 @@ export const runMiddleware = async (hook: 'before'|'after', payload: any) => {
                 const middleware = registry.all[id[i]]?.[hook];
 
                 if (middleware !== undefined) {
-                    payloads.push(middleware(localPayload));
+                    payloads.push(new Promise(async (resolve) => {
+                        const middlewareResponse = await middleware(localPayload);
+                        registry.state[registry.all[id[i]].id] = middlewareResponse.state;
+                        resolve(middlewareResponse);
+                    }));
                 }
             }
 
@@ -50,7 +66,15 @@ export const runMiddleware = async (hook: 'before'|'after', payload: any) => {
             return localPayload;
         }
 
-        return registry.all[id][hook]?.(localPayload) ?? localPayload;
+        const middleware = registry.all[id][hook];
+
+        if (middleware) {
+            const middlewareResponse = await middleware(localPayload);
+            registry.state[id] = middlewareResponse.state;
+            return middlewareResponse;
+        }
+
+        return localPayload;
     }, Promise.resolve(payload));
 };
 
@@ -81,13 +105,18 @@ export const register = <H extends Handler>(middleware: Middleware<H>) => {
     }
 
     if (middleware.init !== undefined) {
-        initResolvers.push(middleware.init());
+        initResolvers.push(new Promise(async (resolve) => {
+            const state = await middleware.init?.() ?? {};
+            registry.state[middleware.id] = state;
+            resolve();
+        }));
     }
 };
 
 export const clear = () => {
     initResolvers = [];
     registry.all = {};
+    registry.state = {};
     registry.order.before = [];
     registry.order.after = [];
 };

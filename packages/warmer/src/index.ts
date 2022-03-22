@@ -3,20 +3,14 @@ import type { Middleware } from '@tnotifier/lamware';
 import type { WarmerConfig } from 'lambda-warmer';
 import lambdaWarmer from 'lambda-warmer';
 
-declare module 'aws-lambda' {
-    interface Context {
-        is_warmed: boolean;
-    }
-}
-
-export const warmer = (config?: typeof WarmerConfig): Middleware<APIGatewayProxyHandlerV2> => ({
+export const warmer = (config?: typeof WarmerConfig): Middleware<APIGatewayProxyHandlerV2, { is_warmed: boolean }> => ({
     id: 'warmer',
     pure: true,
     before: async (payload) => {
-        payload.context.is_warmed = false;
+        payload.state.is_warmed = false;
 
         if (await lambdaWarmer(payload.event, config)) {
-            payload.context.is_warmed = true;
+            payload.state.is_warmed = true;
             payload.response = 'warmed';
         }
 

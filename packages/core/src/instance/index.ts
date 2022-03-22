@@ -1,7 +1,7 @@
 import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
-import { register, runMiddleware, init, wrap, clear } from '@/middleware';
+import { register, runMiddleware, init, wrap, clear, compileState } from '@/middleware';
 import type { BeforeMiddlewarePayload } from '@/middleware';
 import type { Instance, Options } from './types';
 
@@ -18,7 +18,7 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                 clear,
                 handler: async (event, context, callback) => {
                     let response: PromiseType<Exclude<ReturnType<H>, void>>|Error;
-                    let payload: BeforeMiddlewarePayload<H> = { event, context };
+                    let payload: Omit<BeforeMiddlewarePayload<H>, 'state'> = { event, context };
 
                     try {
                         await init();
@@ -26,7 +26,14 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                         payload = await runMiddleware('before', payload);
 
                         if (payload.response === undefined) {
-                            response = await wrap(handler)(payload.event, payload.context, callback);
+                            const wrapped = wrap(handler);
+
+                            response = await wrapped({
+                                event: payload.event,
+                                context: payload.context,
+                                state: compileState(),
+                                callback,
+                            });
                         } else {
                             response = payload.response;
                         }

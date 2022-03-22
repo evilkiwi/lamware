@@ -2,45 +2,37 @@ import type { TracerOptions } from '@aws-lambda-powertools/tracer/lib/types';
 import type { Subsegment, Segment } from 'aws-xray-sdk-core';
 import { Tracer } from '@aws-lambda-powertools/tracer';
 import type { Middleware } from '@tnotifier/lamware';
+import type { Handler } from 'aws-lambda';
 
-declare module 'aws-lambda' {
-    interface Context {
-        tracer: Tracer;
-        segment: Subsegment|Segment;
-        subsegment: Subsegment;
-    }
-}
-
-export const powertoolsTracing = (options: TracerOptions): Middleware => {
-    const tracer = new Tracer(options);
-    let segment!: Subsegment|Segment;
-    let subsegment!: Subsegment;
-
+export const powertoolsTracing = (options: TracerOptions): Middleware<Handler, {
+    tracer: Tracer;
+    segment: Subsegment|Segment;
+    subsegment: Subsegment;
+}> => {
     return {
         id: 'powertools-tracing',
         pure: true,
+        init: async () => {
+            return { tracer: new Tracer(options) };
+        },
         before: async (payload) => {
-            segment = tracer.getSegment();
+            payload.state.segment = payload.state.tracer.getSegment();
 
-            subsegment = segment.addNewSubsegment(`## ${process.env._HANDLER}`);
-            tracer.setSegment(subsegment);
+            payload.state.subsegment = payload.state.segment.addNewSubsegment(`## ${process.env._HANDLER}`);
+            payload.state.tracer.setSegment(payload.state.subsegment);
 
-            tracer.annotateColdStart();
-            tracer.addServiceNameAnnotation();
-
-            payload.context.tracer = tracer;
-            payload.context.segment = segment;
-            payload.context.subsegment = subsegment;
+            payload.state.tracer.annotateColdStart();
+            payload.state.tracer.addServiceNameAnnotation();
 
             return payload;
         },
         after: async (payload) => {
             if (payload.response instanceof Error) {
-                tracer.addErrorAsMetadata(payload.response);
+                payload.state.tracer.addErrorAsMetadata(payload.response);
             }
 
-            subsegment.close();
-            tracer.setSegment(segment);
+            payload.state.subsegment.close();
+            payload.state.tracer.setSegment(payload.state.segment);
 
             return payload;
         },

@@ -1,3 +1,4 @@
+import { wrapCompat, unwrapCompat } from '@tnotifier/lamware';
 import type { Middleware } from '@tnotifier/lamware';
 import { AWSLambda } from '@sentry/serverless';
 import type * as Sentry from '@sentry/node';
@@ -10,15 +11,13 @@ export interface Config {
 export const sentry = (config?: Config): Middleware => ({
     id: 'sentry',
     pure: true,
-    wrap: handler => AWSLambda.wrapHandler(handler, {
+    init: async () => {
+        AWSLambda.init(config?.config ?? {});
+    },
+    wrap: handler => unwrapCompat(AWSLambda.wrapHandler(wrapCompat(handler), {
         captureTimeoutWarning: false,
         rethrowAfterCapture: true,
         callbackWaitsForEmptyEventLoop: false,
         ...(config?.wrapper ?? {}),
-    }),
-    before: async (payload) => {
-        AWSLambda.init(config?.config ?? {});
-
-        return payload;
-    },
+    })),
 });

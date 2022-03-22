@@ -1,33 +1,38 @@
 import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
+import type { DestructuredHandler } from '@/instance';
 
-export interface MiddlewarePayload<H extends Handler> {
+export type Wrapper<H extends Handler = Handler> = (handler: DestructuredHandler<H>) => DestructuredHandler<H>;
 
+export interface MiddlewarePayload<H extends Handler, S extends object = {}> {
+    state: S;
 }
 
-export interface BeforeMiddlewarePayload<H extends Handler = Handler> extends MiddlewarePayload<H> {
+export interface BeforeMiddlewarePayload<H extends Handler = Handler, S extends object = {}> extends MiddlewarePayload<H, S> {
     event: Parameters<H>['0'];
     context: Parameters<H>['1'];
     response?: PromiseType<Exclude<ReturnType<H>, void>>|Error;
 }
 
-export interface AfterMiddlewarePayload<H extends Handler = Handler> extends MiddlewarePayload<H> {
+export interface AfterMiddlewarePayload<H extends Handler = Handler, S extends object = {}> extends MiddlewarePayload<H, S> {
     response: PromiseType<Exclude<ReturnType<H>, void>>|Error;
 }
 
 export type MiddlewareHandler<H extends Handler, P extends MiddlewarePayload<H>> = (payload: P) => Promise<P>;
 
-export interface Middleware<H extends Handler = Handler> {
+export interface Middleware<H extends Handler = Handler, S extends object = {}> {
     id: string;
     pure?: boolean;
-    init?: () => Promise<void>;
-    wrap?: (handler: H) => H;
-    before?: MiddlewareHandler<H, BeforeMiddlewarePayload<H>>;
-    after?: MiddlewareHandler<H, AfterMiddlewarePayload<H>>;
+    init?: () => Promise<Partial<S>|void>;
+    wrap?: (handler: DestructuredHandler<H>) => DestructuredHandler<H>;
+    before?: MiddlewareHandler<H, BeforeMiddlewarePayload<H, S>>;
+    after?: MiddlewareHandler<H, AfterMiddlewarePayload<H, S>>;
+    state?: S;
 }
 
 export interface MiddlewareRegistry {
     all: Record<string, Middleware>;
+    state: Record<string, any>;
     order: {
         before: (string|string[])[];
         after: (string|string[])[];
