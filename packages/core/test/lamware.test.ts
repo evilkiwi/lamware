@@ -311,3 +311,24 @@ test('should throw errors emitted by the handler', async () => {
 
     await expect(execute(handler)).rejects.toThrowError();
 });
+
+test('should allow middleware filter at runtime', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use({
+            id: 'test-1',
+            pure: true,
+            after: async (payload) => {
+                payload.response.statusCode = 400;
+                return payload;
+            },
+        }, () => false)
+        .execute(async ({ event }) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ rawPath: event.rawPath }),
+            };
+        });
+    const result = await execute(handler);
+
+    expect(result.statusCode).toBe(200);
+});
