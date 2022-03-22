@@ -7,6 +7,7 @@
     "scripts": {
         "build": "lerna run build --stream",
         "lint": "lerna run lint --stream",
+        "test": "lerna run test --stream",
         "prune": "lerna clean && rm -rf node_modules",
         "example": "yarn workspace @tnotifier/lamware-example",
         "lamware": "yarn workspace @tnotifier/lamware"

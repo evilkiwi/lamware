@@ -42,11 +42,12 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                     }
 
                     const mixed = await runMiddleware('after', { response });
-                    response = merge<any, any>(response, mixed.response);
 
-                    if (response instanceof Error) {
-                        throw response;
+                    if (mixed.response instanceof Error) {
+                        throw mixed.response;
                     }
+
+                    response = merge<any, any>(response, mixed.response);
 
                     return response;
                 },

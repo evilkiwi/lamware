@@ -1,6 +1,6 @@
+import { defineConfig } from 'vitest/config';
 import { builtinModules } from 'module';
 import { join, resolve } from 'path';
-import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import pkg from './package.json';
 
@@ -15,6 +15,11 @@ export default defineConfig({
             logDiagnostics: true,
         }),
     ],
+    test: {
+        coverage: {
+            reporter: ['text', 'html'],
+        },
+    },
     resolve: {
         alias: [
             { find: /^@\/(.*)/, replacement: `${resolve(__dirname, 'src')}/$1` },

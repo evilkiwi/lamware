@@ -302,3 +302,12 @@ test('should allow wrapping and unwrapping handler with compatibility layer', as
     expect(result.statusCode).toBe(401);
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
 });
+
+test('should throw errors emitted by the handler', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .execute(async (payload) => {
+            throw new Error('debug');
+        });
+
+    await expect(execute(handler)).rejects.toThrowError();
+});
