@@ -12,9 +12,7 @@ export const powertoolsTracing = (options: TracerOptions): Middleware<Handler, {
     return {
         id: 'powertools-tracing',
         pure: true,
-        init: async () => {
-            return { tracer: new Tracer(options) };
-        },
+        init: async () => ({ tracer: new Tracer(options) }),
         before: async (payload) => {
             payload.state.segment = payload.state.tracer.getSegment();
 

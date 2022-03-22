@@ -12,7 +12,11 @@ export const sentry = (config?: Config): Middleware => ({
     id: 'sentry',
     pure: true,
     init: async () => {
-        AWSLambda.init(config?.config ?? {});
+        try {
+            AWSLambda.init(config?.config ?? {});
+        } catch (e) {
+            throw new Error(`failed to initialize sentry: ${e}`);
+        }
     },
     wrap: handler => unwrapCompat(AWSLambda.wrapHandler(wrapCompat(handler), {
         captureTimeoutWarning: false,

@@ -16,16 +16,20 @@ export const appconfig = <Config = any>({ url, app, env, config }: Options): Mid
         id: 'appconfig',
         pure: true,
         init: async () => {
-            const res = await new Promise<http.IncomingMessage>(resolve => {
-                http.get(`http://${url ?? 'localhost:2772'}/applications/${app}/environments/${env}/configurations/${config}`, message => resolve(message));
-            });
-            const data = await new Promise<string>((resolve, reject) => {
-                let data = '';
-                res.on('data', chunk => data += chunk);
-                res.on('error', err => reject(err));
-                res.on('end', () => resolve(data));
-            });
-            appconfigData = JSON.parse(data);
+            try {
+                const res = await new Promise<http.IncomingMessage>(resolve => {
+                    http.get(`http://${url ?? 'localhost:2772'}/applications/${app}/environments/${env}/configurations/${config}`, message => resolve(message));
+                });
+                const data = await new Promise<string>((resolve, reject) => {
+                    let data = '';
+                    res.on('data', chunk => data += chunk);
+                    res.on('error', err => reject(err));
+                    res.on('end', () => resolve(data));
+                });
+                appconfigData = JSON.parse(data);
+            } catch (e) {
+                throw new Error(`failed to load appconfig: ${e}`);
+            }
         },
         before: async (payload) => {
             payload.state.config = appconfigData;

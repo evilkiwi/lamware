@@ -9,10 +9,12 @@ export const warmer = (config?: typeof WarmerConfig): Middleware<APIGatewayProxy
     before: async (payload) => {
         payload.state.is_warmed = false;
 
-        if (await lambdaWarmer(payload.event, config)) {
-            payload.state.is_warmed = true;
-            payload.response = 'warmed';
-        }
+        try {
+            if (await lambdaWarmer(payload.event, config)) {
+                payload.state.is_warmed = true;
+                payload.response = 'warmed';
+            }
+        } catch {}
 
         return payload;
     },
