@@ -4,6 +4,10 @@ import { Logger } from '@aws-lambda-powertools/logger';
 import type { Handler } from 'aws-lambda';
 
 export interface Options extends LoggerOptions {
+    /**
+     * Whether to automatically attach the Lambda context
+     * to logging events.
+     */
     add_context?: boolean;
 }
 

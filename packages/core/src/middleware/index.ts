@@ -16,6 +16,7 @@ const registry: MiddlewareRegistry = {
 export const init = async () => Promise.all(initResolvers);
 
 export const loggerOverride = () => {
+    // Find a logger from the available middleware - first only.
     const middleware = Object.values(registry.all).find(middleware => {
         return middleware.logger !== undefined;
     });
