@@ -1,6 +1,6 @@
 {
     "name": "@tnotifier/lamware-sqs-json-parser",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Lamware Middleware for parsing and providing types for SQS",
     "files": [
         "build"

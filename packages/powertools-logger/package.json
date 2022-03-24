@@ -1,6 +1,6 @@
 {
     "name": "@tnotifier/lamware-powertools-logger",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Lamware Middleware to utilize the official Logger powertools",
     "files": [
         "build"
