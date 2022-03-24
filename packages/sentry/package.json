@@ -1,6 +1,6 @@
 {
     "name": "@tnotifier/lamware-sentry",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Lamware Middleware for tracking with Sentry",
     "files": [
         "build"
@@ -41,7 +41,7 @@
     },
     "dependencies": {
         "@sentry/serverless": "^6.18.2",
-        "@tnotifier/lamware": "^1.1.2"
+        "@tnotifier/lamware": "^1.1.3"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.93",
