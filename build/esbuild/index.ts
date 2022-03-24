@@ -17,7 +17,7 @@ export const bundle = async (options: Options) => {
             bundle: true,
             minify: isProduction,
             watch: !isProduction,
-            sourcemap: isProduction ? 'external' : false,
+            sourcemap: isProduction ? 'linked' : false,
             target: `node${options.nodeVersion ?? 14}`,
             outdir: options.outDir ?? 'build',
             entryPoints,

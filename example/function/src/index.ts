@@ -7,6 +7,10 @@ import { sentry } from '@tnotifier/lamware-sentry';
 import { warmer } from '@tnotifier/lamware-warmer';
 import { lamware } from '@tnotifier/lamware';
 
+// Log some debug, you can remove this.
+import pkg from '@tnotifier/lamware/package.json';
+console.log(`lamware v${pkg.version}`);
+
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>({
         debug: true,
     })

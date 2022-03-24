@@ -36,7 +36,7 @@ export interface Middleware<H extends Handler = Handler, S extends object = {}> 
     pure?: boolean;
     init?: () => Promise<Partial<S>|void>;
     logger?: (state: S) => Logger;
-    wrap?: (handler: DestructuredHandler<H>) => DestructuredHandler<H>;
+    wrap?: Wrapper<H>;
     before?: MiddlewareHandler<H, BeforeMiddlewarePayload<H, S>>;
     after?: MiddlewareHandler<H, AfterMiddlewarePayload<H, S>>;
     filter?: FilterFunction;

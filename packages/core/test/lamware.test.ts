@@ -1,8 +1,8 @@
 import type { Handler, APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { afterEach, expect, test } from 'vitest';
 import { execute } from './helpers';
-import { lamware, wrapCompat, unwrapCompat } from '../src';
 import type { Wrapper, Middleware, Logger } from '../src';
+import { lamware, wrapCompat } from '../src';
 import { clear } from '../src/middleware';
 
 afterEach(() => clear());
@@ -279,12 +279,14 @@ test('should allow middleware to modify a global state', async () => {
 
 test('should allow wrapping handler with compatibility layer', async () => {
     const wrapper: Wrapper<APIGatewayProxyHandlerV2> = handler => {
-        return async ({ event, context, callback }) => {
-            const result = await wrapCompat(handler)(event, context, callback);
-            result.statusCode = 401;
+        return wrapCompat(handler, compatHandler => {
+            return async (event, context, callback) => {
+                const result = await compatHandler(event, context, callback);
+                result.statusCode = 401;
 
-            return result;
-        };
+                return result;
+            };
+        });
     };
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -305,26 +307,29 @@ test('should allow wrapping handler with compatibility layer', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
 });
 
-test('should allow wrapping and unwrapping handler with compatibility layer', async () => {
+test('should allow wrapping handler with compatibility layer and passing state', async () => {
     const wrapper: Wrapper<APIGatewayProxyHandlerV2> = handler => {
-        return unwrapCompat(wrapCompat(async (payload) => {
-            const result = await handler(payload);
-            result.statusCode = 401;
+        return wrapCompat(handler, compatHandler => {
+            return async (event, context, callback) => {
+                const result = await compatHandler(event, context, callback);
+                result.statusCode = 401;
 
-            return result;
-        }));
+                return result;
+            };
+        });
     };
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
-        .use({
+        .use<Middleware<APIGatewayProxyHandlerV2<any>, { hello: string }>>({
             id: 'test-1',
             pure: true,
             wrap: wrapper,
+            init: async () => ({ hello: 'world' }),
         })
-        .execute(async (payload) => {
+        .execute(async ({ state }) => {
             return {
                 statusCode: 200,
-                body: JSON.stringify({ hello: 'world' }),
+                body: JSON.stringify({ hello: state.hello }),
             };
         });
     const result = await execute(handler);

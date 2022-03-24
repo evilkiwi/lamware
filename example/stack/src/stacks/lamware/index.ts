@@ -87,7 +87,10 @@ export class LamwareStack extends Stack {
                 folders: ['src'],
                 files: ['package.json'],
             }),
-            environment: { ...appConfig.env },
+            environment: {
+                ...appConfig.env,
+                NODE_OPTIONS: '--enable-source-maps',
+            },
         });
         func.addToRolePolicy(appConfig.policy);
         func.addToRolePolicy(xray);

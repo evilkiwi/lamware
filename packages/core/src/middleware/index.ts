@@ -1,7 +1,7 @@
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
 import type { DestructuredHandler } from '@/instance';
-import type { AfterMiddlewarePayload, BeforeMiddlewarePayload, Hook, HookReturns, Middleware, MiddlewareRegistry } from './types';
+import type { Hook, HookReturns, Middleware, MiddlewareRegistry } from './types';
 
 let initResolvers: Promise<void>[] = [];
 const registry: MiddlewareRegistry = {
@@ -25,13 +25,13 @@ export const loggerOverride = () => {
 };
 
 export const wrap = (handler: DestructuredHandler) => {
-    Object.values(registry.all).forEach(middleware => {
-        if (middleware.wrap !== undefined) {
-            handler = middleware.wrap(handler);
+    return Object.values(registry.all).reduce((h, middleware) => {
+        if (middleware.wrap) {
+            return middleware.wrap(h);
         }
-    });
 
-    return handler;
+        return h;
+    }, handler);
 };
 
 export const compileState = () => {
