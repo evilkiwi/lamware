@@ -1,6 +1,6 @@
 {
     "name": "@tnotifier/lamware-do-not-wait",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Lamware Middleware to disable Lambda waiting for an empty event loop",
     "files": [
         "build"
@@ -40,7 +40,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@tnotifier/lamware": "^1.1.3"
+        "@tnotifier/lamware": "^1.1.4"
     },
     "devDependencies": {
         "@types/node": "^14.18.12",
