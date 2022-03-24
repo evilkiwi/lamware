@@ -14,6 +14,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-cdk/aws-apigatewayv2-alpha@npm:^2.16.0-alpha.0":
+  version: 2.16.0-alpha.0
+  resolution: "@aws-cdk/aws-apigatewayv2-alpha@npm:2.16.0-alpha.0"
+  peerDependencies:
+    aws-cdk-lib: ^2.16.0
+    constructs: ^10.0.0
+  checksum: ac9b79ac7c3c7f596fa5e50c7ffcf0ffbefd2ddc46117b2573c3f066b1ad357ca7a4e9f478f2f096f7397f87707b298faff9e3786552d745f98dd12d46503b10
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:^2.16.0-alpha.0":
+  version: 2.16.0-alpha.0
+  resolution: "@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:2.16.0-alpha.0"
+  peerDependencies:
+    "@aws-cdk/aws-apigatewayv2-alpha": 2.16.0-alpha.0
+    aws-cdk-lib: ^2.16.0
+    constructs: ^10.0.0
+  checksum: 305079b8580bd31e2879df6b62111a70c8c9ff91d5f58b93d4454f0e1243f5c369e077b40153d5c00ae2e3be1a4dcd24943c2c89860e4f1f378d525d97f0d95d
+  languageName: node
+  linkType: hard
+
 "@aws-lambda-powertools/commons@npm:^0.7.1":
   version: 0.7.1
   resolution: "@aws-lambda-powertools/commons@npm:0.7.1"
@@ -421,6 +442,13 @@ __metadata:
     "@babel/helper-validator-identifier": ^7.16.7
     to-fast-properties: ^2.0.0
   checksum: 12e5a287986fe557188e87b2c5202223f1dc83d9239a196ab936fdb9f8c1eb0be717ff19f934b5fad4e29a75586d5798f74bed209bccea1c20376b9952056f0e
+  languageName: node
+  linkType: hard
+
+"@balena/dockerignore@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@balena/dockerignore@npm:1.0.2"
+  checksum: 0d39f8fbcfd1a983a44bced54508471ab81aaaa40e2c62b46a9f97eac9d6b265790799f16919216db486331dedaacdde6ecbd6b7abe285d39bc50de111991699
   languageName: node
   linkType: hard
 
@@ -1969,7 +1997,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tnotifier/lamware-appconfig@workspace:packages/appconfig"
   dependencies:
-    "@tnotifier/lamware": ^1.0.1
+    "@tnotifier/lamware": ^1.1.0
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -1984,7 +2012,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tnotifier/lamware-do-not-wait@workspace:packages/do-not-wait"
   dependencies:
-    "@tnotifier/lamware": ^1.0.1
+    "@tnotifier/lamware": ^1.1.0
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -1995,9 +2023,34 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tnotifier/lamware-example@workspace:example":
+"@tnotifier/lamware-example-stack@workspace:example/stack":
   version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-example@workspace:example"
+  resolution: "@tnotifier/lamware-example-stack@workspace:example/stack"
+  dependencies:
+    "@aws-cdk/aws-apigatewayv2-alpha": ^2.16.0-alpha.0
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.16.0-alpha.0
+    "@types/cross-spawn": ^6.0.2
+    "@types/folder-hash": ^4.0.1
+    "@types/fs-extra": ^9.0.13
+    "@types/glob": ^7.2.0
+    "@types/node": ^14.18.12
+    aws-cdk: ^2.16.0
+    aws-cdk-lib: ^2.16.0
+    constructs: ^10.0.85
+    cross-spawn: ^7.0.3
+    esbuild: ^0.14.25
+    folder-hash: ^4.0.2
+    fs-extra: ^10.0.1
+    glob: ^7.2.0
+    source-map-support: ^0.5.21
+    ts-node: ^10.7.0
+    typescript: ^4.6.2
+  languageName: unknown
+  linkType: soft
+
+"@tnotifier/lamware-example@workspace:example/function":
+  version: 0.0.0-use.local
+  resolution: "@tnotifier/lamware-example@workspace:example/function"
   dependencies:
     "@types/aws-lambda": ^8.10.93
     "@types/cookie": ^0.4.1
@@ -2021,7 +2074,7 @@ __metadata:
   resolution: "@tnotifier/lamware-powertools-tracing@workspace:packages/powertools-tracing"
   dependencies:
     "@aws-lambda-powertools/tracer": ^0.7.1
-    "@tnotifier/lamware": ^1.0.1
+    "@tnotifier/lamware": ^1.1.0
     "@types/node": ^14.18.12
     aws-xray-sdk-core: ^3.3.4
     eslint: ^8.11.0
@@ -2038,7 +2091,7 @@ __metadata:
   resolution: "@tnotifier/lamware-sentry@workspace:packages/sentry"
   dependencies:
     "@sentry/serverless": ^6.18.2
-    "@tnotifier/lamware": ^1.0.1
+    "@tnotifier/lamware": ^1.1.0
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     eslint: ^8.11.0
@@ -2054,7 +2107,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tnotifier/lamware-warmer@workspace:packages/warmer"
   dependencies:
-    "@tnotifier/lamware": ^1.0.1
+    "@tnotifier/lamware": ^1.1.0
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     eslint: ^8.11.0
@@ -2067,7 +2120,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tnotifier/lamware@^1.0.1, @tnotifier/lamware@workspace:packages/core":
+"@tnotifier/lamware@^1.1.0, @tnotifier/lamware@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@tnotifier/lamware@workspace:packages/core"
   dependencies:
@@ -2249,6 +2302,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/cross-spawn@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "@types/cross-spawn@npm:6.0.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: fa9edd32178878cab3ea8d6d0260639e0fe4860ddb3887b8de53d6e8036e154fc5f313c653f690975aa25025aea8beb83fb0870b931bf8d9202c3ac530a24c9d
+  languageName: node
+  linkType: hard
+
 "@types/express-serve-static-core@npm:^4.17.18":
   version: 4.17.28
   resolution: "@types/express-serve-static-core@npm:4.17.28"
@@ -2269,6 +2331,32 @@ __metadata:
     "@types/qs": "*"
     "@types/serve-static": "*"
   checksum: 12a2a0e6c4b993fc0854bec665906788aea0d8ee4392389d7a98a5de1eefdd33c9e1e40a91f3afd274011119c506f7b4126acb97fae62ae20b654974d44cba12
+  languageName: node
+  linkType: hard
+
+"@types/folder-hash@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@types/folder-hash@npm:4.0.1"
+  checksum: df14059d4ba6bde347e078f3d00a2a93965d5e5eb9c9f9c3457b1505fb6bb6fca08083bab20cd7221d2b19c0bcf5a60dc7819720bd8f3ed226b75c3a08dae227
+  languageName: node
+  linkType: hard
+
+"@types/fs-extra@npm:^9.0.13":
+  version: 9.0.13
+  resolution: "@types/fs-extra@npm:9.0.13"
+  dependencies:
+    "@types/node": "*"
+  checksum: add79e212acd5ac76b97b9045834e03a7996aef60a814185e0459088fd290519a3c1620865d588fa36c4498bf614210d2a703af5cf80aa1dbc125db78f6edac3
+  languageName: node
+  linkType: hard
+
+"@types/glob@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "@types/glob@npm:7.2.0"
+  dependencies:
+    "@types/minimatch": "*"
+    "@types/node": "*"
+  checksum: 6ae717fedfdfdad25f3d5a568323926c64f52ef35897bcac8aca8e19bc50c0bd84630bbd063e5d52078b2137d8e7d3c26eabebd1a2f03ff350fff8a91e79fc19
   languageName: node
   linkType: hard
 
@@ -2329,7 +2417,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/minimatch@npm:^3.0.3":
+"@types/minimatch@npm:*, @types/minimatch@npm:^3.0.3":
   version: 3.0.5
   resolution: "@types/minimatch@npm:3.0.5"
   checksum: c41d136f67231c3131cf1d4ca0b06687f4a322918a3a5adddc87ce90ed9dbd175a3610adee36b106ae68c0b92c637c35e02b58c8a56c424f71d30993ea220b92
@@ -2910,6 +2998,39 @@ __metadata:
   languageName: node
   linkType: hard
 
+"aws-cdk-lib@npm:^2.16.0":
+  version: 2.17.0
+  resolution: "aws-cdk-lib@npm:2.17.0"
+  dependencies:
+    "@balena/dockerignore": ^1.0.2
+    case: 1.6.3
+    fs-extra: ^9.1.0
+    ignore: ^5.2.0
+    jsonschema: ^1.4.0
+    minimatch: ^3.1.2
+    punycode: ^2.1.1
+    semver: ^7.3.5
+    yaml: 1.10.2
+  peerDependencies:
+    constructs: ^10.0.0
+  checksum: 7ef399c1c5e78cb393352d003edd4b24c06a9997d1c5609903057175cb28b85da356fa07702b115fe36e5b0e47b2c823e714576c239ff9562c16d4ec31f721d9
+  languageName: node
+  linkType: hard
+
+"aws-cdk@npm:^2.16.0":
+  version: 2.17.0
+  resolution: "aws-cdk@npm:2.17.0"
+  dependencies:
+    fsevents: 2.3.2
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    cdk: bin/cdk
+  checksum: a47745e4cb1ebe025f263117a0d1df81feff5ddf92a05bab20723077103ed7314f2a014adf050bb28c6adf53463c03ea73c0e3e9dfaae40cb6d1f17797c6aa21
+  languageName: node
+  linkType: hard
+
 "aws-sdk@npm:^2.1096.0":
   version: 2.1096.0
   resolution: "aws-sdk@npm:2.1096.0"
@@ -3109,6 +3230,15 @@ __metadata:
     balanced-match: ^1.0.0
     concat-map: 0.0.1
   checksum: faf34a7bb0c3fcf4b59c7808bc5d2a96a40988addf2e7e09dfbb67a2251800e0d14cd2bfc1aa79174f2f5095c54ff27f46fb1289fe2d77dac755b5eb3434cc07
+  languageName: node
+  linkType: hard
+
+"brace-expansion@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "brace-expansion@npm:2.0.1"
+  dependencies:
+    balanced-match: ^1.0.0
+  checksum: a61e7cd2e8a8505e9f0036b3b6108ba5e926b4b55089eeb5550cd04a471fe216c96d4fe7e4c7f995c728c554ae20ddfc4244cad10aef255e72b62930afd233d1
   languageName: node
   linkType: hard
 
@@ -3326,6 +3456,13 @@ __metadata:
   version: 1.0.30001319
   resolution: "caniuse-lite@npm:1.0.30001319"
   checksum: 1c03cc4ca019c410d197b76604cd8605077ef124906f3debd3f026568e01a1aa3888cdfcb0d23c0786115b0b3f790486f2aa8e0cce361d3dcc5c92ff3611f73e
+  languageName: node
+  linkType: hard
+
+"case@npm:1.6.3":
+  version: 1.6.3
+  resolution: "case@npm:1.6.3"
+  checksum: febe73278f910b0d28aab7efd6f51c235f9aa9e296148edb56dfb83fd58faa88308c30ce9a0122b6e53e0362c44f4407105bd5ef89c46860fc2b184e540fd68d
   languageName: node
   linkType: hard
 
@@ -3740,6 +3877,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"constructs@npm:^10.0.85":
+  version: 10.0.94
+  resolution: "constructs@npm:10.0.94"
+  checksum: 325d8b5f640c8ca0e456ac23106520d29c478a8436f9786cede08969c33f90347c5e77ea0aca85ed6a4c95992028b994ab67d76f6398984f4494c82e78b36229
+  languageName: node
+  linkType: hard
+
 "content-disposition@npm:0.5.4":
   version: 0.5.4
   resolution: "content-disposition@npm:0.5.4"
@@ -3982,7 +4126,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2":
+"debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
   dependencies:
@@ -4532,7 +4676,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.14.14":
+"esbuild@npm:^0.14.14, esbuild@npm:^0.14.25":
   version: 0.14.27
   resolution: "esbuild@npm:0.14.27"
   dependencies:
@@ -5097,6 +5241,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"folder-hash@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "folder-hash@npm:4.0.2"
+  dependencies:
+    debug: ^4.3.3
+    graceful-fs: ~4.2.9
+    minimatch: ~5.0.0
+  bin:
+    folder-hash: bin/folder-hash
+  checksum: c087a02f5c39e6869c72e40d196ee642a972e5219b83239ba61f2971c710b6fbee0e9bfbe834cdb59104a7a696596be75c4c3365fc1e7aae8bbe652a650c8092
+  languageName: node
+  linkType: hard
+
 "foreground-child@npm:^2.0.0":
   version: 2.0.0
   resolution: "foreground-child@npm:2.0.0"
@@ -5139,7 +5296,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^10.0.0":
+"fs-extra@npm:^10.0.0, fs-extra@npm:^10.0.1":
   version: 10.0.1
   resolution: "fs-extra@npm:10.0.1"
   dependencies:
@@ -5187,7 +5344,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@^2.3.2, fsevents@~2.3.2":
+"fsevents@2.3.2, fsevents@^2.3.2, fsevents@~2.3.2":
   version: 2.3.2
   resolution: "fsevents@npm:2.3.2"
   dependencies:
@@ -5196,7 +5353,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
+"fsevents@patch:fsevents@2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
   resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=1cc4b2"
   dependencies:
@@ -5510,7 +5667,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.2, graceful-fs@npm:^4.2.3, graceful-fs@npm:^4.2.6, graceful-fs@npm:^4.2.9":
+"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.2, graceful-fs@npm:^4.2.3, graceful-fs@npm:^4.2.6, graceful-fs@npm:^4.2.9, graceful-fs@npm:~4.2.9":
   version: 4.2.9
   resolution: "graceful-fs@npm:4.2.9"
   checksum: 68ea4e07ff2c041ada184f9278b830375f8e0b75154e3f080af6b70f66172fabb4108d19b3863a96b53fc068a310b9b6493d86d1291acc5f3861eb4b79d26ad6
@@ -6877,6 +7034,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jsonschema@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "jsonschema@npm:1.4.0"
+  checksum: a2f96b5154658f5567b064d6f25fa4cb7e38b923d5dce9dad8d2566a07dd94abc4acedf234333a91f31bc9934e9dd57c270dcc51e5656b4c104408196c768580
+  languageName: node
+  linkType: hard
+
 "jsprim@npm:^1.2.2":
   version: 1.4.2
   resolution: "jsprim@npm:1.4.2"
@@ -7430,12 +7594,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^3.0.4":
+"minimatch@npm:^3.0.4, minimatch@npm:^3.1.2":
   version: 3.1.2
   resolution: "minimatch@npm:3.1.2"
   dependencies:
     brace-expansion: ^1.1.7
   checksum: c154e566406683e7bcb746e000b84d74465b3a832c45d59912b9b55cd50dee66e5c4b1e5566dba26154040e51672f9aa450a9aef0c97cfc7336b78b7afb9540a
+  languageName: node
+  linkType: hard
+
+"minimatch@npm:~5.0.0":
+  version: 5.0.1
+  resolution: "minimatch@npm:5.0.1"
+  dependencies:
+    brace-expansion: ^2.0.1
+  checksum: b34b98463da4754bc526b244d680c69d4d6089451ebe512edaf6dd9eeed0279399cfa3edb19233513b8f830bf4bfcad911dddcdf125e75074100d52f724774f0
   languageName: node
   linkType: hard
 
@@ -9444,7 +9617,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:^0.5.6":
+"source-map-support@npm:^0.5.21, source-map-support@npm:^0.5.6":
   version: 0.5.21
   resolution: "source-map-support@npm:0.5.21"
   dependencies:
@@ -10902,7 +11075,7 @@ typescript@^4.6.2:
   languageName: node
   linkType: hard
 
-"yaml@npm:^1.10.0":
+"yaml@npm:1.10.2, yaml@npm:^1.10.0":
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f

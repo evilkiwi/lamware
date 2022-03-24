@@ -1,0 +1,12 @@
+{
+    "extends": "../../build/tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+            "*": ["./src/types/*.d.ts"]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "cdk.out"
+    ]
+}

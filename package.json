@@ -1,7 +1,7 @@
 {
     "private": true,
     "workspaces": [
-        "example",
+        "example/*",
         "packages/*"
     ],
     "scripts": {
@@ -10,6 +10,7 @@
         "test": "lerna run test --stream",
         "prune": "lerna clean && rm -rf node_modules",
         "example": "yarn workspace @tnotifier/lamware-example",
+        "example-stack": "yarn workspace @tnotifier/lamware-example-stack",
         "lamware": "yarn workspace @tnotifier/lamware"
     },
     "devDependencies": {

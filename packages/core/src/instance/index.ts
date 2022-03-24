@@ -28,7 +28,7 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                 clear,
                 handler: async (event, context, callback) => {
                     let response: PromiseType<Exclude<ReturnType<H>, void>>|Error;
-                    let payload: Omit<BeforeMiddlewarePayload<H>, 'state'> = { event, context };
+                    let payload: BeforeMiddlewarePayload<H> = { event, context, state: {} };
 
                     try {
                         await init();

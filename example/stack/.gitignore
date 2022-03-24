@@ -1,0 +1,4 @@
+.aws-sam
+.cdk.staging
+cdk.out
+cdk.context.json
