@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/tnotifier/lamware/compare/@tnotifier/lamware@1.1.4...@tnotifier/lamware@1.1.5) (2022-03-24)
+
+
+### Bug Fixes
+
+* **core:** edge-case where state would be overriden instead of merged ([cd238d7](https://github.com/tnotifier/lamware/commit/cd238d7277e0ed13e2bd68d557af8ae4887e93eb))
+
+
+
+
+
 ## [1.1.4](https://github.com/tnotifier/lamware/compare/@tnotifier/lamware@1.1.3...@tnotifier/lamware@1.1.4) (2022-03-24)
 
 **Note:** Version bump only for package @tnotifier/lamware

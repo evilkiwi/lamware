@@ -1,6 +1,6 @@
 {
     "name": "@tnotifier/lamware-powertools-logger",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Lamware Middleware to utilize the official Logger powertools",
     "files": [
         "build"
@@ -41,7 +41,7 @@
     },
     "dependencies": {
         "@aws-lambda-powertools/logger": "^0.7.1",
-        "@tnotifier/lamware": "^1.1.4"
+        "@tnotifier/lamware": "^1.1.5"
     },
     "devDependencies": {
         "@types/node": "^14.18.12",
