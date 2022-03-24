@@ -81,7 +81,7 @@ export const runMiddleware = async <H extends Hook>(hook: H, payload: HookReturn
 
             // @ts-ignore TODO: Figure out typing this properly.
             const response = await middlewareHook(runPayload);
-            registry.state[runId] = response?.state ?? {};
+            registry.state[runId] = merge(registry.state[runId] ?? {}, response?.state ?? {});
 
             return response;
         };
@@ -101,7 +101,7 @@ export const runMiddleware = async <H extends Hook>(hook: H, payload: HookReturn
             return localPayload;
         }
 
-        return run(id, localPayload);
+        return merge(localPayload, run(id, localPayload));
     }, Promise.resolve(payload));
 };
 
