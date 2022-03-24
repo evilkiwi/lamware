@@ -332,3 +332,66 @@ test('should allow middleware filter at runtime', async () => {
 
     expect(result.statusCode).toBe(200);
 });
+
+test('should allow middleware self filtering', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use({
+            id: 'test-1',
+            pure: true,
+            after: async (payload) => {
+                payload.response.statusCode = 400;
+                return payload;
+            },
+            filter: () => false,
+        })
+        .execute(async ({ event }) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ rawPath: event.rawPath }),
+            };
+        });
+    const result = await execute(handler);
+
+    expect(result.statusCode).toBe(200);
+});
+
+test('should allow both middleware self filtering and runtime filtering', async () => {
+    const { handler: handler1 } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use({
+            id: 'test-1',
+            pure: true,
+            after: async (payload) => {
+                payload.response.statusCode = 400;
+                return payload;
+            },
+            filter: () => true,
+        }, () => false)
+        .execute(async ({ event }) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ rawPath: event.rawPath }),
+            };
+        });
+    const result1 = await execute(handler1);
+
+    const { handler: handler2 } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use({
+            id: 'test-2',
+            pure: true,
+            after: async (payload) => {
+                payload.response.statusCode = 400;
+                return payload;
+            },
+            filter: () => false,
+        }, () => true)
+        .execute(async ({ event }) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ rawPath: event.rawPath }),
+            };
+        });
+    const result2 = await execute(handler2);
+
+    expect(result1.statusCode).toBe(200);
+    expect(result2.statusCode).toBe(200);
+});

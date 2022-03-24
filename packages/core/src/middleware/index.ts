@@ -50,7 +50,7 @@ export const runMiddleware = async (hook: 'before'|'after', payload: any) => {
             for (let i = 0; i < total; i++) {
                 const middleware = registry.all[id[i]]?.[hook];
 
-                if (middleware !== undefined) {
+                if (middleware !== undefined && (!(registry.all[id[i]]?.filter) || (registry.all[id[i]].filter?.() ?? true))) {
                     payloads.push(new Promise(async (resolve) => {
                         const middlewareResponse = await middleware(localPayload);
                         registry.state[registry.all[id[i]].id] = middlewareResponse.state;
@@ -66,11 +66,11 @@ export const runMiddleware = async (hook: 'before'|'after', payload: any) => {
             return localPayload;
         }
 
-        const middleware = registry.all[id][hook];
+        const middleware = registry.all[id];
 
-        if (middleware) {
-            const middlewareResponse = await middleware(localPayload);
-            registry.state[id] = middlewareResponse.state;
+        if (middleware && middleware[hook] && (!middleware.filter || middleware.filter())) {
+            const middlewareResponse = await middleware[hook]?.(localPayload);
+            registry.state[id] = middlewareResponse?.state ?? {};
             return middlewareResponse;
         }
 

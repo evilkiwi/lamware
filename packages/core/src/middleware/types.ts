@@ -2,6 +2,8 @@ import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
 import type { DestructuredHandler } from '@/instance';
 
+export type FilterFunction = () => boolean;
+
 export type Wrapper<H extends Handler = Handler> = (handler: DestructuredHandler<H>) => DestructuredHandler<H>;
 
 export interface MiddlewarePayload<H extends Handler, S extends object = {}> {
@@ -27,6 +29,7 @@ export interface Middleware<H extends Handler = Handler, S extends object = {}> 
     wrap?: (handler: DestructuredHandler<H>) => DestructuredHandler<H>;
     before?: MiddlewareHandler<H, BeforeMiddlewarePayload<H, S>>;
     after?: MiddlewareHandler<H, AfterMiddlewarePayload<H, S>>;
+    filter?: FilterFunction;
     state?: S;
 }
 

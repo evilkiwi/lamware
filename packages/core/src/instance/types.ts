@@ -1,12 +1,10 @@
 import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
-import type { Middleware } from '@/middleware';
+import type { FilterFunction, Middleware } from '@/middleware';
 
 export interface Options {
 
 }
-
-export type FilterFunction = () => boolean;
 
 export interface DestructuredHandlerOptions<H extends Handler, S extends object = {}> {
     event: Parameters<H>[0];

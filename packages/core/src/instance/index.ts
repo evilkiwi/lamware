@@ -10,9 +10,16 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
 
     const instance: Instance<H> = {
         use: (middleware, filter) => {
-            if (!filter || filter()) {
-                register<H>(middleware);
+            if (filter !== undefined) {
+                if (middleware.filter === undefined) {
+                    middleware.filter = filter;
+                } else {
+                    const originalFilter = middleware.filter;
+                    middleware.filter = () => filter() && originalFilter();
+                }
             }
+
+            register<H>(middleware);
 
             return instance;
         },
