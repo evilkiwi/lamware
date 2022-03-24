@@ -1,0 +1,55 @@
+{
+    "name": "@tnotifier/lamware-sqs-json-parser",
+    "version": "1.0.0",
+    "description": "Lamware Middleware for parsing and providing types for SQS",
+    "files": [
+        "build"
+    ],
+    "sideEffects": false,
+    "main": "./build/index.cjs.js",
+    "module": "./build/index.es.js",
+    "types": "./build/src/index.d.ts",
+    "license": "GPL-3.0-only",
+    "author": {
+        "name": "Evil Kiwi Limited",
+        "url": "https://evil.kiwi",
+        "email": "support@tnotifier.app"
+    },
+    "homepage": "https://github.com/tnotifier/lamware",
+    "bugs": {
+        "url": "https://github.com/tnotifier/lamware/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tnotifier/lamware.git"
+    },
+    "keywords": [
+        "lambda",
+        "middleware",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "clean": "rimraf build",
+        "prepack": "yarn build",
+        "build": "yarn clean && yarn compile",
+        "compile": "vite build",
+        "dev": "vite build --watch",
+        "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
+    },
+    "dependencies": {
+        "@tnotifier/lamware": "^1.1.6"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.93",
+        "@types/node": "^14.18.12",
+        "eslint": "^8.11.0",
+        "rimraf": "^3.0.2",
+        "tslib": "^2.3.1",
+        "typescript": "^4.6.2",
+        "vite": "^2.8.6",
+        "vite-plugin-dts": "^0.9.10"
+    }
+}
