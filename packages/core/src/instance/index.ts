@@ -45,7 +45,7 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                     const basePayload: MiddlewarePayload<H> = {
                         debug,
                         logger: localLogger,
-                        state: {},
+                        state: compileState(),
                     };
 
                     let payload: BeforeMiddlewarePayload<H> = {

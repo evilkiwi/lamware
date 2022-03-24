@@ -232,6 +232,29 @@ test('should allow middleware to initialize with global state', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: true, hello2: false }));
 });
 
+test('should allow middleware to access state set by init', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use<Middleware<APIGatewayProxyHandlerV2<any>, { testing123: boolean; testing1234: boolean }>>({
+            id: 'test-1',
+            pure: true,
+            init: async () => ({ testing123: true }),
+            before: async (payload) => {
+                payload.state.testing1234 = payload.state.testing123;
+                return payload;
+            },
+        })
+        .execute(async ({ state }) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ hello: state.testing1234 }),
+            };
+        });
+    const result = await execute(handler);
+
+    expect(result.statusCode).toBe(200);
+    expect(result.body).toBe(JSON.stringify({ hello: true }));
+});
+
 test('should allow middleware to modify a global state', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use<Middleware<APIGatewayProxyHandlerV2<any>, { testing123: boolean }>>({
