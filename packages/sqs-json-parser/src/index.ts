@@ -15,7 +15,7 @@ export const sqsJsonParser = <R extends object>(options?: Options): Middleware<S
             });
         } catch (e) {
             if (options?.throwOnError !== false) {
-                throw new Error(`failed to process sqs record json: ${e}`);
+                throw new Error(`failed to process record json: ${e}`);
             }
         }
 
