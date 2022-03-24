@@ -1,6 +1,6 @@
 {
     "name": "@tnotifier/lamware-warmer",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "Lamware Middleware for keeping Functions warm",
     "files": [
         "build"
@@ -40,7 +40,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@tnotifier/lamware": "^1.1.5",
+        "@tnotifier/lamware": "^1.1.6",
         "lambda-warmer": "^1.2.2"
     },
     "devDependencies": {

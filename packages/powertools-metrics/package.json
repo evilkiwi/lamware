@@ -1,6 +1,6 @@
 {
     "name": "@tnotifier/lamware-powertools-metrics",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Lamware Middleware to utilize the official Metrics powertools",
     "files": [
         "build"
@@ -41,7 +41,7 @@
     },
     "dependencies": {
         "@aws-lambda-powertools/metrics": "^0.7.1",
-        "@tnotifier/lamware": "^1.1.5"
+        "@tnotifier/lamware": "^1.1.6"
     },
     "devDependencies": {
         "@types/node": "^14.18.12",
