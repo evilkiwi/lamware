@@ -1,8 +1,8 @@
-import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
+import type { Handler, APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { afterEach, expect, test } from 'vitest';
 import { execute } from './helpers';
-import { Wrapper, Middleware, unwrapCompat } from '../src';
-import { lamware, wrapCompat } from '../src';
+import { lamware, wrapCompat, unwrapCompat } from '../src';
+import type { Wrapper, Middleware, Logger } from '../src';
 import { clear } from '../src/middleware';
 
 afterEach(() => clear());
@@ -213,16 +213,23 @@ test('should allow middleware to initialize with global state', async () => {
                 return { testing123: true };
             },
         })
+        .use<Middleware<APIGatewayProxyHandlerV2<any>, { testing1234: boolean }>>({
+            id: 'test-2',
+            pure: true,
+            init: async () => {
+                return { testing1234: false };
+            },
+        })
         .execute(async ({ state }) => {
             return {
                 statusCode: 200,
-                body: JSON.stringify({ hello: state.testing123 }),
+                body: JSON.stringify({ hello: state.testing123, hello2: state.testing1234 }),
             };
         });
     const result = await execute(handler);
 
     expect(result.statusCode).toBe(200);
-    expect(result.body).toBe(JSON.stringify({ hello: true }));
+    expect(result.body).toBe(JSON.stringify({ hello: true, hello2: false }));
 });
 
 test('should allow middleware to modify a global state', async () => {
@@ -394,4 +401,54 @@ test('should allow both middleware self filtering and runtime filtering', async 
 
     expect(result1.statusCode).toBe(200);
     expect(result2.statusCode).toBe(200);
+});
+
+test('should allow a custom logger to be manually set', async () => {
+    let text = '';
+
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>({
+            logger: {
+                ...console,
+                debug: (...args: unknown[]) => {
+                    text = (args[0] as string|undefined) ?? '';
+                },
+            },
+        })
+        .execute(async ({ logger }) => {
+            logger.debug('hello world');
+
+            return { statusCode: 200 };
+        });
+    const result = await execute(handler);
+
+    expect(result.statusCode).toBe(200);
+    expect(text).toBe('hello world');
+});
+
+test('should allow middleware to set a custom logger', async () => {
+    let text = '';
+
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use<Middleware<Handler, { customLogger: Logger }>>({
+            id: 'test-2',
+            pure: true,
+            init: async () => ({
+                customLogger: {
+                    ...console,
+                    debug: (...args: unknown[]) => {
+                        text = (args[0] as string|undefined) ?? '';
+                    },
+                },
+            }),
+            logger: ({ customLogger }) => customLogger,
+        })
+        .execute(async ({ logger }) => {
+            logger.debug('hello world');
+
+            return { statusCode: 200 };
+        });
+    const result = await execute(handler);
+
+    expect(result.statusCode).toBe(200);
+    expect(text).toBe('hello world');
 });

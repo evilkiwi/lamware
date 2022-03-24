@@ -3,7 +3,7 @@
     "name": "@tnotifier/lamware-example",
     "version": "1.0.0",
     "scripts": {
-        "build": "yarn clean && yarn generate && yarn compile",
+        "build": "yarn clean && yarn compile",
         "clean": "rimraf build",
         "compile": "NODE_ENV=production ts-node dev/build.ts",
         "dev": "nodemon dev/index.ts",

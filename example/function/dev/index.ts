@@ -2,7 +2,7 @@ import { execute } from 'lambda-local';
 import express from 'express';
 import { join } from 'path';
 import cors from 'cors';
-import apiGateway from '../../build/events/api-gateway';
+import apiGateway from '../../../build/events/api-gateway';
 
 const http = express();
 

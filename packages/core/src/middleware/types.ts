@@ -1,12 +1,21 @@
 import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
-import type { DestructuredHandler } from '@/instance';
+import type { DestructuredHandler, Logger } from '@/instance';
 
 export type FilterFunction = () => boolean;
+
+export type Hook = 'before'|'after';
+
+export interface HookReturns {
+    before: BeforeMiddlewarePayload;
+    after: AfterMiddlewarePayload;
+}
 
 export type Wrapper<H extends Handler = Handler> = (handler: DestructuredHandler<H>) => DestructuredHandler<H>;
 
 export interface MiddlewarePayload<H extends Handler, S extends object = {}> {
+    debug: boolean;
+    logger: Logger;
     state: S;
 }
 
@@ -26,6 +35,7 @@ export interface Middleware<H extends Handler = Handler, S extends object = {}> 
     id: string;
     pure?: boolean;
     init?: () => Promise<Partial<S>|void>;
+    logger?: (state: S) => Logger;
     wrap?: (handler: DestructuredHandler<H>) => DestructuredHandler<H>;
     before?: MiddlewareHandler<H, BeforeMiddlewarePayload<H, S>>;
     after?: MiddlewareHandler<H, AfterMiddlewarePayload<H, S>>;

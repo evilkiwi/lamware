@@ -1,7 +1,7 @@
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
 import type { DestructuredHandler } from '@/instance';
-import type { Middleware, MiddlewareRegistry } from './types';
+import type { AfterMiddlewarePayload, BeforeMiddlewarePayload, Hook, HookReturns, Middleware, MiddlewareRegistry } from './types';
 
 let initResolvers: Promise<void>[] = [];
 const registry: MiddlewareRegistry = {
@@ -14,6 +14,14 @@ const registry: MiddlewareRegistry = {
 };
 
 export const init = async () => Promise.all(initResolvers);
+
+export const loggerOverride = () => {
+    const middleware = Object.values(registry.all).find(middleware => {
+        return middleware.logger !== undefined;
+    });
+
+    return middleware?.logger?.(registry.state[middleware?.id ?? ''] ?? {});
+};
 
 export const wrap = (handler: DestructuredHandler) => {
     Object.values(registry.all).forEach(middleware => {
@@ -35,46 +43,64 @@ export const compileState = () => {
     return state;
 };
 
-export const runMiddleware = async (hook: 'before'|'after', payload: any) => {
-    return registry.order[hook].reduce(async (promise, id) => {
+export const runMiddleware = async <H extends Hook>(hook: H, payload: HookReturns[H]): Promise<HookReturns[H]> => {
+    const logDebug = (...args: unknown[]) => {
+        if (payload.debug) {
+            payload.logger.debug(...args);
+        }
+    };
+
+    // @ts-ignore TODO: Figure out typing this properly.
+    return registry.order[hook].reduce<Promise<HookReturns[H]>>(async (promise, id) => {
         let localPayload = await promise;
 
+        logDebug(`running \`${hook}\` hooks`);
+
         if (hook === 'before' && localPayload.response !== undefined) {
+            logDebug('previous middleware returned a response - exiting early');
             return localPayload;
         }
 
+        const run = async (runId: string, runPayload: HookReturns[H]) => {
+            const middleware = registry.all[runId];
+            const middlewareHook = middleware?.[hook];
+
+            if (
+                !middleware || !middlewareHook ||
+                (middleware.filter !== undefined && !middleware.filter())
+            ) {
+                if (middleware.filter !== undefined) {
+                    logDebug(`middleware \`${runId}\` was skipped by \`filter\``);
+                }
+
+                return runPayload;
+            }
+
+            logDebug(`running hook for \`${runId}\``);
+
+            // @ts-ignore TODO: Figure out typing this properly.
+            const response = await middlewareHook(runPayload);
+            registry.state[runId] = response?.state ?? {};
+
+            return response;
+        };
+
         if (Array.isArray(id)) {
-            const payloads: Promise<any>[] = [];
+            const payloads: ReturnType<typeof run>[] = [];
             const total = id.length;
 
             for (let i = 0; i < total; i++) {
-                const middleware = registry.all[id[i]]?.[hook];
-
-                if (middleware !== undefined && (!(registry.all[id[i]]?.filter) || (registry.all[id[i]].filter?.() ?? true))) {
-                    payloads.push(new Promise(async (resolve) => {
-                        const middlewareResponse = await middleware(localPayload);
-                        registry.state[registry.all[id[i]].id] = middlewareResponse.state;
-                        resolve(middlewareResponse);
-                    }));
-                }
+                payloads.push(run(id[i], localPayload));
             }
 
             (await Promise.all(payloads)).forEach(newPayload => {
-                localPayload = merge(localPayload, newPayload);
+                localPayload = merge(localPayload, newPayload) as HookReturns[H];
             });
 
             return localPayload;
         }
 
-        const middleware = registry.all[id];
-
-        if (middleware && middleware[hook] && (!middleware.filter || middleware.filter())) {
-            const middlewareResponse = await middleware[hook]?.(localPayload);
-            registry.state[id] = middlewareResponse?.state ?? {};
-            return middlewareResponse;
-        }
-
-        return localPayload;
+        return run(id, localPayload);
     }, Promise.resolve(payload));
 };
 

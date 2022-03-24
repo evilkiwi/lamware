@@ -1,3 +1,5 @@
+import { powertoolsTracing } from '@tnotifier/lamware-powertools-tracing';
+import { powertoolsLogger } from '@tnotifier/lamware-powertools-logger';
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { doNotWait } from '@tnotifier/lamware-do-not-wait';
 import { appconfig } from '@tnotifier/lamware-appconfig';
@@ -5,8 +7,17 @@ import { sentry } from '@tnotifier/lamware-sentry';
 import { warmer } from '@tnotifier/lamware-warmer';
 import { lamware } from '@tnotifier/lamware';
 
-const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+const { handler } = lamware<APIGatewayProxyHandlerV2<any>>({
+        debug: true,
+    })
     .use(doNotWait())
+    .use(powertoolsTracing({
+        serviceName: 'lamware-example',
+    }))
+    .use(powertoolsLogger({
+        serviceName: 'lamware-example',
+        logLevel: 'DEBUG',
+    }))
     .use(appconfig<{ hello: string }>({
         app: 'tnotifier-lamware-example',
         env: 'production',

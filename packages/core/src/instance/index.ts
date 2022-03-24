@@ -1,12 +1,15 @@
 import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
-import { register, runMiddleware, init, wrap, clear, compileState } from '@/middleware';
-import type { BeforeMiddlewarePayload } from '@/middleware';
+import { register, runMiddleware, init, wrap, clear, compileState, loggerOverride } from '@/middleware';
+import type { BeforeMiddlewarePayload, MiddlewarePayload } from '@/middleware';
 import type { Instance, Options } from './types';
 
 export const lamware = <H extends Handler = Handler>(options?: Options) => {
     options = options ?? {};
+
+    const debug = options.debug ?? false;
+    const logger = options.logger ?? console;
 
     const instance: Instance<H> = {
         use: (middleware, filter) => {
@@ -28,11 +31,30 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                 clear,
                 handler: async (event, context, callback) => {
                     let response: PromiseType<Exclude<ReturnType<H>, void>>|Error;
-                    let payload: BeforeMiddlewarePayload<H> = { event, context, state: {} };
 
                     try {
                         await init();
+                    } catch (e) {
+                        throw new Error(`failed to initialize: ${e}`);
+                    }
 
+                    // Find a logger from the Middleware.
+                    const localLogger = loggerOverride() ?? logger;
+
+                    // Create the various middleware payloads.
+                    const basePayload: MiddlewarePayload<H> = {
+                        debug,
+                        logger: localLogger,
+                        state: {},
+                    };
+
+                    let payload: BeforeMiddlewarePayload<H> = {
+                        ...basePayload,
+                        event,
+                        context,
+                    };
+
+                    try {
                         payload = await runMiddleware('before', payload);
 
                         if (payload.response === undefined) {
@@ -41,6 +63,7 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                             response = await wrapped({
                                 event: payload.event,
                                 context: payload.context,
+                                logger: localLogger,
                                 state: compileState(),
                                 callback,
                             });
@@ -51,7 +74,10 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                         response = e as Error;
                     }
 
-                    const mixed = await runMiddleware('after', { response });
+                    const mixed = await runMiddleware('after', {
+                        ...basePayload,
+                        response,
+                    });
 
                     if (mixed.response instanceof Error) {
                         throw mixed.response;

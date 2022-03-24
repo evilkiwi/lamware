@@ -2,14 +2,18 @@ import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
 import type { FilterFunction, Middleware } from '@/middleware';
 
-export interface Options {
+export type Logger = Pick<typeof console, 'debug'|'log'|'error'|'info'>;
 
+export interface Options {
+    debug?: boolean;
+    logger?: Logger;
 }
 
 export interface DestructuredHandlerOptions<H extends Handler, S extends object = {}> {
     event: Parameters<H>[0];
     context: Parameters<H>[1];
     state: S;
+    logger: Logger;
     callback: Parameters<H>[2];
 }
 
