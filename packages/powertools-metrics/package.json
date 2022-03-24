@@ -1,7 +1,7 @@
 {
-    "name": "@tnotifier/lamware-do-not-wait",
-    "version": "1.0.7",
-    "description": "Lamware Middleware to disable Lambda waiting for an empty event loop",
+    "name": "@tnotifier/lamware-powertools-metrics",
+    "version": "1.0.0",
+    "description": "Lamware Middleware to utilize the official Metrics powertools",
     "files": [
         "build"
     ],
@@ -40,6 +40,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
+        "@aws-lambda-powertools/metrics": "^0.7.1",
         "@tnotifier/lamware": "^1.1.5"
     },
     "devDependencies": {

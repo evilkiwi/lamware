@@ -31,8 +31,51 @@ yarn add @tnotifier/lamware
 npm install @tnotifier/lamware
 ```
 
-We maintain and ship various middlewares for public use - you can [install them too!](#TODO:)
+We maintain and ship various middlewares for public use - you can [install them too!](https://github.com/tnotifier/lamware/tree/master/packages)
 
 ## Usage
 
-You can check out the [`example` folder](#TODO:) for a fully-featured example.
+You can check out the [`example` folder](https://github.com/tnotifier/lamware/tree/master/example) for a fully-featured example with the AWS CDK stack to deploy it.
+
+```typescript
+import { powertoolsTracing } from '@tnotifier/lamware-powertools-tracing';
+import { powertoolsLogger } from '@tnotifier/lamware-powertools-logger';
+import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
+import { doNotWait } from '@tnotifier/lamware-do-not-wait';
+import { appconfig } from '@tnotifier/lamware-appconfig';
+import { sentry } from '@tnotifier/lamware-sentry';
+import { warmer } from '@tnotifier/lamware-warmer';
+import { lamware } from '@tnotifier/lamware';
+
+const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+    .use(doNotWait())
+    .use(powertoolsTracing({
+        serviceName: 'lamware-example',
+    }))
+    .use(powertoolsLogger({
+        serviceName: 'lamware-example',
+        logLevel: 'DEBUG',
+    }))
+    .use(appconfig<{ hello: string }>({
+        app: 'tnotifier-lamware-example',
+        env: 'production',
+        config: 'production',
+    }))
+    .use(sentry({
+        config: {
+            dsn: 'https://d99b0b438475869385706e70157c5e05@o1080839.ingest.sentry.io/6270000',
+        },
+    }))
+    .use(warmer())
+    .execute(async ({ state }) => {
+        return {
+            statusCode: 200,
+            body: JSON.stringify({
+                hello: 'world',
+                appconfig: state.config,
+            }),
+        };
+    });
+
+export { handler };
+```
