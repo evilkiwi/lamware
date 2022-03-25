@@ -5,6 +5,7 @@ import { ApiGatewayv2DomainProperties } from 'aws-cdk-lib/aws-route53-targets';
 import { DnsValidatedCertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import { ARecord, HostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
 import { Port, SecurityGroup, Vpc } from 'aws-cdk-lib/aws-ec2';
+import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { Aws, Duration, Stack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { join } from 'path';
@@ -94,6 +95,11 @@ export class LamwareStack extends Stack {
         });
         func.addToRolePolicy(appConfig.policy);
         func.addToRolePolicy(xray);
+        func.addToRolePolicy(new PolicyStatement({
+            resources: ['*'],
+            actions: ['secretsmanager:GetSecretValue'],
+            effect: Effect.ALLOW,
+        }));
 
         const integration = new HttpLambdaIntegration('lambdaIntegration', func);
 
