@@ -14,11 +14,15 @@ export interface EventOptions {
     sqs: SqsOptions;
 }
 
-export interface SqsOptions {
+export interface BaseOptions {
+    override?: any;
+}
+
+export interface SqsOptions extends BaseOptions {
     items?: any[];
 }
 
-export interface ApiGatewayOptions {
+export interface ApiGatewayOptions extends BaseOptions {
     headers?: Record<string, string>;
     method?: string;
     query?: Record<string, string>;

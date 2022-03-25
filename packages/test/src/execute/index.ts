@@ -1,5 +1,6 @@
 import type { Handler, APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { execute as executeLambda } from 'lambda-local';
+import { merge } from 'merge-anything';
 import { createHash } from 'crypto';
 import { v4 as uuid } from 'uuid';
 import * as events from '@/../../../build/events';
@@ -55,6 +56,10 @@ export const execute = async <H extends Handler = APIGatewayProxyHandlerV2, E ex
             event = localEvent;
             break;
         }
+    }
+
+    if (options.override) {
+        event = merge(event, options.override);
     }
 
     const result = await executeLambda({
