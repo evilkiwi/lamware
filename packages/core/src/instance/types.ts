@@ -23,6 +23,6 @@ export interface Instance<H extends Handler, S extends object = {}> {
     use: <M extends Middleware<H, any>>(middleware: M, filter?: FilterFunction) => Instance<H, S & NonNullable<M['state']>>;
     execute: (handler: DestructuredHandler<H, S>) => {
         clear: () => void;
-        handler: Handler;
+        handler: H;
     };
 }
