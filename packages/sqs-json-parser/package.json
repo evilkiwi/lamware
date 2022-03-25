@@ -1,6 +1,6 @@
 {
     "name": "@lamware/sqs-json-parser",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Lamware Middleware for parsing and providing types for SQS",
     "files": [
         "build"
@@ -40,7 +40,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@lamware/core": "^1.2.0"
+        "@lamware/core": "^1.2.1"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.93",
