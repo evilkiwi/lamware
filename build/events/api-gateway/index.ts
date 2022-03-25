@@ -1,4 +1,4 @@
-export default {
+export const apiGateway = {
     path: '/',
     headers: {},
     pathParameters: {},

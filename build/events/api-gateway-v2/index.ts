@@ -1,4 +1,4 @@
-export default {
+export const apiGatewayV2 = {
     version: '2.0',
     routeKey: 'ANY /',
     rawPath: '/',
