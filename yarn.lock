@@ -843,7 +843,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/appconfig@workspace:packages/appconfig"
   dependencies:
-    "@lamware/core": ^1.1.6
+    "@lamware/core": ^1.2.0
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -854,7 +854,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@lamware/core@^1.1.6, @lamware/core@workspace:packages/core":
+"@lamware/core@^1.2.0, @lamware/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@lamware/core@workspace:packages/core"
   dependencies:
@@ -880,7 +880,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/do-not-wait@workspace:packages/do-not-wait"
   dependencies:
-    "@lamware/core": ^1.1.6
+    "@lamware/core": ^1.2.0
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -941,7 +941,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/memoize@workspace:packages/memoize"
   dependencies:
-    "@lamware/core": ^1.1.6
+    "@lamware/core": ^1.2.0
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     eslint: ^8.11.0
@@ -958,7 +958,7 @@ __metadata:
   resolution: "@lamware/powertools-logger@workspace:packages/powertools-logger"
   dependencies:
     "@aws-lambda-powertools/logger": ^0.7.1
-    "@lamware/core": ^1.1.6
+    "@lamware/core": ^1.2.0
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -974,7 +974,7 @@ __metadata:
   resolution: "@lamware/powertools-metrics@workspace:packages/powertools-metrics"
   dependencies:
     "@aws-lambda-powertools/metrics": ^0.7.1
-    "@lamware/core": ^1.1.6
+    "@lamware/core": ^1.2.0
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -990,7 +990,7 @@ __metadata:
   resolution: "@lamware/powertools-tracing@workspace:packages/powertools-tracing"
   dependencies:
     "@aws-lambda-powertools/tracer": ^0.7.1
-    "@lamware/core": ^1.1.6
+    "@lamware/core": ^1.2.0
     "@types/node": ^14.18.12
     aws-xray-sdk-core: ^3.3.4
     eslint: ^8.11.0
@@ -1006,7 +1006,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/sentry@workspace:packages/sentry"
   dependencies:
-    "@lamware/core": ^1.1.6
+    "@lamware/core": ^1.2.0
     "@sentry/serverless": ^6.18.2
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
@@ -1023,7 +1023,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/sqs-json-parser@workspace:packages/sqs-json-parser"
   dependencies:
-    "@lamware/core": ^1.1.6
+    "@lamware/core": ^1.2.0
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     eslint: ^8.11.0
@@ -1039,7 +1039,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/warmer@workspace:packages/warmer"
   dependencies:
-    "@lamware/core": ^1.1.6
+    "@lamware/core": ^1.2.0
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     eslint: ^8.11.0
