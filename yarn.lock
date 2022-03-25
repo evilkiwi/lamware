@@ -2100,6 +2100,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@tnotifier/lamware-memoize@workspace:packages/memoize":
+  version: 0.0.0-use.local
+  resolution: "@tnotifier/lamware-memoize@workspace:packages/memoize"
+  dependencies:
+    "@tnotifier/lamware": ^1.1.6
+    "@types/aws-lambda": ^8.10.93
+    "@types/node": ^14.18.12
+    eslint: ^8.11.0
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
 "@tnotifier/lamware-powertools-logger@workspace:packages/powertools-logger":
   version: 0.0.0-use.local
   resolution: "@tnotifier/lamware-powertools-logger@workspace:packages/powertools-logger"
