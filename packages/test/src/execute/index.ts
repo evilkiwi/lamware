@@ -1,9 +1,9 @@
-import type { Handler, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
+import type { Handler, APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { execute as executeLambda } from 'lambda-local';
-import apiGateway from '../../../../../build/events/api-gateway';
+import apiGateway from '@/../../../build/events/api-gateway';
 import type { ExecuteOptions } from './types';
 
-export const execute = async (handler: Handler, options: ExecuteOptions = {}) => {
+export const execute = async <H extends Handler = APIGatewayProxyHandlerV2>(handler: H, options: ExecuteOptions = {}) => {
     const event = {...apiGateway};
     event.headers = options.headers ?? {};
     event.requestContext.httpMethod = options.method ?? 'GET';
@@ -23,5 +23,5 @@ export const execute = async (handler: Handler, options: ExecuteOptions = {}) =>
         event,
     });
 
-    return result as APIGatewayProxyStructuredResultV2;
+    return result as NonNullable<ReturnType<H>>;
 };

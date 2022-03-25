@@ -17,7 +17,7 @@ export interface DestructuredHandlerOptions<H extends Handler, S extends object 
     callback: Parameters<H>[2];
 }
 
-export type DestructuredHandler<H extends Handler = Handler, S extends object = {}> = (options: DestructuredHandlerOptions<H, S>) => PromiseType<Exclude<ReturnType<H>, void>>;
+export type DestructuredHandler<H extends Handler = Handler, S extends object = {}, R = PromiseType<Exclude<ReturnType<H>, void>>> = (options: DestructuredHandlerOptions<H, S>) => R|Promise<R>;
 
 export interface Instance<H extends Handler, S extends object = {}> {
     use: <M extends Middleware<H, any>>(middleware: M, filter?: FilterFunction) => Instance<H, S & NonNullable<M['state']>>;

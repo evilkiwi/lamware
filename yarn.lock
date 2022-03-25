@@ -1581,6 +1581,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/core@workspace:packages/core"
   dependencies:
+    "@lamware/test": "*"
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     c8: ^7.11.0
@@ -1604,13 +1605,26 @@ __metadata:
   resolution: "@lamware/do-not-wait@workspace:packages/do-not-wait"
   dependencies:
     "@lamware/core": ^1.2.1
+    "@lamware/test": "*"
     "@types/node": ^14.18.12
+    c8: ^7.11.0
     eslint: ^8.11.0
+    jest: ^28.0.0-alpha.7
+    jest-mock-extended: ^2.0.4
     rimraf: ^3.0.2
     tslib: ^2.3.1
     typescript: ^4.6.2
     vite: ^2.8.6
     vite-plugin-dts: ^0.9.10
+    vitest: ^0.5.9
+  languageName: unknown
+  linkType: soft
+
+"@lamware/example-sqs@workspace:example/sqs-function":
+  version: 0.0.0-use.local
+  resolution: "@lamware/example-sqs@workspace:example/sqs-function"
+  dependencies:
+    "@types/aws-lambda": ^8.10.93
   languageName: unknown
   linkType: soft
 
@@ -1639,9 +1653,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@lamware/example@workspace:example/function":
+"@lamware/example@workspace:example/http-function":
   version: 0.0.0-use.local
-  resolution: "@lamware/example@workspace:example/function"
+  resolution: "@lamware/example@workspace:example/http-function"
   dependencies:
     "@types/aws-lambda": ^8.10.93
     "@types/cookie": ^0.4.1
@@ -1764,9 +1778,29 @@ __metadata:
   resolution: "@lamware/sqs-json-parser@workspace:packages/sqs-json-parser"
   dependencies:
     "@lamware/core": ^1.2.1
+    "@lamware/test": "*"
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
+    c8: ^7.11.0
     eslint: ^8.11.0
+    jest: ^28.0.0-alpha.7
+    jest-mock-extended: ^2.0.4
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+    vitest: ^0.5.9
+  languageName: unknown
+  linkType: soft
+
+"@lamware/test@*, @lamware/test@workspace:packages/test":
+  version: 0.0.0-use.local
+  resolution: "@lamware/test@workspace:packages/test"
+  dependencies:
+    "@types/aws-lambda": ^8.10.93
+    "@types/node": ^14.18.12
+    lambda-local: ^2.0.2
     rimraf: ^3.0.2
     tslib: ^2.3.1
     typescript: ^4.6.2

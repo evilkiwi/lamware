@@ -1,6 +1,6 @@
 import type { Handler, APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { afterEach, expect, test } from 'vitest';
-import { execute } from './helpers';
+import { execute } from '@lamware/test';
 import type { Wrapper, Middleware, Logger } from '../src';
 import { lamware, wrapCompat } from '../src';
 import { clear } from '../src/middleware';
