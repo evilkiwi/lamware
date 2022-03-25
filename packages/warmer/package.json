@@ -1,6 +1,6 @@
 {
     "name": "@lamware/warmer",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "description": "Lamware Middleware for keeping Functions warm",
     "files": [
         "build"
@@ -43,7 +43,7 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@lamware/core": "^1.2.3",
+        "@lamware/core": "^1.2.4",
         "lambda-warmer": "^1.2.2"
     },
     "devDependencies": {
