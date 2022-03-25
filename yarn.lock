@@ -839,6 +839,219 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lamware/appconfig@workspace:packages/appconfig":
+  version: 0.0.0-use.local
+  resolution: "@lamware/appconfig@workspace:packages/appconfig"
+  dependencies:
+    "@lamware/core": ^1.1.6
+    "@types/node": ^14.18.12
+    eslint: ^8.11.0
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
+"@lamware/core@^1.1.6, @lamware/core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@lamware/core@workspace:packages/core"
+  dependencies:
+    "@types/aws-lambda": ^8.10.93
+    "@types/node": ^14.18.12
+    c8: ^7.11.0
+    eslint: ^8.11.0
+    jest: ^28.0.0-alpha.7
+    jest-mock-extended: ^2.0.4
+    lambda-local: ^2.0.2
+    merge-anything: ^5.0.2
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    utility-types: ^3.10.0
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+    vitest: ^0.5.9
+  languageName: unknown
+  linkType: soft
+
+"@lamware/do-not-wait@workspace:packages/do-not-wait":
+  version: 0.0.0-use.local
+  resolution: "@lamware/do-not-wait@workspace:packages/do-not-wait"
+  dependencies:
+    "@lamware/core": ^1.1.6
+    "@types/node": ^14.18.12
+    eslint: ^8.11.0
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
+"@lamware/example-stack@workspace:example/stack":
+  version: 0.0.0-use.local
+  resolution: "@lamware/example-stack@workspace:example/stack"
+  dependencies:
+    "@aws-cdk/aws-apigatewayv2-alpha": ^2.16.0-alpha.0
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.16.0-alpha.0
+    "@types/cross-spawn": ^6.0.2
+    "@types/folder-hash": ^4.0.1
+    "@types/fs-extra": ^9.0.13
+    "@types/glob": ^7.2.0
+    "@types/node": ^14.18.12
+    aws-cdk: ^2.16.0
+    aws-cdk-lib: ^2.16.0
+    constructs: ^10.0.85
+    cross-spawn: ^7.0.3
+    esbuild: ^0.14.25
+    folder-hash: ^4.0.2
+    fs-extra: ^10.0.1
+    glob: ^7.2.0
+    source-map-support: ^0.5.21
+    ts-node: ^10.7.0
+    typescript: ^4.6.2
+  languageName: unknown
+  linkType: soft
+
+"@lamware/example@workspace:example/function":
+  version: 0.0.0-use.local
+  resolution: "@lamware/example@workspace:example/function"
+  dependencies:
+    "@types/aws-lambda": ^8.10.93
+    "@types/cookie": ^0.4.1
+    "@types/cors": ^2.8.12
+    "@types/vhost": ^3.0.4
+    aws-sdk: ^2.1096.0
+    concurrently: ^7.0.0
+    cors: ^2.8.5
+    express: ^4.17.3
+    lambda-local: ^2.0.2
+    lambda-warmer: ^1.2.2
+    nodemon: ^2.0.15
+    rimraf: ^3.0.2
+    ts-node: ^10.7.0
+    vhost: ^3.0.2
+  languageName: unknown
+  linkType: soft
+
+"@lamware/memoize@workspace:packages/memoize":
+  version: 0.0.0-use.local
+  resolution: "@lamware/memoize@workspace:packages/memoize"
+  dependencies:
+    "@lamware/core": ^1.1.6
+    "@types/aws-lambda": ^8.10.93
+    "@types/node": ^14.18.12
+    eslint: ^8.11.0
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
+"@lamware/powertools-logger@workspace:packages/powertools-logger":
+  version: 0.0.0-use.local
+  resolution: "@lamware/powertools-logger@workspace:packages/powertools-logger"
+  dependencies:
+    "@aws-lambda-powertools/logger": ^0.7.1
+    "@lamware/core": ^1.1.6
+    "@types/node": ^14.18.12
+    eslint: ^8.11.0
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
+"@lamware/powertools-metrics@workspace:packages/powertools-metrics":
+  version: 0.0.0-use.local
+  resolution: "@lamware/powertools-metrics@workspace:packages/powertools-metrics"
+  dependencies:
+    "@aws-lambda-powertools/metrics": ^0.7.1
+    "@lamware/core": ^1.1.6
+    "@types/node": ^14.18.12
+    eslint: ^8.11.0
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
+"@lamware/powertools-tracing@workspace:packages/powertools-tracing":
+  version: 0.0.0-use.local
+  resolution: "@lamware/powertools-tracing@workspace:packages/powertools-tracing"
+  dependencies:
+    "@aws-lambda-powertools/tracer": ^0.7.1
+    "@lamware/core": ^1.1.6
+    "@types/node": ^14.18.12
+    aws-xray-sdk-core: ^3.3.4
+    eslint: ^8.11.0
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
+"@lamware/sentry@workspace:packages/sentry":
+  version: 0.0.0-use.local
+  resolution: "@lamware/sentry@workspace:packages/sentry"
+  dependencies:
+    "@lamware/core": ^1.1.6
+    "@sentry/serverless": ^6.18.2
+    "@types/aws-lambda": ^8.10.93
+    "@types/node": ^14.18.12
+    eslint: ^8.11.0
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
+"@lamware/sqs-json-parser@workspace:packages/sqs-json-parser":
+  version: 0.0.0-use.local
+  resolution: "@lamware/sqs-json-parser@workspace:packages/sqs-json-parser"
+  dependencies:
+    "@lamware/core": ^1.1.6
+    "@types/aws-lambda": ^8.10.93
+    "@types/node": ^14.18.12
+    eslint: ^8.11.0
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
+"@lamware/warmer@workspace:packages/warmer":
+  version: 0.0.0-use.local
+  resolution: "@lamware/warmer@workspace:packages/warmer"
+  dependencies:
+    "@lamware/core": ^1.1.6
+    "@types/aws-lambda": ^8.10.93
+    "@types/node": ^14.18.12
+    eslint: ^8.11.0
+    lambda-warmer: ^1.2.2
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
 "@lerna/add@npm:4.0.0":
   version: 4.0.0
   resolution: "@lerna/add@npm:4.0.0"
@@ -2024,219 +2237,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tnotifier/lamware-appconfig@workspace:packages/appconfig":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-appconfig@workspace:packages/appconfig"
-  dependencies:
-    "@tnotifier/lamware": ^1.1.6
-    "@types/node": ^14.18.12
-    eslint: ^8.11.0
-    rimraf: ^3.0.2
-    tslib: ^2.3.1
-    typescript: ^4.6.2
-    vite: ^2.8.6
-    vite-plugin-dts: ^0.9.10
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware-do-not-wait@workspace:packages/do-not-wait":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-do-not-wait@workspace:packages/do-not-wait"
-  dependencies:
-    "@tnotifier/lamware": ^1.1.6
-    "@types/node": ^14.18.12
-    eslint: ^8.11.0
-    rimraf: ^3.0.2
-    tslib: ^2.3.1
-    typescript: ^4.6.2
-    vite: ^2.8.6
-    vite-plugin-dts: ^0.9.10
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware-example-stack@workspace:example/stack":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-example-stack@workspace:example/stack"
-  dependencies:
-    "@aws-cdk/aws-apigatewayv2-alpha": ^2.16.0-alpha.0
-    "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.16.0-alpha.0
-    "@types/cross-spawn": ^6.0.2
-    "@types/folder-hash": ^4.0.1
-    "@types/fs-extra": ^9.0.13
-    "@types/glob": ^7.2.0
-    "@types/node": ^14.18.12
-    aws-cdk: ^2.16.0
-    aws-cdk-lib: ^2.16.0
-    constructs: ^10.0.85
-    cross-spawn: ^7.0.3
-    esbuild: ^0.14.25
-    folder-hash: ^4.0.2
-    fs-extra: ^10.0.1
-    glob: ^7.2.0
-    source-map-support: ^0.5.21
-    ts-node: ^10.7.0
-    typescript: ^4.6.2
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware-example@workspace:example/function":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-example@workspace:example/function"
-  dependencies:
-    "@types/aws-lambda": ^8.10.93
-    "@types/cookie": ^0.4.1
-    "@types/cors": ^2.8.12
-    "@types/vhost": ^3.0.4
-    aws-sdk: ^2.1096.0
-    concurrently: ^7.0.0
-    cors: ^2.8.5
-    express: ^4.17.3
-    lambda-local: ^2.0.2
-    lambda-warmer: ^1.2.2
-    nodemon: ^2.0.15
-    rimraf: ^3.0.2
-    ts-node: ^10.7.0
-    vhost: ^3.0.2
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware-memoize@workspace:packages/memoize":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-memoize@workspace:packages/memoize"
-  dependencies:
-    "@tnotifier/lamware": ^1.1.6
-    "@types/aws-lambda": ^8.10.93
-    "@types/node": ^14.18.12
-    eslint: ^8.11.0
-    rimraf: ^3.0.2
-    tslib: ^2.3.1
-    typescript: ^4.6.2
-    vite: ^2.8.6
-    vite-plugin-dts: ^0.9.10
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware-powertools-logger@workspace:packages/powertools-logger":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-powertools-logger@workspace:packages/powertools-logger"
-  dependencies:
-    "@aws-lambda-powertools/logger": ^0.7.1
-    "@tnotifier/lamware": ^1.1.6
-    "@types/node": ^14.18.12
-    eslint: ^8.11.0
-    rimraf: ^3.0.2
-    tslib: ^2.3.1
-    typescript: ^4.6.2
-    vite: ^2.8.6
-    vite-plugin-dts: ^0.9.10
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware-powertools-metrics@workspace:packages/powertools-metrics":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-powertools-metrics@workspace:packages/powertools-metrics"
-  dependencies:
-    "@aws-lambda-powertools/metrics": ^0.7.1
-    "@tnotifier/lamware": ^1.1.6
-    "@types/node": ^14.18.12
-    eslint: ^8.11.0
-    rimraf: ^3.0.2
-    tslib: ^2.3.1
-    typescript: ^4.6.2
-    vite: ^2.8.6
-    vite-plugin-dts: ^0.9.10
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware-powertools-tracing@workspace:packages/powertools-tracing":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-powertools-tracing@workspace:packages/powertools-tracing"
-  dependencies:
-    "@aws-lambda-powertools/tracer": ^0.7.1
-    "@tnotifier/lamware": ^1.1.6
-    "@types/node": ^14.18.12
-    aws-xray-sdk-core: ^3.3.4
-    eslint: ^8.11.0
-    rimraf: ^3.0.2
-    tslib: ^2.3.1
-    typescript: ^4.6.2
-    vite: ^2.8.6
-    vite-plugin-dts: ^0.9.10
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware-sentry@workspace:packages/sentry":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-sentry@workspace:packages/sentry"
-  dependencies:
-    "@sentry/serverless": ^6.18.2
-    "@tnotifier/lamware": ^1.1.6
-    "@types/aws-lambda": ^8.10.93
-    "@types/node": ^14.18.12
-    eslint: ^8.11.0
-    rimraf: ^3.0.2
-    tslib: ^2.3.1
-    typescript: ^4.6.2
-    vite: ^2.8.6
-    vite-plugin-dts: ^0.9.10
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware-sqs-json-parser@workspace:packages/sqs-json-parser":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-sqs-json-parser@workspace:packages/sqs-json-parser"
-  dependencies:
-    "@tnotifier/lamware": ^1.1.6
-    "@types/aws-lambda": ^8.10.93
-    "@types/node": ^14.18.12
-    eslint: ^8.11.0
-    rimraf: ^3.0.2
-    tslib: ^2.3.1
-    typescript: ^4.6.2
-    vite: ^2.8.6
-    vite-plugin-dts: ^0.9.10
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware-warmer@workspace:packages/warmer":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware-warmer@workspace:packages/warmer"
-  dependencies:
-    "@tnotifier/lamware": ^1.1.6
-    "@types/aws-lambda": ^8.10.93
-    "@types/node": ^14.18.12
-    eslint: ^8.11.0
-    lambda-warmer: ^1.2.2
-    rimraf: ^3.0.2
-    tslib: ^2.3.1
-    typescript: ^4.6.2
-    vite: ^2.8.6
-    vite-plugin-dts: ^0.9.10
-  languageName: unknown
-  linkType: soft
-
-"@tnotifier/lamware@^1.1.6, @tnotifier/lamware@workspace:packages/core":
-  version: 0.0.0-use.local
-  resolution: "@tnotifier/lamware@workspace:packages/core"
-  dependencies:
-    "@types/aws-lambda": ^8.10.93
-    "@types/node": ^14.18.12
-    c8: ^7.11.0
-    eslint: ^8.11.0
-    jest: ^28.0.0-alpha.7
-    jest-mock-extended: ^2.0.4
-    lambda-local: ^2.0.2
-    merge-anything: ^5.0.2
-    rimraf: ^3.0.2
-    tslib: ^2.3.1
-    typescript: ^4.6.2
-    utility-types: ^3.10.0
-    vite: ^2.8.6
-    vite-plugin-dts: ^0.9.10
-    vitest: ^0.5.9
-  languageName: unknown
-  linkType: soft
-
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -3127,8 +3127,8 @@ __metadata:
   linkType: hard
 
 "aws-sdk@npm:^2.1096.0":
-  version: 2.1099.0
-  resolution: "aws-sdk@npm:2.1099.0"
+  version: 2.1100.0
+  resolution: "aws-sdk@npm:2.1100.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -3139,7 +3139,7 @@ __metadata:
     url: 0.10.3
     uuid: 3.3.2
     xml2js: 0.4.19
-  checksum: b53331f1e8491f711853b95cbddeaaba77acb6060e10513c11fd47f15c64193a5188827fcfb73f65df0e3a0ce79b847bacf26a98be65e7d3f42c6a6f8327bb9e
+  checksum: 0c5570364d80c650a2a07e3baee5ee8097e16f490026eff6035cd02d33193cc1c1e91f40d66cec1a9fa42e02b38ee3e7a57130c2a5034bd2267fa3ad5c885d81
   languageName: node
   linkType: hard
 
@@ -3337,7 +3337,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"braces@npm:^3.0.1, braces@npm:~3.0.2":
+"braces@npm:^3.0.2, braces@npm:~3.0.2":
   version: 3.0.2
   resolution: "braces@npm:3.0.2"
   dependencies:
@@ -3464,7 +3464,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cacache@npm:^16.0.0":
+"cacache@npm:^16.0.2":
   version: 16.0.3
   resolution: "cacache@npm:16.0.3"
   dependencies:
@@ -3973,9 +3973,9 @@ __metadata:
   linkType: hard
 
 "constructs@npm:^10.0.85":
-  version: 10.0.94
-  resolution: "constructs@npm:10.0.94"
-  checksum: 325d8b5f640c8ca0e456ac23106520d29c478a8436f9786cede08969c33f90347c5e77ea0aca85ed6a4c95992028b994ab67d76f6398984f4494c82e78b36229
+  version: 10.0.95
+  resolution: "constructs@npm:10.0.95"
+  checksum: 457055b2414346ef74c64d0f0fa68d99fe00b45e402dd3a75d21a01268c68a962727cb1f8804cac8c612926984b11e4e35084db2caa0ae9e1bd29dd5a42eb256
   languageName: node
   linkType: hard
 
@@ -7447,7 +7447,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^7.5.1, lru-cache@npm:^7.7.1":
+"lru-cache@npm:^7.7.1":
   version: 7.7.1
   resolution: "lru-cache@npm:7.7.1"
   checksum: f362c5a2cfa8ad6fe557ec43dc1b7a9695cce84a5652a43ff813609f782f5da576631e7dfad41878bf19a7a69438f38375178635ee80de269aa314280ca2f59e
@@ -7488,16 +7488,16 @@ __metadata:
   linkType: hard
 
 "make-fetch-happen@npm:^10.0.3":
-  version: 10.0.6
-  resolution: "make-fetch-happen@npm:10.0.6"
+  version: 10.1.0
+  resolution: "make-fetch-happen@npm:10.1.0"
   dependencies:
     agentkeepalive: ^4.2.1
-    cacache: ^16.0.0
+    cacache: ^16.0.2
     http-cache-semantics: ^4.1.0
     http-proxy-agent: ^5.0.0
     https-proxy-agent: ^5.0.0
     is-lambda: ^1.0.1
-    lru-cache: ^7.5.1
+    lru-cache: ^7.7.1
     minipass: ^3.1.6
     minipass-collect: ^1.0.2
     minipass-fetch: ^2.0.3
@@ -7507,7 +7507,7 @@ __metadata:
     promise-retry: ^2.0.1
     socks-proxy-agent: ^6.1.1
     ssri: ^8.0.1
-  checksum: cf3e745567f114bf161e13dbde402cff916482930936c102543b5c6e5e6409921b05d38d6400c92ed0b43011b185c8f39a9f504c9a1bdb956eeeed39929451a6
+  checksum: fae1c2f255f6467bf6731344c2c04dd0e1f1899d8ae4698d98e2c86131ba899a418746ebc564493b85d1651d43c93b49f7825a2773edda4285a1c4c5e5ba9168
   languageName: node
   linkType: hard
 
@@ -7646,12 +7646,12 @@ __metadata:
   linkType: hard
 
 "micromatch@npm:^4.0.4":
-  version: 4.0.4
-  resolution: "micromatch@npm:4.0.4"
+  version: 4.0.5
+  resolution: "micromatch@npm:4.0.5"
   dependencies:
-    braces: ^3.0.1
-    picomatch: ^2.2.3
-  checksum: ef3d1c88e79e0a68b0e94a03137676f3324ac18a908c245a9e5936f838079fcc108ac7170a5fadc265a9c2596963462e402841406bda1a4bb7b68805601d631c
+    braces: ^3.0.2
+    picomatch: ^2.3.1
+  checksum: 02a17b671c06e8fefeeb6ef996119c1e597c942e632a21ef589154f23898c9c6a9858526246abb14f8bca6e77734aa9dcf65476fca47cedfb80d9577d52843fc
   languageName: node
   linkType: hard
 
@@ -7762,8 +7762,8 @@ __metadata:
   linkType: hard
 
 "minipass-fetch@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "minipass-fetch@npm:2.0.3"
+  version: 2.1.0
+  resolution: "minipass-fetch@npm:2.1.0"
   dependencies:
     encoding: ^0.1.13
     minipass: ^3.1.6
@@ -7772,7 +7772,7 @@ __metadata:
   dependenciesMeta:
     encoding:
       optional: true
-  checksum: 78a4a509b1e73f5e63b84065969790373b36b04da586744815c7f7f80013f1d786797842cc33cfa517eba0ad2f2142eb0ac808c46738da1c53e0e3aeed81df11
+  checksum: 1334732859a3f7959ed22589bafd9c40384b885aebb5932328071c33f86b3eb181d54c86919675d1825ab5f1c8e4f328878c863873258d113c29d79a4b0c9c9f
   languageName: node
   linkType: hard
 
@@ -8750,7 +8750,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.2.3":
+"picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.2.3, picomatch@npm:^2.3.1":
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
   checksum: 050c865ce81119c4822c45d3c84f1ced46f93a0126febae20737bd05ca20589c564d6e9226977df859ed5e03dc73f02584a2b0faad36e896936238238b0446cf
@@ -10518,22 +10518,22 @@ __metadata:
   linkType: hard
 
 typescript@^4.6.2:
-  version: 4.6.2
-  resolution: "typescript@npm:4.6.2"
+  version: 4.6.3
+  resolution: "typescript@npm:4.6.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 8a44ed7e6f6c4cb1ebe8cf236ecda2fb119d84dcf0fbd77e707b2dfea1bbcfc4e366493a143513ce7f57203c75da9d4e20af6fe46de89749366351046be7577c
+  checksum: 255bb26c8cb846ca689dd1c3a56587af4f69055907aa2c154796ea28ee0dea871535b1c78f85a6212c77f2657843a269c3a742d09d81495b97b914bf7920415b
   languageName: node
   linkType: hard
 
 "typescript@patch:typescript@^4.6.2#~builtin<compat/typescript>":
-  version: 4.6.2
-  resolution: "typescript@patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=d8b4e7"
+  version: 4.6.3
+  resolution: "typescript@patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=d8b4e7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 4b15830bdbd391a66f9f3bcc2dc81fdcaa8143adbf3f9e47dc67ab2d971646a1caf19b89c677afea066e22d3d111f3c1b7b137e3d9a7e8663a6bf9497d428041
+  checksum: 59346df396432a7dc69f86776acadbe61d1f1faf8bbecf6dadc3bd95d2a70808a40a65dc17699b8aec74902edca2d49aa7373bb61443705d7c3e56dd2757d5c3
   languageName: node
   linkType: hard
 

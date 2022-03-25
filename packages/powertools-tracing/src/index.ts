@@ -1,7 +1,7 @@
 import type { TracerOptions } from '@aws-lambda-powertools/tracer/lib/types';
 import type { Subsegment, Segment } from 'aws-xray-sdk-core';
 import { Tracer } from '@aws-lambda-powertools/tracer';
-import type { Middleware } from '@tnotifier/lamware';
+import type { Middleware } from '@lamware/core';
 import type { Handler } from 'aws-lambda';
 
 export const powertoolsTracing = (options: TracerOptions): Middleware<Handler, {

@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "@tnotifier/lamware-example",
+    "name": "@lamware/example",
     "version": "1.0.0",
     "scripts": {
         "build": "yarn clean && yarn compile",

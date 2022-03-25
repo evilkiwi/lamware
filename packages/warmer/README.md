@@ -1,11 +1,11 @@
 <div align="center">
-    <a href="https://www.npmjs.com/package/@tnotifier/lamware-warmer" target="_blank">
-        <img src="https://img.shields.io/npm/v/@tnotifier/lamware-warmer?style=flat-square" alt="NPM" />
+    <a href="https://www.npmjs.com/package/@lamware/warmer" target="_blank">
+        <img src="https://img.shields.io/npm/v/@lamware/warmer?style=flat-square" alt="NPM" />
     </a>
     <a href="https://discord.gg/XMrHXtN" target="_blank">
         <img src="https://img.shields.io/discord/123906549860139008?color=7289DA&label=discord&logo=discord&logoColor=FFFFFF&style=flat-square" alt="Discord" />
     </a>
-    <img src="https://img.shields.io/npm/l/@tnotifier/lamware-warmer?style=flat-square" alt="Apache-2.0" />
+    <img src="https://img.shields.io/npm/l/@lamware/warmer?style=flat-square" alt="Apache-2.0" />
     <h3>Lamware - Warmer</h3>
 </div>
 
@@ -19,19 +19,19 @@ This [Lamware](https://github.com/tnotifier/lamware) Middleware utilizes the [`l
 This package is available via NPM:
 
 ```bash
-yarn add @tnotifier/lamware-warmer
+yarn add @lamware/warmer
 
 # or
 
-npm install @tnotifier/lamware-warmer
+npm install @lamware/warmer
 ```
 
 ## Usage
 
 ```typescript
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { warmer } from '@tnotifier/lamware-warmer';
-import { lamware } from '@tnotifier/lamware';
+import { warmer } from '@lamware/warmer';
+import { lamware } from '@lamware/core';
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
     .use(warmer())

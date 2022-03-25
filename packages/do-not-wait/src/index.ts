@@ -1,4 +1,4 @@
-import type { Middleware } from '@tnotifier/lamware';
+import type { Middleware } from '@lamware/core';
 
 export const doNotWait = (): Middleware => ({
     id: 'do-not-wait',

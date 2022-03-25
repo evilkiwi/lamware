@@ -1,11 +1,11 @@
 <div align="center">
-    <a href="https://www.npmjs.com/package/@tnotifier/lamware-appconfig" target="_blank">
-        <img src="https://img.shields.io/npm/v/@tnotifier/lamware-appconfig?style=flat-square" alt="NPM" />
+    <a href="https://www.npmjs.com/package/@lamware/appconfig" target="_blank">
+        <img src="https://img.shields.io/npm/v/@lamware/appconfig?style=flat-square" alt="NPM" />
     </a>
     <a href="https://discord.gg/XMrHXtN" target="_blank">
         <img src="https://img.shields.io/discord/123906549860139008?color=7289DA&label=discord&logo=discord&logoColor=FFFFFF&style=flat-square" alt="Discord" />
     </a>
-    <img src="https://img.shields.io/npm/l/@tnotifier/lamware-appconfig?style=flat-square" alt="Apache-2.0" />
+    <img src="https://img.shields.io/npm/l/@lamware/appconfig?style=flat-square" alt="Apache-2.0" />
     <h3>Lamware - AWS AppConfig</h3>
 </div>
 
@@ -16,19 +16,19 @@ This [Lamware](https://github.com/tnotifier/lamware) Middleware utilizes an API 
 This package is available via NPM:
 
 ```bash
-yarn add @tnotifier/lamware-appconfig
+yarn add @lamware/appconfig
 
 # or
 
-npm install @tnotifier/lamware-appconfig
+npm install @lamware/appconfig
 ```
 
 ## Usage
 
 ```typescript
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { appconfig } from '@tnotifier/lamware-appconfig';
-import { lamware } from '@tnotifier/lamware';
+import { appconfig } from '@lamware/appconfig';
+import { lamware } from '@lamware/core';
 
 interface AppConfig {
     helloWorld: string;

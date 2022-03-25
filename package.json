@@ -9,9 +9,9 @@
         "lint": "lerna run lint --stream",
         "test": "lerna run test --stream",
         "prune": "lerna clean && rm -rf node_modules",
-        "example": "yarn workspace @tnotifier/lamware-example",
-        "example-stack": "yarn workspace @tnotifier/lamware-example-stack",
-        "lamware": "yarn workspace @tnotifier/lamware"
+        "example": "yarn workspace @lamware/example",
+        "example-stack": "yarn workspace @lamware/example-stack",
+        "lamware": "yarn workspace @lamware/core"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^5.14.0",

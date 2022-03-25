@@ -1,5 +1,5 @@
 {
-    "name": "@tnotifier/lamware-appconfig",
+    "name": "@lamware/appconfig",
     "version": "1.0.8",
     "description": "Lamware Middleware to asynchronously load AppConfig",
     "files": [
@@ -40,7 +40,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@tnotifier/lamware": "^1.1.6"
+        "@lamware/core": "^1.1.6"
     },
     "devDependencies": {
         "@types/node": "^14.18.12",

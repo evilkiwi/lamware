@@ -5,4 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 1.0.1 (2022-03-24)
 
-**Note:** Version bump only for package @tnotifier/lamware-powertools-metrics
+**Note:** Version bump only for package @lamware/powertools-metrics

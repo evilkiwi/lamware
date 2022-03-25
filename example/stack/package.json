@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "@tnotifier/lamware-example-stack",
+    "name": "@lamware/example-stack",
     "version": "1.0.0",
     "scripts": {
         "build": "tsc",

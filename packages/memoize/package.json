@@ -1,5 +1,5 @@
 {
-    "name": "@tnotifier/lamware-memoize",
+    "name": "@lamware/memoize",
     "version": "1.1.0",
     "description": "Lamware Middleware for memoizing outside the Lambda handler",
     "files": [
@@ -40,7 +40,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@tnotifier/lamware": "^1.1.6"
+        "@lamware/core": "^1.1.6"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.93",

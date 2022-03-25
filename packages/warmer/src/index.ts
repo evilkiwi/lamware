@@ -1,5 +1,5 @@
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import type { Middleware } from '@tnotifier/lamware';
+import type { Middleware } from '@lamware/core';
 import type { WarmerConfig } from 'lambda-warmer';
 import lambdaWarmer from 'lambda-warmer';
 

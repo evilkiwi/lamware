@@ -1,4 +1,4 @@
-import type { Middleware, Logger as LamwareLogger } from '@tnotifier/lamware';
+import type { Middleware, Logger as LamwareLogger } from '@lamware/core';
 import type { LoggerOptions } from '@aws-lambda-powertools/logger/lib/types';
 import { Logger } from '@aws-lambda-powertools/logger';
 import type { Handler } from 'aws-lambda';

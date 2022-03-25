@@ -1,5 +1,5 @@
 {
-    "name": "@tnotifier/lamware-sentry",
+    "name": "@lamware/sentry",
     "version": "1.0.8",
     "description": "Lamware Middleware for tracking with Sentry",
     "files": [
@@ -40,8 +40,8 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@sentry/serverless": "^6.18.2",
-        "@tnotifier/lamware": "^1.1.6"
+        "@lamware/core": "^1.1.6",
+        "@sentry/serverless": "^6.18.2"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.93",

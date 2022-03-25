@@ -1,4 +1,4 @@
-import type { Middleware } from '@tnotifier/lamware';
+import type { Middleware } from '@lamware/core';
 import type { SQSHandler } from 'aws-lambda';
 
 export interface Options {

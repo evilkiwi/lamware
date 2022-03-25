@@ -1,11 +1,11 @@
 <div align="center">
-    <a href="https://www.npmjs.com/package/@tnotifier/lamware" target="_blank">
-        <img src="https://img.shields.io/npm/v/@tnotifier/lamware?style=flat-square" alt="NPM" />
+    <a href="https://www.npmjs.com/package/@lamware/core" target="_blank">
+        <img src="https://img.shields.io/npm/v/@lamware/core?style=flat-square" alt="NPM" />
     </a>
     <a href="https://discord.gg/XMrHXtN" target="_blank">
         <img src="https://img.shields.io/discord/123906549860139008?color=7289DA&label=discord&logo=discord&logoColor=FFFFFF&style=flat-square" alt="Discord" />
     </a>
-    <img src="https://img.shields.io/npm/l/@tnotifier/lamware?style=flat-square" alt="Apache-2.0" />
+    <img src="https://img.shields.io/npm/l/@lamware/core?style=flat-square" alt="Apache-2.0" />
     <h3>AWS Lambda Middleware Pattern (NodeJS)</h3>
 </div>
 
@@ -24,11 +24,11 @@ Using a middleware pattern means your function is slightly delayed in recieving 
 This package is available via NPM:
 
 ```bash
-yarn add @tnotifier/lamware
+yarn add @lamware/core
 
 # or
 
-npm install @tnotifier/lamware
+npm install @lamware/core
 ```
 
 We maintain and ship various middlewares for public use - you can [install them too!](https://github.com/tnotifier/lamware/tree/master/packages)
@@ -38,14 +38,14 @@ We maintain and ship various middlewares for public use - you can [install them 
 You can check out the [`example` folder](https://github.com/tnotifier/lamware/tree/master/example) for a fully-featured example with the AWS CDK stack to deploy it.
 
 ```typescript
-import { powertoolsTracing } from '@tnotifier/lamware-powertools-tracing';
-import { powertoolsLogger } from '@tnotifier/lamware-powertools-logger';
+import { powertoolsTracing } from '@lamware/powertools-tracing';
+import { powertoolsLogger } from '@lamware/powertools-logger';
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { doNotWait } from '@tnotifier/lamware-do-not-wait';
-import { appconfig } from '@tnotifier/lamware-appconfig';
-import { sentry } from '@tnotifier/lamware-sentry';
-import { warmer } from '@tnotifier/lamware-warmer';
-import { lamware } from '@tnotifier/lamware';
+import { doNotWait } from '@lamware/do-not-wait';
+import { appconfig } from '@lamware/appconfig';
+import { sentry } from '@lamware/sentry';
+import { warmer } from '@lamware/warmer';
+import { lamware } from '@lamware/core';
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
     .use(doNotWait())

@@ -1,14 +1,14 @@
-import { powertoolsTracing } from '@tnotifier/lamware-powertools-tracing';
-import { powertoolsLogger } from '@tnotifier/lamware-powertools-logger';
+import { powertoolsTracing } from '@lamware/powertools-tracing';
+import { powertoolsLogger } from '@lamware/powertools-logger';
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { doNotWait } from '@tnotifier/lamware-do-not-wait';
-import { appconfig } from '@tnotifier/lamware-appconfig';
-import { sentry } from '@tnotifier/lamware-sentry';
-import { warmer } from '@tnotifier/lamware-warmer';
-import { lamware } from '@tnotifier/lamware';
+import { doNotWait } from '@lamware/do-not-wait';
+import { appconfig } from '@lamware/appconfig';
+import { sentry } from '@lamware/sentry';
+import { warmer } from '@lamware/warmer';
+import { lamware } from '@lamware/core';
 
 // Log some debug, you can remove this.
-import pkg from '@tnotifier/lamware/package.json';
+import pkg from '@lamware/core/package.json';
 console.log(`lamware v${pkg.version}`);
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>({

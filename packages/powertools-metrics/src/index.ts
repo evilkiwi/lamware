@@ -1,6 +1,6 @@
 import type { MetricsOptions } from '@aws-lambda-powertools/metrics/lib/types';
 import { Metrics } from '@aws-lambda-powertools/metrics';
-import type { Middleware } from '@tnotifier/lamware';
+import type { Middleware } from '@lamware/core';
 import type { Handler } from 'aws-lambda';
 
 export interface Options extends MetricsOptions {

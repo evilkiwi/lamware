@@ -1,11 +1,11 @@
 <div align="center">
-    <a href="https://www.npmjs.com/package/@tnotifier/lamware-memoize" target="_blank">
-        <img src="https://img.shields.io/npm/v/@tnotifier/lamware-memoize?style=flat-square" alt="NPM" />
+    <a href="https://www.npmjs.com/package/@lamware/memoize" target="_blank">
+        <img src="https://img.shields.io/npm/v/@lamware/memoize?style=flat-square" alt="NPM" />
     </a>
     <a href="https://discord.gg/XMrHXtN" target="_blank">
         <img src="https://img.shields.io/discord/123906549860139008?color=7289DA&label=discord&logo=discord&logoColor=FFFFFF&style=flat-square" alt="Discord" />
     </a>
-    <img src="https://img.shields.io/npm/l/@tnotifier/lamware-memoize?style=flat-square" alt="Apache-2.0" />
+    <img src="https://img.shields.io/npm/l/@lamware/memoize?style=flat-square" alt="Apache-2.0" />
     <h3>Lamware - Variable Memoize</h3>
 </div>
 
@@ -22,19 +22,19 @@ Currently, Lambda doesn't support top-level `async/await`, meaning set-up that i
 This package is available via NPM:
 
 ```bash
-yarn add @tnotifier/lamware-memoize
+yarn add @lamware/memoize
 
 # or
 
-npm install @tnotifier/lamware-memoize
+npm install @lamware/memoize
 ```
 
 ## Usage
 
 ```typescript
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { memoize } from '@tnotifier/lamware-memoize';
-import { lamware } from '@tnotifier/lamware';
+import { memoize } from '@lamware/memoize';
+import { lamware } from '@lamware/core';
 
 interface MemoizePayload {
     count: number;
