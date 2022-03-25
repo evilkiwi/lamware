@@ -7,13 +7,7 @@ import { sentry } from '@lamware/sentry';
 import { warmer } from '@lamware/warmer';
 import { lamware } from '@lamware/core';
 
-// Log some debug, you can remove this.
-import pkg from '@lamware/core/package.json';
-console.log(`lamware v${pkg.version}`);
-
-const { handler } = lamware<APIGatewayProxyHandlerV2<any>>({
-        debug: true,
-    })
+const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
     .use(doNotWait())
     .use(powertoolsTracing({
         serviceName: 'lamware-example',

@@ -73,7 +73,7 @@ export class LamwareStack extends Stack {
             root: props.root,
             vpc,
             securityGroups: [securityGroup],
-            projectRoot: join(props.root, 'function'),
+            projectRoot: join(props.root, 'http-function'),
             memorySize: 512,
             description: 'Generic API Handler',
             insightsVersion: LambdaInsightsVersion.VERSION_1_0_119_0,
@@ -84,7 +84,7 @@ export class LamwareStack extends Stack {
             handler: 'src/index.handler',
             hash: hash({
                 name: 'example',
-                path: join(props.root, 'function'),
+                path: join(props.root, 'http-function'),
                 folders: ['src'],
                 files: ['package.json'],
             }),
