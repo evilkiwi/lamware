@@ -48,4 +48,4 @@ jobs:
       - name: Increment Versions
         run: npx lerna version --conventional-commits --create-release github --yes
       - name: Publish to NPM
-        run: npx lerna publish from-git --yes --no-verify-access
+        run: npx lerna publish from-git --yes --no-private --no-verify-access
