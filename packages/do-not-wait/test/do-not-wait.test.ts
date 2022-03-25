@@ -16,7 +16,7 @@ test('should set callbackWaitsForEmptyEventLoop to false when used', async () =>
 
             return { statusCode: 200 };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
     expect(callbackValue).toBe(false);

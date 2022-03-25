@@ -15,7 +15,7 @@ test('should return a valid response', async () => {
                 body: JSON.stringify({ hello: 'world' }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
@@ -37,7 +37,7 @@ test('should allow "after" middleware to mutate the response object', async () =
                 body: JSON.stringify({ hello: 'world' }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
     expect(result.body).toBe(JSON.stringify({ hello: 'world2' }));
@@ -59,7 +59,7 @@ test('should allow "before" middleware to modify event/context', async () => {
                 body: JSON.stringify({ rawPath: event.rawPath }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
     expect(result.body).toBe(JSON.stringify({ rawPath: '/todo' }));
@@ -87,7 +87,7 @@ test('should allow wrapping the handler once', async () => {
                 body: JSON.stringify({ hello: 'world' }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(401);
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
@@ -141,7 +141,7 @@ test('should allow wrapping the handler multiple times', async () => {
                 body: JSON.stringify({ hello: 'world' }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(400);
     expect(result.body).toBe(JSON.stringify({ hello: 'world2' }));
@@ -171,7 +171,7 @@ test('should allow a middleware to exit early', async () => {
                 body: JSON.stringify({ hello: 'world' }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(401);
     expect(hasRun).toBe(false);
@@ -198,7 +198,7 @@ test('should allow middleware to initialize before executing', async () => {
                 body: JSON.stringify({ hello: hasRun }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
     expect(result.body).toBe(JSON.stringify({ hello: true }));
@@ -226,7 +226,7 @@ test('should allow middleware to initialize with global state', async () => {
                 body: JSON.stringify({ hello: state.testing123, hello2: state.testing1234 }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
     expect(result.body).toBe(JSON.stringify({ hello: true, hello2: false }));
@@ -249,7 +249,7 @@ test('should allow middleware to access state set by init', async () => {
                 body: JSON.stringify({ hello: state.testing1234 }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
     expect(result.body).toBe(JSON.stringify({ hello: true }));
@@ -271,7 +271,7 @@ test('should allow middleware to modify a global state', async () => {
                 body: JSON.stringify({ hello: state.testing123 }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
     expect(result.body).toBe(JSON.stringify({ hello: true }));
@@ -301,7 +301,7 @@ test('should allow wrapping handler with compatibility layer', async () => {
                 body: JSON.stringify({ hello: 'world' }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(401);
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
@@ -332,7 +332,7 @@ test('should allow wrapping handler with compatibility layer and passing state',
                 body: JSON.stringify({ hello: state.hello }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(401);
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
@@ -344,7 +344,7 @@ test('should throw errors emitted by the handler', async () => {
             throw new Error('debug');
         });
 
-    await expect(execute(handler)).rejects.toThrowError();
+    await expect(execute(handler, 'apiGateway')).rejects.toThrowError();
 });
 
 test('should allow middleware filter at runtime', async () => {
@@ -363,7 +363,7 @@ test('should allow middleware filter at runtime', async () => {
                 body: JSON.stringify({ rawPath: event.rawPath }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
 });
@@ -385,7 +385,7 @@ test('should allow middleware self filtering', async () => {
                 body: JSON.stringify({ rawPath: event.rawPath }),
             };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
 });
@@ -407,7 +407,7 @@ test('should allow both middleware self filtering and runtime filtering', async 
                 body: JSON.stringify({ rawPath: event.rawPath }),
             };
         });
-    const result1 = await execute(handler1);
+    const result1 = await execute(handler1, 'apiGateway');
 
     const { handler: handler2 } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use({
@@ -425,7 +425,7 @@ test('should allow both middleware self filtering and runtime filtering', async 
                 body: JSON.stringify({ rawPath: event.rawPath }),
             };
         });
-    const result2 = await execute(handler2);
+    const result2 = await execute(handler2, 'apiGateway');
 
     expect(result1.statusCode).toBe(200);
     expect(result2.statusCode).toBe(200);
@@ -447,7 +447,7 @@ test('should allow a custom logger to be manually set', async () => {
 
             return { statusCode: 200 };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
     expect(text).toBe('hello world');
@@ -475,7 +475,7 @@ test('should allow middleware to set a custom logger', async () => {
 
             return { statusCode: 200 };
         });
-    const result = await execute(handler);
+    const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
     expect(text).toBe('hello world');
