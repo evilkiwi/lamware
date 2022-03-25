@@ -1,6 +1,6 @@
 {
     "name": "@lamware/warmer",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "Lamware Middleware for keeping Functions warm",
     "files": [
         "build"

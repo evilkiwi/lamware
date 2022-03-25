@@ -1,6 +1,6 @@
 {
     "name": "@lamware/sentry",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "Lamware Middleware for tracking with Sentry",
     "files": [
         "build"

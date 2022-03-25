@@ -1,6 +1,6 @@
 {
     "name": "@lamware/powertools-logger",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "Lamware Middleware to utilize the official Logger powertools",
     "files": [
         "build"
