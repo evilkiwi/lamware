@@ -40,7 +40,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src",
         "test:coverage": "vitest run --coverage",
         "test:watch": "vitest watch",
-        "test": "vitest"
+        "test": "vitest run"
     },
     "dependencies": {
         "@lamware/core": "^1.2.1"

@@ -45,6 +45,8 @@ jobs:
           git config --global user.email "admin@tnotifier.app"
       - name: Ensure Core is built
         run: yarn workspace @lamware/core build
+      - name: Run Tests
+        run: yarn test
       - name: Increment Versions
         run: npx lerna version --conventional-commits --create-release github --yes
       - name: Publish to NPM
