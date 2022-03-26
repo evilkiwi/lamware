@@ -2,6 +2,7 @@
     "private": true,
     "workspaces": [
         "example/*",
+        "docs",
         "packages/*"
     ],
     "scripts": {
@@ -9,6 +10,7 @@
         "lint": "lerna run lint --stream",
         "test": "lerna run test --stream",
         "prune": "lerna clean && rm -rf node_modules",
+        "docs": "yarn workspace @lamware/docs",
         "example": "yarn workspace @lamware/example",
         "example-stack": "yarn workspace @lamware/example-stack",
         "lamware": "yarn workspace @lamware/core"

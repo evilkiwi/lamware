@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "name": "@lamware/docs",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "vuepress-vite dev content",
+        "build": "vuepress-vite build content",
+        "serve": "vuepress-vite serve content"
+    },
+    "devDependencies": {
+        "vuepress-vite": "next"
+    }
+}
