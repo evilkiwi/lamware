@@ -1,7 +1,7 @@
 import type { Handler, APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { afterEach, expect, test } from 'vitest';
 import { execute } from '@lamware/test';
-import type { Wrapper, Middleware, Logger } from '../src';
+import { Wrapper, Middleware, Logger, clearMiddleware } from '../src';
 import { lamware, wrapCompat } from '../src';
 import { clear } from '../src/middleware';
 
@@ -344,7 +344,7 @@ test('should throw errors emitted by the handler', async () => {
             throw new Error('debug');
         });
 
-    await expect(execute(handler, 'apiGateway')).rejects.toThrowError();
+    await expect(() => execute(handler, 'apiGateway')).rejects.toThrowError();
 });
 
 test('should allow middleware filter at runtime', async () => {
@@ -479,4 +479,45 @@ test('should allow middleware to set a custom logger', async () => {
 
     expect(result.statusCode).toBe(200);
     expect(text).toBe('hello world');
+});
+
+test('should allow clearing middleware', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use<Middleware<APIGatewayProxyHandlerV2<any>, { testing123: boolean }>>({
+            id: 'test-1',
+            pure: true,
+            before: async (payload) => {
+                payload.state.testing123 = true;
+                return payload;
+            },
+        })
+        .execute(async ({ state }) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ hello: state.testing123 ?? false }),
+            };
+        });
+
+    clearMiddleware();
+
+    const result = await execute(handler, 'apiGateway');
+
+    expect(result.statusCode).toBe(200);
+    expect(result.body).toBe(JSON.stringify({ hello: false }));
+});
+
+test('should re-throw errors that happen during middleware `init`', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use<Middleware<APIGatewayProxyHandlerV2<any>>>({
+            id: 'test-1',
+            pure: true,
+            init: async () => {
+                throw new Error('Debug');
+            },
+        })
+        .execute(async () => {
+            return { statusCode: 200 };
+        });
+
+    await expect(() => execute(handler, 'apiGateway')).rejects.toThrowError();
 });

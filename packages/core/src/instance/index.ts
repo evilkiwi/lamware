@@ -82,9 +82,7 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                     throw mixed.response;
                 }
 
-                response = merge<any, any>(response, mixed.response);
-
-                return response;
+                return merge(response, mixed.response);
             };
 
             return {

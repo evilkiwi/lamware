@@ -132,10 +132,14 @@ export const register = <H extends Handler>(middleware: Middleware<H>) => {
     }
 
     if (middleware.init !== undefined) {
-        initResolvers.push(new Promise(async (resolve) => {
-            const state = await middleware.init?.() ?? {};
-            registry.state[middleware.id] = state;
-            resolve();
+        initResolvers.push(new Promise(async (resolve, reject) => {
+            try {
+                const state = middleware.init !== undefined ? await middleware.init() : {};
+                registry.state[middleware.id] = state;
+                resolve();
+            } catch (e) {
+                reject(e);
+            }
         }));
     }
 };
