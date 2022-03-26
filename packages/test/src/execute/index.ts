@@ -14,6 +14,9 @@ export const execute = async <H extends Handler = APIGatewayProxyHandlerV2, E ex
             const localEvent = event as typeof events.apiGateway;
             const localOptions = options as ApiGatewayOptions;
 
+            localEvent.path = localOptions.path ?? '/';
+            localEvent.requestContext.resourcePath = localOptions.path ?? '/';
+            localEvent.resource = localOptions.path ?? '/';
             localEvent.headers = localOptions.headers ?? {};
             localEvent.requestContext.httpMethod = localOptions.method ?? 'GET';
             localEvent.httpMethod = localOptions.method ?? 'GET';

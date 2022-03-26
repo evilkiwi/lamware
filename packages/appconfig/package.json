@@ -2,6 +2,7 @@
     "name": "@lamware/appconfig",
     "version": "1.0.14",
     "description": "Lamware Middleware to asynchronously load AppConfig",
+    "type": "module",
     "files": [
         "build"
     ],

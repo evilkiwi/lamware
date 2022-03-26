@@ -23,6 +23,7 @@ export interface SqsOptions extends BaseOptions {
 }
 
 export interface ApiGatewayOptions extends BaseOptions {
+    path?: string;
     headers?: Record<string, string>;
     method?: string;
     query?: Record<string, string>;

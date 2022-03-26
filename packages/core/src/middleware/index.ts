@@ -1,6 +1,6 @@
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
-import type { DestructuredHandler } from '@/instance';
+import type { DestructuredHandler, LamwareState, Instance } from '@/instance';
 import type { Hook, HookReturns, Middleware, MiddlewareRegistry } from './types';
 
 let initResolvers: Promise<void>[] = [];
@@ -34,7 +34,7 @@ export const wrap = (handler: DestructuredHandler) => {
     }, handler);
 };
 
-export const compileState = () => {
+export const compileState = <I extends Instance<any, any>, S = LamwareState<I>>(): S => {
     let state: any = {};
 
     Object.values(registry.state).forEach(middlewareState => {

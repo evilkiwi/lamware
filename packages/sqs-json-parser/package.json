@@ -2,6 +2,7 @@
     "name": "@lamware/sqs-json-parser",
     "version": "1.2.5",
     "description": "Lamware Middleware for parsing and providing types for SQS",
+    "type": "module",
     "files": [
         "build"
     ],

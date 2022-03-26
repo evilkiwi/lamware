@@ -2,6 +2,7 @@
     "name": "@lamware/powertools-tracing",
     "version": "1.0.14",
     "description": "Lamware Middleware to utilize the official Tracing powertools",
+    "type": "module",
     "files": [
         "build"
     ],

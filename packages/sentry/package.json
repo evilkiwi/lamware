@@ -2,6 +2,7 @@
     "name": "@lamware/sentry",
     "version": "1.0.14",
     "description": "Lamware Middleware for tracking with Sentry",
+    "type": "module",
     "files": [
         "build"
     ],

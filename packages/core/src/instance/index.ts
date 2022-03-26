@@ -88,6 +88,7 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
             return {
                 clear,
                 handler: wrappedHandler,
+                instance,
             };
         },
     };

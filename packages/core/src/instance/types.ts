@@ -9,6 +9,8 @@ export interface Options {
     logger?: Logger;
 }
 
+export type LamwareState<C extends Instance<any, any>> = C extends Instance<infer A, infer B> ? B : unknown;
+
 export interface DestructuredHandlerOptions<H extends Handler, S extends object = {}> {
     event: Parameters<H>[0];
     context: Parameters<H>[1];
@@ -24,5 +26,6 @@ export interface Instance<H extends Handler, S extends object = {}> {
     execute: (handler: DestructuredHandler<H, S>) => {
         clear: () => void;
         handler: H;
+        instance: Instance<H, S>;
     };
 }

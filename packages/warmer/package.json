@@ -2,6 +2,7 @@
     "name": "@lamware/warmer",
     "version": "1.0.14",
     "description": "Lamware Middleware for keeping Functions warm",
+    "type": "module",
     "files": [
         "build"
     ],

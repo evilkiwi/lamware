@@ -2,6 +2,7 @@
     "name": "@lamware/powertools-metrics",
     "version": "1.0.7",
     "description": "Lamware Middleware to utilize the official Metrics powertools",
+    "type": "module",
     "files": [
         "build"
     ],
