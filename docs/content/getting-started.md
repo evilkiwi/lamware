@@ -23,7 +23,7 @@ yarn add @lamware/core
 npm install --save @lamware/core
 ```
 
-## Usage
+## Basics
 
 `@lamware/core` exposes the `lamware` function, which is the root of the framework. It returns a handler, which you should export for Lambda, and allows chaining middleware and eventually writing your function code.
 
