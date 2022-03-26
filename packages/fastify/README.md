@@ -31,14 +31,20 @@ npm install @lamware/fastify
 
 ```typescript
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
+import type { LamwareState } from '@lamware/core';
 import { fastify } from '@lamware/fastify';
 import { lamware } from '@lamware/core';
 // import createFastify from 'fastify';
 
-const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+const { instance, handler } = lamware<APIGatewayProxyHandlerV2<any>>()
     .use(fastify(app => {
         // You can provide a closure that exposes the `fastify` instance.
-        app.get('/', (request, reply) => reply.send({ hello: 'world' }));
+        app.get('/', (request, reply) => {
+            // Currently Fastify decorators have terrible type support, so you need to do this to type the state in a request.
+            const state = request.state as LamwareState<typeof instance>;
+
+            reply.send({ hello: 'world' }));
+        };
 
         return app;
     }, {
@@ -48,8 +54,8 @@ const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         // And also enforce Fastify to ready-up before running.
         enforceReady: true,
     }))
-    .execute(async ({ state }) => {
-        return 'TODO:';
+    .execute(async (payload) => {
+        return payload.state.fastifyHandler(payload);
     });
 
 export { handler };
