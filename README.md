@@ -35,7 +35,7 @@ We maintain and ship various middlewares for public use - you can [install them 
 
 ## Usage
 
-You can check out the [`example` folder](https://github.com/tnotifier/lamware/tree/master/example) for a fully-featured example with the AWS CDK stack to deploy it.
+We have [Documentation available here](https://github.com/tnotifier/lamware), and you can check out the [`example` folder](https://github.com/tnotifier/lamware/tree/master/example) for a fully-featured example with the AWS CDK stack to deploy it.
 
 ```typescript
 import { powertoolsTracing } from '@lamware/powertools-tracing';
