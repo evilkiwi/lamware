@@ -1,6 +1,6 @@
 {
     "name": "@lamware/prisma",
-    "version": "1.2.7",
+    "version": "1.2.8",
     "description": "Lamware Middleware for initializing and memoizing Prisma ORM",
     "type": "module",
     "files": [
