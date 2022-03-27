@@ -6,7 +6,7 @@ import type { Handler } from 'aws-lambda';
 
 export interface Options extends TracerOptions {
     /**
-     * Whether to automatically attached responses to the tracer.
+     * Whether to automatically attach responses to the tracer.
      * Default is `true`.
      */
     autoAttachResponse?: boolean;
