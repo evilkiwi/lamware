@@ -4,7 +4,15 @@ import { Tracer } from '@aws-lambda-powertools/tracer';
 import type { Middleware } from '@lamware/core';
 import type { Handler } from 'aws-lambda';
 
-export const powertoolsTracing = (options: TracerOptions): Middleware<Handler, {
+export interface Options extends TracerOptions {
+    /**
+     * Whether to automatically attached responses to the tracer.
+     * Default is `true`.
+     */
+    autoAttachResponse?: boolean;
+}
+
+export const powertoolsTracing = (options: Options): Middleware<Handler, {
     tracer: Tracer;
     segment: Subsegment|Segment;
     subsegment: Subsegment;
@@ -25,8 +33,12 @@ export const powertoolsTracing = (options: TracerOptions): Middleware<Handler, {
             return payload;
         },
         after: async (payload) => {
-            if (payload.response instanceof Error) {
-                payload.state.tracer.addErrorAsMetadata(payload.response);
+            if (options.autoAttachResponse !== false) {
+                if (payload.response instanceof Error) {
+                    payload.state.tracer.addErrorAsMetadata(payload.response);
+                } else {
+                    payload.state.tracer.addResponseAsMetadata(payload.response);
+                }
             }
 
             payload.state.subsegment.close();
