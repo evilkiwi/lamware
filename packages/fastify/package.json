@@ -1,6 +1,6 @@
 {
     "name": "@lamware/fastify",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Lamware Middleware for setting-up and memoizing Fastify",
     "type": "module",
     "files": [
