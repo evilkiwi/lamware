@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.20](https://github.com/tnotifier/lamware/compare/@lamware/warmer@1.0.19...@lamware/warmer@1.0.20) (2022-03-27)
+
+**Note:** Version bump only for package @lamware/warmer
+
+
+
+
+
 ## [1.0.19](https://github.com/tnotifier/lamware/compare/@lamware/warmer@1.0.18...@lamware/warmer@1.0.19) (2022-03-27)
 
 **Note:** Version bump only for package @lamware/warmer

@@ -1,6 +1,6 @@
 {
     "name": "@lamware/powertools-logger",
-    "version": "1.0.17",
+    "version": "1.0.18",
     "description": "Lamware Middleware to utilize the official Logger powertools",
     "files": [
         "build"
@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "@aws-lambda-powertools/logger": "^0.7.1",
-        "@lamware/core": "^1.2.10"
+        "@lamware/core": "^1.2.11"
     },
     "devDependencies": {
         "@types/node": "^14.18.12",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.10...@lamware/core@1.2.11) (2022-03-27)
+
+
+### Bug Fixes
+
+* **core:** check for filtering before registering ([cfb9cd7](https://github.com/tnotifier/lamware/commit/cfb9cd7fa74fd17b7476c99afe9fd46960e11865))
+
+
+
+
+
 ## [1.2.10](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.9...@lamware/core@1.2.10) (2022-03-27)
 
 **Note:** Version bump only for package @lamware/core
