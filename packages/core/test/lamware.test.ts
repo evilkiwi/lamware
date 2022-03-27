@@ -348,10 +348,15 @@ test('should throw errors emitted by the handler', async () => {
 });
 
 test('should allow middleware filter at runtime', async () => {
+    let didRun = false;
+
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use({
             id: 'test-1',
             pure: true,
+            init: async () => {
+                didRun = true;
+            },
             after: async (payload) => {
                 payload.response.statusCode = 400;
                 return payload;
@@ -366,13 +371,19 @@ test('should allow middleware filter at runtime', async () => {
     const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
+    expect(didRun).toBe(false);
 });
 
 test('should allow middleware self filtering', async () => {
+    let didRun = false;
+
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use({
             id: 'test-1',
             pure: true,
+            init: async () => {
+                didRun = true;
+            },
             after: async (payload) => {
                 payload.response.statusCode = 400;
                 return payload;
@@ -388,13 +399,19 @@ test('should allow middleware self filtering', async () => {
     const result = await execute(handler, 'apiGateway');
 
     expect(result.statusCode).toBe(200);
+    expect(didRun).toBe(false);
 });
 
 test('should allow both middleware self filtering and runtime filtering', async () => {
+    let didRun = false;
+
     const { handler: handler1 } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use({
             id: 'test-1',
             pure: true,
+            init: async () => {
+                didRun = true;
+            },
             after: async (payload) => {
                 payload.response.statusCode = 400;
                 return payload;
@@ -429,6 +446,7 @@ test('should allow both middleware self filtering and runtime filtering', async 
 
     expect(result1.statusCode).toBe(200);
     expect(result2.statusCode).toBe(200);
+    expect(didRun).toBe(false);
 });
 
 test('should allow a custom logger to be manually set', async () => {

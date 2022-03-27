@@ -108,6 +108,8 @@ export const runMiddleware = async <H extends Hook>(hook: H, payload: HookReturn
 export const register = <H extends Handler>(middleware: Middleware<H>) => {
     if (registry.all[middleware.id] !== undefined) {
         throw new Error(`middleware with name "${middleware.id}" already exists`);
+    } else if (middleware.filter !== undefined && !middleware.filter()) {
+        return;
     }
 
     registry.all[middleware.id] = (middleware as unknown) as Middleware<Handler>;
