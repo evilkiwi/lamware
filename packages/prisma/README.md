@@ -9,50 +9,36 @@
     <h3>Lamware - Prisma ORM</h3>
 </div>
 
-This [Lamware](https://github.com/tnotifier/lamware) Middleware allows you to memoize variables and instances outside of the Lambda Handler with ease.
-
-## Why?
-
-A lesser known feature of Lambda is that variables declared outside of the handler persist through the handler lifecycle. Since a Lambda instance, once cold-started, stays alive for 5-15 minutes (varies based on activity and the type of Lambda function), this provides a clear performance gain over having all logic instantiated inside the handler itself, since it'll only execute once (on the first request/invocation).
-
-Currently, Lambda doesn't support top-level `async/await`, meaning set-up that involves non-synchronous operations isn't as simple as placing it outside the handler. By allowing you to supply a closure, and Lamware having support for asynchronous initialization, this middleware allows you to asynchronously memoize/load outside of the handler.
+This [Lamware](https://github.com/tnotifier/lamware) Middleware allows you to initialize and memoize your [Prisma](https://prisma.io) Client.
 
 ## Installation
 
 This package is available via NPM:
 
 ```bash
-yarn add @lamware/memoize
+yarn add @lamware/prisma
 
 # or
 
-npm install @lamware/memoize
+npm install @lamware/prisma
 ```
 
 ## Usage
 
 ```typescript
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { memoize } from '@lamware/memoize';
+import { PrismaClient } from '@prisma/client';
+import { prisma } from '@lamware/prisma';
 import { lamware } from '@lamware/core';
 
-interface MemoizePayload {
-    count: number;
-}
-
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
-    .use(memoize<MemoizePayload>(async () => {
-        return { count: 1 };
-    }, {
-        // [optional] Whether to throw an `Error` if the memoize closure fails [default: true]
-        throwOnError: false,
-    }))
+    .use(prisma(PrismaClient))
     .execute(async ({ state }) => {
-        return {
-            statusCode: 200,
-            message: 'count should always be `1` since it is memoized!',
-            count: state.count,
-        };
+        const user = await state.prisma.user.findUnique({
+            where: { id: 1 },
+        });
+
+        return { statusCode: 200 };
     });
 
 export { handler };

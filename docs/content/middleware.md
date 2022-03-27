@@ -22,6 +22,7 @@ We maintain some basic and useful Middleware over [in our GitHub repo](https://g
 - [sentry](https://github.com/tnotifier/lamware/tree/master/packages/sentry) - Wrap your function for Sentry Issue tracking
 - [warmer](https://github.com/tnotifier/lamware/tree/master/packages/warmer) - Warm your Lambda functions via `lambda-warmer`
 - [appconfig](https://github.com/tnotifier/lamware/tree/master/packages/appconfig) - Fetch your JSON config from AWS AppConfig & type it
+- [prisma](https://github.com/tnotifier/lamware/tree/master/packages/prisma) - Set-up and memoize your Prisma Client
 - [fastify](https://github.com/tnotifier/lamware/tree/master/packages/fastify) - Set-up Fastify in Lambda implementing best practises and giving access to Lamware state
 
 ## Third-Party Middleware
