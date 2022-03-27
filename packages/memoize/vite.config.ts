@@ -28,8 +28,15 @@ export default defineConfig({
         sourcemap: process.env.MODE === 'development' ? true : false,
         outDir: 'build',
         assetsDir: '.',
-        minify: process.env.MODE === 'development' ? false : 'esbuild',
+        minify: process.env.MODE === 'development' ? false : 'terser',
         target: 'node14',
+        terserOptions: {
+            ecma: 2020,
+            compress: {
+                passes: 2,
+            },
+            safari10: false,
+        },
         lib: {
             entry: join('src', 'index.ts'),
             fileName: 'index',
