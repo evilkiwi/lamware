@@ -1,6 +1,6 @@
 {
     "name": "@lamware/memoize",
-    "version": "1.2.8",
+    "version": "1.2.9",
     "description": "Lamware Middleware for memoizing outside the Lambda handler",
     "type": "module",
     "files": [
@@ -41,7 +41,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@lamware/core": "^1.2.8"
+        "@lamware/core": "^1.2.9"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.93",

@@ -1,6 +1,6 @@
 {
     "name": "@lamware/core",
-    "version": "1.2.8",
+    "version": "1.2.9",
     "description": "AWS Lambda Middleware Pattern (NodeJS)",
     "type": "module",
     "files": [
@@ -46,7 +46,7 @@
         "merge-anything": "^5.0.2"
     },
     "devDependencies": {
-        "@lamware/test": "^1.0.5",
+        "@lamware/test": "^1.0.6",
         "@types/aws-lambda": "^8.10.93",
         "@types/node": "^14.18.12",
         "c8": "^7.11.0",
