@@ -1575,7 +1575,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/appconfig@workspace:packages/appconfig"
   dependencies:
-    "@lamware/core": ^1.2.7
+    "@lamware/core": ^1.2.8
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -1586,11 +1586,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@lamware/core@^1.2.7, @lamware/core@workspace:packages/core":
+"@lamware/core@^1.2.7, @lamware/core@^1.2.8, @lamware/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@lamware/core@workspace:packages/core"
   dependencies:
-    "@lamware/test": ^1.0.4
+    "@lamware/test": ^1.0.5
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     c8: ^7.11.0
@@ -1613,8 +1613,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/do-not-wait@workspace:packages/do-not-wait"
   dependencies:
-    "@lamware/core": ^1.2.7
-    "@lamware/test": ^1.0.4
+    "@lamware/core": ^1.2.8
+    "@lamware/test": ^1.0.5
     "@types/node": ^14.18.12
     c8: ^7.11.0
     eslint: ^8.11.0
@@ -1695,8 +1695,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/fastify@workspace:packages/fastify"
   dependencies:
-    "@lamware/core": ^1.2.7
-    "@lamware/test": ^1.0.4
+    "@lamware/core": ^1.2.8
+    "@lamware/test": ^1.0.5
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     aws-lambda-fastify: ^2.1.2
@@ -1718,7 +1718,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/memoize@workspace:packages/memoize"
   dependencies:
-    "@lamware/core": ^1.2.7
+    "@lamware/core": ^1.2.8
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     eslint: ^8.11.0
@@ -1735,7 +1735,7 @@ __metadata:
   resolution: "@lamware/powertools-logger@workspace:packages/powertools-logger"
   dependencies:
     "@aws-lambda-powertools/logger": ^0.7.1
-    "@lamware/core": ^1.2.7
+    "@lamware/core": ^1.2.8
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -1751,7 +1751,7 @@ __metadata:
   resolution: "@lamware/powertools-metrics@workspace:packages/powertools-metrics"
   dependencies:
     "@aws-lambda-powertools/metrics": ^0.7.1
-    "@lamware/core": ^1.2.7
+    "@lamware/core": ^1.2.8
     "@types/node": ^14.18.12
     eslint: ^8.11.0
     rimraf: ^3.0.2
@@ -1767,10 +1767,27 @@ __metadata:
   resolution: "@lamware/powertools-tracing@workspace:packages/powertools-tracing"
   dependencies:
     "@aws-lambda-powertools/tracer": ^0.7.1
-    "@lamware/core": ^1.2.7
+    "@lamware/core": ^1.2.8
     "@types/node": ^14.18.12
     aws-xray-sdk-core: ^3.3.4
     eslint: ^8.11.0
+    rimraf: ^3.0.2
+    tslib: ^2.3.1
+    typescript: ^4.6.2
+    vite: ^2.8.6
+    vite-plugin-dts: ^0.9.10
+  languageName: unknown
+  linkType: soft
+
+"@lamware/prisma@workspace:packages/prisma":
+  version: 0.0.0-use.local
+  resolution: "@lamware/prisma@workspace:packages/prisma"
+  dependencies:
+    "@lamware/core": ^1.2.7
+    "@types/aws-lambda": ^8.10.93
+    "@types/node": ^14.18.12
+    eslint: ^8.11.0
+    prisma: ^3.10.0
     rimraf: ^3.0.2
     tslib: ^2.3.1
     typescript: ^4.6.2
@@ -1784,7 +1801,7 @@ __metadata:
   resolution: "@lamware/secrets-manager@workspace:packages/secrets-manager"
   dependencies:
     "@aws-sdk/client-secrets-manager": ^3.56.0
-    "@lamware/core": ^1.2.7
+    "@lamware/core": ^1.2.8
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     eslint: ^8.11.0
@@ -1800,7 +1817,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/sentry@workspace:packages/sentry"
   dependencies:
-    "@lamware/core": ^1.2.7
+    "@lamware/core": ^1.2.8
     "@sentry/serverless": ^6.18.2
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
@@ -1817,8 +1834,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/sqs-json-parser@workspace:packages/sqs-json-parser"
   dependencies:
-    "@lamware/core": ^1.2.7
-    "@lamware/test": ^1.0.4
+    "@lamware/core": ^1.2.8
+    "@lamware/test": ^1.0.5
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     c8: ^7.11.0
@@ -1834,7 +1851,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@lamware/test@^1.0.4, @lamware/test@workspace:packages/test":
+"@lamware/test@^1.0.5, @lamware/test@workspace:packages/test":
   version: 0.0.0-use.local
   resolution: "@lamware/test@workspace:packages/test"
   dependencies:
@@ -1856,7 +1873,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/warmer@workspace:packages/warmer"
   dependencies:
-    "@lamware/core": ^1.2.7
+    "@lamware/core": ^1.2.8
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^14.18.12
     c8: ^7.11.0
@@ -2917,6 +2934,13 @@ __metadata:
   dependencies:
     "@octokit/openapi-types": ^11.2.0
   checksum: f122b9aee8f6baddd515e34a0913e73b21d4bc82d6ee59d77a8aaf01b4a02c10867dd013003d087a83dc96db23511893669015af6d30c27cece185e21cf1df89
+  languageName: node
+  linkType: hard
+
+"@prisma/engines@npm:3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9":
+  version: 3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9
+  resolution: "@prisma/engines@npm:3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9"
+  checksum: 87750ba42f2ad359e381818264acebc02d6e8fa61fe878c8e6e9ed2e0c2d13171e5c5e60ac9b380a9df54b6bc1c83750bbc6364ef09d8db7a613127f236a647b
   languageName: node
   linkType: hard
 
@@ -10823,6 +10847,18 @@ __metadata:
     ansi-styles: ^5.0.0
     react-is: ^17.0.1
   checksum: 26eda23b9dc985db206a4477bb7a22f5f1d73b9146bac4eb004dbcf3119ccae955377be6eddae0f792c2fc4bc14a0b303f43ee98542495da8ecf623654bf3054
+  languageName: node
+  linkType: hard
+
+"prisma@npm:^3.10.0":
+  version: 3.11.1
+  resolution: "prisma@npm:3.11.1"
+  dependencies:
+    "@prisma/engines": 3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9
+  bin:
+    prisma: build/index.js
+    prisma2: build/index.js
+  checksum: 0dc24dad3b71ece4b5de69451f90bce20b3d52cd4b17626a725536daef0db07ee2bb08d4e50aa49332bd0b3a19a9e34bd230551bb0c859acea34f1aa508f17bd
   languageName: node
   linkType: hard
 
