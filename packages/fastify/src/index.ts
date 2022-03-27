@@ -1,11 +1,11 @@
+import type { FastifyInstance, FastifyServerOptions } from 'fastify';
 import type { DestructuredHandler, Middleware } from '@lamware/core';
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import type { FastifyInstance } from 'fastify';
 import lambdaFastify from 'aws-lambda-fastify';
 import { state } from '@lamware/core';
 import createFastify from 'fastify';
 
-export interface Config {
+export interface Config extends FastifyServerOptions {
     /**
      * When using provisioned concurrency, enforcing ready state will
      * mean Fastify will get ready _before_ handling requests, so outside
@@ -46,7 +46,7 @@ export const fastify = (setup?: SetupFunction, config?: Config): Middleware<APIG
     id: 'fastify',
     pure: true,
     init: async () => {
-        let app = config?.client ?? createFastify();
+        let app = config?.client ?? createFastify(config ?? {});
 
         if (setup) {
             app = await setup(app);
