@@ -1,20 +1,15 @@
+import { defineConfig } from 'vitest/config';
 import { builtinModules } from 'module';
 import { join, resolve } from 'path';
-import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
 import pkg from './package.json';
 
 export default defineConfig({
     root: __dirname,
-    plugins: [
-        dts({
-            outputDir: join(__dirname, 'build'),
-            tsConfigFilePath: join(__dirname, 'tsconfig.json'),
-            staticImport: true,
-            skipDiagnostics: false,
-            logDiagnostics: true,
-        }),
-    ],
+    test: {
+        coverage: {
+            reporter: ['text', 'html'],
+        },
+    },
     resolve: {
         alias: [
             { find: /^@\/(.*)/, replacement: `${resolve(__dirname, 'src')}/$1` },
@@ -40,7 +35,7 @@ export default defineConfig({
         lib: {
             entry: join('src', 'index.ts'),
             fileName: 'index',
-            name: 'LamwarePowertoolsLogging',
+            name: 'LamwareFastify',
             formats: ['es', 'cjs'],
         },
         rollupOptions: {

@@ -2,7 +2,6 @@
     "private": true,
     "name": "@lamware/example",
     "version": "1.0.0",
-    "type": "module",
     "scripts": {
         "build": "yarn clean && yarn compile",
         "clean": "rimraf build",

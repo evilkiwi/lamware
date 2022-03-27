@@ -12,6 +12,7 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
     const logger = options.logger ?? console;
 
     const instance: Instance<H> = {
+        // @ts-expect-error TODO:
         use: (middleware, filter) => {
             if (filter !== undefined) {
                 if (middleware.filter === undefined) {

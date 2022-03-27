@@ -2,14 +2,12 @@
     "name": "@lamware/powertools-logger",
     "version": "1.0.16",
     "description": "Lamware Middleware to utilize the official Logger powertools",
-    "type": "module",
     "files": [
         "build"
     ],
-    "sideEffects": false,
-    "main": "./build/index.cjs.js",
-    "module": "./build/index.es.js",
-    "types": "./build/src/index.d.ts",
+    "main": "./build/index.js",
+    "module": "./build/index.mjs",
+    "types": "./build/index.d.ts",
     "license": "GPL-3.0-only",
     "author": {
         "name": "Evil Kiwi Limited",
@@ -33,11 +31,9 @@
         "access": "public"
     },
     "scripts": {
-        "clean": "rimraf build",
         "prepack": "yarn build",
-        "build": "yarn clean && yarn compile",
-        "compile": "vite build",
-        "dev": "vite build --watch",
+        "build": "NODE_ENV=production tsup-node",
+        "dev": "NODE_ENV=development tsup-node",
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
@@ -47,10 +43,8 @@
     "devDependencies": {
         "@types/node": "^14.18.12",
         "eslint": "^8.11.0",
-        "rimraf": "^3.0.2",
         "tslib": "^2.3.1",
-        "typescript": "^4.6.2",
-        "vite": "^2.8.6",
-        "vite-plugin-dts": "^0.9.10"
+        "tsup": "^5.12.1",
+        "typescript": "^4.6.2"
     }
 }
