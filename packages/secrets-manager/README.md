@@ -9,7 +9,7 @@
     <h3>Lamware - AWS Secrets Manager</h3>
 </div>
 
-This [Lamware](https://github.com/tnotifier/lamware) Middleware utilizes the [AWS Secrets Manager SDK](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-secrets-manager/index.html) to fetch and memoize secrets from AWS Secrets Manager.
+This [Lamware](https://github.com/evilkiwi/lamware) Middleware utilizes the [AWS Secrets Manager SDK](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-secrets-manager/index.html) to fetch and memoize secrets from AWS Secrets Manager.
 
 ## Installation
 

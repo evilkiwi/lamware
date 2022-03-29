@@ -39,7 +39,7 @@ export { handler };
 
 ## Logger
 
-Provided via the `logger` payload item, and by default using `console`, you should use this logger as an alternative raw `console.log()`. Middleware you use can override this logger, providing you with easy integration. For example, the [powertools-logger](https://github.com/tnotifier/lamware/tree/master/packages/powertools-logger) middleware makes `logger` an official NodeJS Lambda logger:
+Provided via the `logger` payload item, and by default using `console`, you should use this logger as an alternative raw `console.log()`. Middleware you use can override this logger, providing you with easy integration. For example, the [powertools-logger](https://github.com/evilkiwi/lamware/tree/master/packages/powertools-logger) middleware makes `logger` an official NodeJS Lambda logger:
 
 ```typescript
 import { powertoolsLogger } from '@lamware/powertools-logger';

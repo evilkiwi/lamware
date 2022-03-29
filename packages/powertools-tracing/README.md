@@ -9,7 +9,7 @@
     <h3>Lamware - AWS Powertools Tracing</h3>
 </div>
 
-This [Lamware](https://github.com/tnotifier/lamware) Middleware utilizes the official [Lambda TypeScript Powertools](https://awslabs.github.io/aws-lambda-powertools-typescript/latest/core/tracer/) provided by AWS to:
+This [Lamware](https://github.com/evilkiwi/lamware) Middleware utilizes the official [Lambda TypeScript Powertools](https://awslabs.github.io/aws-lambda-powertools-typescript/latest/core/tracer/) provided by AWS to:
 
 - Set-up and memoize a root `Tracer` instance
 - Automatically set-up a root Tracer Segment to:

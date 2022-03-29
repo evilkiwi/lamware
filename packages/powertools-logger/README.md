@@ -9,7 +9,7 @@
     <h3>Lamware - AWS Powertools Logger</h3>
 </div>
 
-This [Lamware](https://github.com/tnotifier/lamware) Middleware utilizes the official [Lambda TypeScript Powertools](https://awslabs.github.io/aws-lambda-powertools-typescript/latest/core/logger/) provided by AWS to:
+This [Lamware](https://github.com/evilkiwi/lamware) Middleware utilizes the official [Lambda TypeScript Powertools](https://awslabs.github.io/aws-lambda-powertools-typescript/latest/core/logger/) provided by AWS to:
 
 - Set-up and memoize a root `Logger` instance
 - Automatically add Lambda Context to all logging (can be disabled)

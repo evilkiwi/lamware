@@ -15,15 +15,15 @@ Lamware is built around the idea of Middleware being used to modify and transfor
 
 ## Official Middleware
 
-We maintain some basic and useful Middleware over [in our GitHub repo](https://github.com/tnotifier/lamware/tree/master/packages). You can find them all there, but some noteworthy recommendations:
+We maintain some basic and useful Middleware over [in our GitHub repo](https://github.com/evilkiwi/lamware/tree/master/packages). You can find them all there, but some noteworthy recommendations:
 
-- [do-not-wait](https://github.com/tnotifier/lamware/tree/master/packages/do-not-wait) - Ensure `callbackWaitsForEmptyEventLoop` is set to `false` for your function
-- [secrets-manager](https://github.com/tnotifier/lamware/tree/master/packages/secrets-manager) - Fetch & type secret values from AWS Secrets Manager
-- [sentry](https://github.com/tnotifier/lamware/tree/master/packages/sentry) - Wrap your function for Sentry Issue tracking
-- [warmer](https://github.com/tnotifier/lamware/tree/master/packages/warmer) - Warm your Lambda functions via `lambda-warmer`
-- [appconfig](https://github.com/tnotifier/lamware/tree/master/packages/appconfig) - Fetch your JSON config from AWS AppConfig & type it
-- [prisma](https://github.com/tnotifier/lamware/tree/master/packages/prisma) - Set-up and memoize your Prisma Client
-- [fastify](https://github.com/tnotifier/lamware/tree/master/packages/fastify) - Set-up Fastify in Lambda implementing best practises and giving access to Lamware state
+- [do-not-wait](https://github.com/evilkiwi/lamware/tree/master/packages/do-not-wait) - Ensure `callbackWaitsForEmptyEventLoop` is set to `false` for your function
+- [secrets-manager](https://github.com/evilkiwi/lamware/tree/master/packages/secrets-manager) - Fetch & type secret values from AWS Secrets Manager
+- [sentry](https://github.com/evilkiwi/lamware/tree/master/packages/sentry) - Wrap your function for Sentry Issue tracking
+- [warmer](https://github.com/evilkiwi/lamware/tree/master/packages/warmer) - Warm your Lambda functions via `lambda-warmer`
+- [appconfig](https://github.com/evilkiwi/lamware/tree/master/packages/appconfig) - Fetch your JSON config from AWS AppConfig & type it
+- [prisma](https://github.com/evilkiwi/lamware/tree/master/packages/prisma) - Set-up and memoize your Prisma Client
+- [fastify](https://github.com/evilkiwi/lamware/tree/master/packages/fastify) - Set-up Fastify in Lambda implementing best practises and giving access to Lamware state
 
 ## Third-Party Middleware
 

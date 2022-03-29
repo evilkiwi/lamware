@@ -12,15 +12,15 @@
     "author": {
         "name": "Evil Kiwi Limited",
         "url": "https://evil.kiwi",
-        "email": "support@tnotifier.app"
+        "email": "support@evil.kiwi"
     },
-    "homepage": "https://github.com/tnotifier/lamware",
+    "homepage": "https://github.com/evilkiwi/lamware",
     "bugs": {
-        "url": "https://github.com/tnotifier/lamware/issues"
+        "url": "https://github.com/evilkiwi/lamware/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/tnotifier/lamware.git"
+        "url": "git+https://github.com/evilkiwi/lamware.git"
     },
     "keywords": [
         "lambda",

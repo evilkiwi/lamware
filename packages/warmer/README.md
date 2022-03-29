@@ -9,7 +9,7 @@
     <h3>Lamware - Warmer</h3>
 </div>
 
-This [Lamware](https://github.com/tnotifier/lamware) Middleware utilizes the [`lambda-warmer`](https://github.com/jeremydaly/lambda-warmer) package, automating usage of it by providing:
+This [Lamware](https://github.com/evilkiwi/lamware) Middleware utilizes the [`lambda-warmer`](https://github.com/jeremydaly/lambda-warmer) package, automating usage of it by providing:
 
 - Automatically registering the warming listener
 - Early-exit out of your Function if it detects a warming event

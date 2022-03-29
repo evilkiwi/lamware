@@ -14,7 +14,7 @@ export default defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
     themeConfig: {
         home: '/',
         logo: 'https://vuejs.org/images/logo.png',
-        repo: 'tnotifier/lamware',
+        repo: 'evilkiwi/lamware',
         docsDir: 'docs/content',
         docsBranch: 'master',
         locales: {

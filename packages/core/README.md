@@ -9,4 +9,4 @@
     <h3>Lamware - Core Functionality</h3>
 </div>
 
-Refer to the [root README](https://github.com/tnotifier/lamware/blob/master/README.md).
+Refer to the [root README](https://github.com/evilkiwi/lamware/blob/master/README.md).

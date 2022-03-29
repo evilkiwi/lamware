@@ -3,26 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.2.11](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.10...@lamware/core@1.2.11) (2022-03-27)
+## [1.2.11](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.10...@lamware/core@1.2.11) (2022-03-27)
 
 
 ### Bug Fixes
 
-* **core:** check for filtering before registering ([cfb9cd7](https://github.com/tnotifier/lamware/commit/cfb9cd7fa74fd17b7476c99afe9fd46960e11865))
+* **core:** check for filtering before registering ([cfb9cd7](https://github.com/evilkiwi/lamware/commit/cfb9cd7fa74fd17b7476c99afe9fd46960e11865))
 
 
 
 
 
-## [1.2.10](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.9...@lamware/core@1.2.10) (2022-03-27)
-
-**Note:** Version bump only for package @lamware/core
-
-
-
-
-
-## [1.2.9](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.8...@lamware/core@1.2.9) (2022-03-27)
+## [1.2.10](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.9...@lamware/core@1.2.10) (2022-03-27)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -30,7 +22,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.8](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.7...@lamware/core@1.2.8) (2022-03-27)
+## [1.2.9](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.8...@lamware/core@1.2.9) (2022-03-27)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -38,7 +30,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.7](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.6...@lamware/core@1.2.7) (2022-03-26)
+## [1.2.8](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.7...@lamware/core@1.2.8) (2022-03-27)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -46,7 +38,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.6](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.5...@lamware/core@1.2.6) (2022-03-26)
+## [1.2.7](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.6...@lamware/core@1.2.7) (2022-03-26)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -54,7 +46,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.5](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.4...@lamware/core@1.2.5) (2022-03-26)
+## [1.2.6](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.5...@lamware/core@1.2.6) (2022-03-26)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -62,7 +54,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.4](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.3...@lamware/core@1.2.4) (2022-03-25)
+## [1.2.5](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.4...@lamware/core@1.2.5) (2022-03-26)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -70,7 +62,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.3](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.1...@lamware/core@1.2.3) (2022-03-25)
+## [1.2.4](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.3...@lamware/core@1.2.4) (2022-03-25)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -78,7 +70,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.1](https://github.com/tnotifier/lamware/compare/@lamware/core@1.2.0...@lamware/core@1.2.1) (2022-03-25)
+## [1.2.3](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.1...@lamware/core@1.2.3) (2022-03-25)
+
+**Note:** Version bump only for package @lamware/core
+
+
+
+
+
+## [1.2.1](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.0...@lamware/core@1.2.1) (2022-03-25)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -91,19 +91,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* **core:** edge-case where state would be overriden instead of merged ([cd238d7](https://github.com/tnotifier/lamware/commit/cd238d7277e0ed13e2bd68d557af8ae4887e93eb))
-* **core:** ensure state is passed to middleware ([0d4b752](https://github.com/tnotifier/lamware/commit/0d4b75292dcbebb6062903c40c66b32e82c326db))
+* **core:** edge-case where state would be overriden instead of merged ([cd238d7](https://github.com/evilkiwi/lamware/commit/cd238d7277e0ed13e2bd68d557af8ae4887e93eb))
+* **core:** ensure state is passed to middleware ([0d4b752](https://github.com/evilkiwi/lamware/commit/0d4b75292dcbebb6062903c40c66b32e82c326db))
 
 
 ### Features
 
-* **core:** allow filtering middleware at runtime ([2e5abc0](https://github.com/tnotifier/lamware/commit/2e5abc090d5237e0ca4f601ed8a8dd204dcbf4da))
+* **core:** allow filtering middleware at runtime ([2e5abc0](https://github.com/evilkiwi/lamware/commit/2e5abc090d5237e0ca4f601ed8a8dd204dcbf4da))
 
 
 
 
 
-## [1.1.6](https://github.com/tnotifier/lamware/compare/@lamware/core@1.1.5...@lamware/core@1.1.6) (2022-03-24)
+## [1.1.6](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.1.5...@lamware/core@1.1.6) (2022-03-24)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -111,18 +111,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.1.5](https://github.com/tnotifier/lamware/compare/@lamware/core@1.1.4...@lamware/core@1.1.5) (2022-03-24)
+## [1.1.5](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.1.4...@lamware/core@1.1.5) (2022-03-24)
 
 
 ### Bug Fixes
 
-* **core:** edge-case where state would be overriden instead of merged ([cd238d7](https://github.com/tnotifier/lamware/commit/cd238d7277e0ed13e2bd68d557af8ae4887e93eb))
+* **core:** edge-case where state would be overriden instead of merged ([cd238d7](https://github.com/evilkiwi/lamware/commit/cd238d7277e0ed13e2bd68d557af8ae4887e93eb))
 
 
 
 
 
-## [1.1.4](https://github.com/tnotifier/lamware/compare/@lamware/core@1.1.3...@lamware/core@1.1.4) (2022-03-24)
+## [1.1.4](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.1.3...@lamware/core@1.1.4) (2022-03-24)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -130,26 +130,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.1.3](https://github.com/tnotifier/lamware/compare/@lamware/core@1.1.2...@lamware/core@1.1.3) (2022-03-24)
+## [1.1.3](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.1.2...@lamware/core@1.1.3) (2022-03-24)
 
 
 ### Bug Fixes
 
-* **core:** ensure state is passed to middleware ([0d4b752](https://github.com/tnotifier/lamware/commit/0d4b75292dcbebb6062903c40c66b32e82c326db))
+* **core:** ensure state is passed to middleware ([0d4b752](https://github.com/evilkiwi/lamware/commit/0d4b75292dcbebb6062903c40c66b32e82c326db))
 
 
 
 
 
-## [1.1.2](https://github.com/tnotifier/lamware/compare/@lamware/core@1.1.1...@lamware/core@1.1.2) (2022-03-24)
-
-**Note:** Version bump only for package @lamware/core
-
-
-
-
-
-## [1.1.1](https://github.com/tnotifier/lamware/compare/@lamware/core@1.1.0...@lamware/core@1.1.1) (2022-03-24)
+## [1.1.2](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.1.1...@lamware/core@1.1.2) (2022-03-24)
 
 **Note:** Version bump only for package @lamware/core
 
@@ -157,12 +149,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.1.0](https://github.com/tnotifier/lamware/compare/@lamware/core@1.0.1...@lamware/core@1.1.0) (2022-03-22)
+## [1.1.1](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.1.0...@lamware/core@1.1.1) (2022-03-24)
+
+**Note:** Version bump only for package @lamware/core
+
+
+
+
+
+# [1.1.0](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.0.1...@lamware/core@1.1.0) (2022-03-22)
 
 
 ### Features
 
-* **core:** allow filtering middleware at runtime ([2e5abc0](https://github.com/tnotifier/lamware/commit/2e5abc090d5237e0ca4f601ed8a8dd204dcbf4da))
+* **core:** allow filtering middleware at runtime ([2e5abc0](https://github.com/evilkiwi/lamware/commit/2e5abc090d5237e0ca4f601ed8a8dd204dcbf4da))
 
 
 

@@ -42,7 +42,7 @@ jobs:
       - name: Set-up Git Credentials
         run: |
           git config --global user.name "GitHub Actions"
-          git config --global user.email "admin@tnotifier.app"
+          git config --global user.email "admin@evil.kiwi"
       - name: Build packages
         run: yarn build
       - name: Run Tests

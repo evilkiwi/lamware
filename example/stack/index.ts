@@ -16,6 +16,6 @@ const props = {
     },
 };
 
-const lamware = new LamwareStack(root, 'tnotifier-lamware-example', props);
+const lamware = new LamwareStack(root, 'evilkiwi-lamware-example', props);
 
 root.synth();

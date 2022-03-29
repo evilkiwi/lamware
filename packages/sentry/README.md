@@ -9,7 +9,7 @@
     <h3>Lamware - Sentry</h3>
 </div>
 
-This [Lamware](https://github.com/tnotifier/lamware) Middleware utilizes the [Sentry Serverless SDK](https://docs.sentry.io/platforms/node/guides/aws-lambda/) to automatically initialize and wrap your Lambda Function handler to capture errors and report them to Sentry.
+This [Lamware](https://github.com/evilkiwi/lamware) Middleware utilizes the [Sentry Serverless SDK](https://docs.sentry.io/platforms/node/guides/aws-lambda/) to automatically initialize and wrap your Lambda Function handler to capture errors and report them to Sentry.
 
 ## Installation
 

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.2.11](https://github.com/tnotifier/lamware/compare/@lamware/sqs-json-parser@1.2.10...@lamware/sqs-json-parser@1.2.11) (2022-03-27)
+## [1.2.11](https://github.com/evilkiwi/lamware/compare/@lamware/sqs-json-parser@1.2.10...@lamware/sqs-json-parser@1.2.11) (2022-03-27)
 
 **Note:** Version bump only for package @lamware/sqs-json-parser
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.10](https://github.com/tnotifier/lamware/compare/@lamware/sqs-json-parser@1.2.9...@lamware/sqs-json-parser@1.2.10) (2022-03-27)
+## [1.2.10](https://github.com/evilkiwi/lamware/compare/@lamware/sqs-json-parser@1.2.9...@lamware/sqs-json-parser@1.2.10) (2022-03-27)
 
 **Note:** Version bump only for package @lamware/sqs-json-parser
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.9](https://github.com/tnotifier/lamware/compare/@lamware/sqs-json-parser@1.2.8...@lamware/sqs-json-parser@1.2.9) (2022-03-27)
+## [1.2.9](https://github.com/evilkiwi/lamware/compare/@lamware/sqs-json-parser@1.2.8...@lamware/sqs-json-parser@1.2.9) (2022-03-27)
 
 **Note:** Version bump only for package @lamware/sqs-json-parser
 
@@ -27,7 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.8](https://github.com/tnotifier/lamware/compare/@lamware/sqs-json-parser@1.2.7...@lamware/sqs-json-parser@1.2.8) (2022-03-27)
+## [1.2.8](https://github.com/evilkiwi/lamware/compare/@lamware/sqs-json-parser@1.2.7...@lamware/sqs-json-parser@1.2.8) (2022-03-27)
 
 **Note:** Version bump only for package @lamware/sqs-json-parser
 
@@ -35,7 +35,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.7](https://github.com/tnotifier/lamware/compare/@lamware/sqs-json-parser@1.2.6...@lamware/sqs-json-parser@1.2.7) (2022-03-26)
+## [1.2.7](https://github.com/evilkiwi/lamware/compare/@lamware/sqs-json-parser@1.2.6...@lamware/sqs-json-parser@1.2.7) (2022-03-26)
 
 **Note:** Version bump only for package @lamware/sqs-json-parser
 
@@ -43,7 +43,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.6](https://github.com/tnotifier/lamware/compare/@lamware/sqs-json-parser@1.2.5...@lamware/sqs-json-parser@1.2.6) (2022-03-26)
+## [1.2.6](https://github.com/evilkiwi/lamware/compare/@lamware/sqs-json-parser@1.2.5...@lamware/sqs-json-parser@1.2.6) (2022-03-26)
 
 **Note:** Version bump only for package @lamware/sqs-json-parser
 
@@ -51,7 +51,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.5](https://github.com/tnotifier/lamware/compare/@lamware/sqs-json-parser@1.2.4...@lamware/sqs-json-parser@1.2.5) (2022-03-26)
+## [1.2.5](https://github.com/evilkiwi/lamware/compare/@lamware/sqs-json-parser@1.2.4...@lamware/sqs-json-parser@1.2.5) (2022-03-26)
 
 **Note:** Version bump only for package @lamware/sqs-json-parser
 
@@ -59,7 +59,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.4](https://github.com/tnotifier/lamware/compare/@lamware/sqs-json-parser@1.2.3...@lamware/sqs-json-parser@1.2.4) (2022-03-25)
+## [1.2.4](https://github.com/evilkiwi/lamware/compare/@lamware/sqs-json-parser@1.2.3...@lamware/sqs-json-parser@1.2.4) (2022-03-25)
 
 **Note:** Version bump only for package @lamware/sqs-json-parser
 
@@ -67,7 +67,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.3](https://github.com/tnotifier/lamware/compare/@lamware/sqs-json-parser@1.2.1...@lamware/sqs-json-parser@1.2.3) (2022-03-25)
+## [1.2.3](https://github.com/evilkiwi/lamware/compare/@lamware/sqs-json-parser@1.2.1...@lamware/sqs-json-parser@1.2.3) (2022-03-25)
 
 **Note:** Version bump only for package @lamware/sqs-json-parser
 
@@ -75,7 +75,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.1](https://github.com/tnotifier/lamware/compare/@lamware/sqs-json-parser@1.2.0...@lamware/sqs-json-parser@1.2.1) (2022-03-25)
+## [1.2.1](https://github.com/evilkiwi/lamware/compare/@lamware/sqs-json-parser@1.2.0...@lamware/sqs-json-parser@1.2.1) (2022-03-25)
 
 **Note:** Version bump only for package @lamware/sqs-json-parser
 
@@ -88,7 +88,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **sqs-json-parser:** add new middleware ([12ba236](https://github.com/tnotifier/lamware/commit/12ba2362e0527c3faad031b9f3b87cdd6e11db2c))
+* **sqs-json-parser:** add new middleware ([12ba236](https://github.com/evilkiwi/lamware/commit/12ba2362e0527c3faad031b9f3b87cdd6e11db2c))
 
 
 
@@ -99,4 +99,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **sqs-json-parser:** add new middleware ([12ba236](https://github.com/tnotifier/lamware/commit/12ba2362e0527c3faad031b9f3b87cdd6e11db2c))
+* **sqs-json-parser:** add new middleware ([12ba236](https://github.com/evilkiwi/lamware/commit/12ba2362e0527c3faad031b9f3b87cdd6e11db2c))
