@@ -1,6 +1,6 @@
 {
     "name": "@lamware/powertools-tracing",
-    "version": "1.0.21",
+    "version": "1.0.22",
     "description": "Lamware Middleware to utilize the official Tracing powertools",
     "files": [
         "build"
@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "@aws-lambda-powertools/tracer": "^0.7.1",
-        "@lamware/core": "^1.2.12"
+        "@lamware/core": "^1.2.13"
     },
     "devDependencies": {
         "@types/node": "^14.18.12",
