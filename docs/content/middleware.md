@@ -15,15 +15,21 @@ Lamware is built around the idea of Middleware being used to modify and transfor
 
 ## Official Middleware
 
-We maintain some basic and useful Middleware over [in our GitHub repo](https://github.com/evilkiwi/lamware/tree/master/packages). You can find them all there, but some noteworthy recommendations:
+We maintain some basic and useful Middleware over [in our GitHub repo](https://github.com/evilkiwi/lamware/tree/master/packages).
 
-- [do-not-wait](https://github.com/evilkiwi/lamware/tree/master/packages/do-not-wait) - Ensure `callbackWaitsForEmptyEventLoop` is set to `false` for your function
-- [secrets-manager](https://github.com/evilkiwi/lamware/tree/master/packages/secrets-manager) - Fetch & type secret values from AWS Secrets Manager
-- [sentry](https://github.com/evilkiwi/lamware/tree/master/packages/sentry) - Wrap your function for Sentry Issue tracking
-- [warmer](https://github.com/evilkiwi/lamware/tree/master/packages/warmer) - Warm your Lambda functions via `lambda-warmer`
-- [appconfig](https://github.com/evilkiwi/lamware/tree/master/packages/appconfig) - Fetch your JSON config from AWS AppConfig & type it
-- [prisma](https://github.com/evilkiwi/lamware/tree/master/packages/prisma) - Set-up and memoize your Prisma Client
-- [fastify](https://github.com/evilkiwi/lamware/tree/master/packages/fastify) - Set-up Fastify in Lambda implementing best practises and giving access to Lamware state
+- [@lamware/apollo](https://github.com/evilkiwi/lamware/tree/master/packages/apollo) - Set-up and memoize Apollo Server in AWS Lambda
+- [@lamware/appconfig](https://github.com/evilkiwi/lamware/tree/master/packages/appconfig) - Fetch your JSON config from AWS AppConfig & type it
+- [@lamware/do-not-wait](https://github.com/evilkiwi/lamware/tree/master/packages/do-not-wait) - Ensure `callbackWaitsForEmptyEventLoop` is set to `false` for your function
+- [@lamware/fastify](https://github.com/evilkiwi/lamware/tree/master/packages/fastify) - Set-up Fastify in Lambda implementing best practises and giving access to Lamware state
+- [@lamware/memoize](https://github.com/evilkiwi/lamware/tree/master/packages/memoize) - Helper Middleware for you to memoize anything in a type-safe way
+- [@lamware/powertools-logger](https://github.com/evilkiwi/lamware/tree/master/packages/powertools-logger) - Utilize the Official Lambda TypeScript Logging system
+- [@lamware/powertools-metrics](https://github.com/evilkiwi/lamware/tree/master/packages/powertools-metrics) - Utilize the Official Lambda TypeScript Metrics system
+- [@lamware/powertools-tracing](https://github.com/evilkiwi/lamware/tree/master/packages/powertools-tracing) - Utilize the Official Lambda TypeScript X-ray Tracing system
+- [@lamware/prisma](https://github.com/evilkiwi/lamware/tree/master/packages/prisma) - Set-up and memoize your Prisma Client
+- [@lamware/secrets-manager](https://github.com/evilkiwi/lamware/tree/master/packages/secrets-manager) - Fetch & type secret values from AWS Secrets Manager
+- [@lamware/sentry](https://github.com/evilkiwi/lamware/tree/master/packages/sentry) - Wrap your function for Sentry Issue tracking
+- [@lamware/sqs-json-parser](https://github.com/evilkiwi/lamware/tree/master/packages/sqs-json-parser) - Safely parse and type SQS JSON payloads
+- [@lamware/warmer](https://github.com/evilkiwi/lamware/tree/master/packages/warmer) - Warm your Lambda functions via `lambda-warmer`
 
 ## Third-Party Middleware
 
