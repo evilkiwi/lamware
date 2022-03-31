@@ -5,7 +5,6 @@ import lambdaWarmer from 'lambda-warmer';
 
 export const warmer = (config?: typeof WarmerConfig): Middleware<APIGatewayProxyHandlerV2, { is_warmed: boolean }> => ({
     id: 'warmer',
-    pure: true,
     before: async (payload) => {
         payload.state.is_warmed = false;
 

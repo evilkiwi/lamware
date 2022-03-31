@@ -7,7 +7,6 @@ export interface Options {
 
 export const sqsJsonParser = <R extends object>(options?: Options): Middleware<SQSHandler, { items: R[] }> => ({
     id: 'sqs-json-parser',
-    pure: true,
     before: async (payload) => {
         try {
             payload.state.items = payload.event.Records.map<R>(record => {

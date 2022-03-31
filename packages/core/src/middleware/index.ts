@@ -1,9 +1,11 @@
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
 import type { DestructuredHandler, LamwareState, Instance } from '@/instance';
-import type { Hook, HookReturns, Middleware, MiddlewareRegistry } from './types';
+import type { Hook, HookReturns, Middleware, MiddlewareRegistry, InitResolver, Resolver } from './types';
 
-let initResolvers: Promise<void>[] = [];
+let initResolvers: Resolver[] = [];
+let initPure = true;
+
 const registry: MiddlewareRegistry = {
     all: {},
     state: {},
@@ -13,7 +15,56 @@ const registry: MiddlewareRegistry = {
     },
 };
 
-export const init = async () => Promise.all(initResolvers);
+export const init = async (next?: number) => {
+    const toResolve: InitResolver[] = [];
+    const total = initResolvers.length;
+    const originalNext = next;
+
+    if (initPure && next === undefined) {
+        // If there was no `.useSync()`, just resolve everything.
+        toResolve.push(...initResolvers.map(resolver => resolver.promise));
+    } else {
+        // Otherwise, we want to take order and sync in to account.
+        for (let i = next ?? 0; i < total; i++) {
+            const resolver = initResolvers[i];
+            let shouldAdd = true;
+
+            if (resolver.sync) {
+                // If it's marked as `sync` but we already have some resolvers, exit the loop.
+                if (toResolve.length > 0) {
+                    shouldAdd = false;
+                    next = i;
+                } else {
+                    next = i + 1;
+                }
+
+                i = total;
+            }
+
+            if (shouldAdd) {
+                toResolve.push(resolver.promise);
+            }
+        }
+    }
+
+    // Of all the found initialization resolvers, well, resolve them!
+    await Promise.all(toResolve.map(resolver => {
+        return typeof resolver === 'function' ? resolver() : resolver;
+    }));
+
+    // Exit out of calling again if we've done everything.
+    if (next !== undefined && (next >= total || next === originalNext)) {
+        next = undefined;
+    }
+
+    // If we need to resolve more, queue it.
+    if (next !== undefined) {
+        await init(next);
+    } else {
+        // Let Garbage Collection kill all these.
+        initResolvers = [];
+    }
+};
 
 export const loggerOverride = () => {
     // Find a logger from the available middleware - first only.
@@ -44,6 +95,13 @@ export const compileState = <I extends Instance<any, any>, S = LamwareState<I>>(
     return state;
 };
 
+export const shouldRun = (middleware: Middleware) => {
+    return middleware.filter === undefined || (
+        (typeof middleware.filter === 'function' && middleware.filter()) ||
+        (typeof middleware.filter === 'boolean' && middleware.filter === true)
+    );
+};
+
 export const runMiddleware = async <H extends Hook>(hook: H, payload: HookReturns[H]): Promise<HookReturns[H]> => {
     const logDebug = (...args: unknown[]) => {
         if (payload.debug) {
@@ -66,10 +124,7 @@ export const runMiddleware = async <H extends Hook>(hook: H, payload: HookReturn
             const middleware = registry.all[runId];
             const middlewareHook = middleware?.[hook];
 
-            if (
-                !middleware || !middlewareHook ||
-                (middleware.filter !== undefined && !middleware.filter())
-            ) {
+            if (!middleware || !middlewareHook || !shouldRun(middleware)) {
                 if (middleware.filter !== undefined) {
                     logDebug(`middleware \`${runId}\` was skipped by \`filter\``);
                 }
@@ -105,10 +160,10 @@ export const runMiddleware = async <H extends Hook>(hook: H, payload: HookReturn
     }, Promise.resolve(payload));
 };
 
-export const register = <H extends Handler>(middleware: Middleware<H>) => {
+export const register = <H extends Handler>(middleware: Middleware<H>, sync = false) => {
     if (registry.all[middleware.id] !== undefined) {
         throw new Error(`middleware with name "${middleware.id}" already exists`);
-    } else if (middleware.filter !== undefined && !middleware.filter()) {
+    } else if (!shouldRun(middleware)) {
         return;
     }
 
@@ -118,7 +173,9 @@ export const register = <H extends Handler>(middleware: Middleware<H>) => {
         const key = i === 0 ? 'before' : 'after';
 
         if (middleware[key] !== undefined) {
-            if (middleware.pure) {
+            if (middleware.pure === false) {
+                registry.order[key].push(middleware.id);
+            } else {
                 const length = registry.order[key].length;
                 const last = registry.order[key][length - 1];
 
@@ -127,14 +184,16 @@ export const register = <H extends Handler>(middleware: Middleware<H>) => {
                 } else {
                     registry.order[key].push([middleware.id]);
                 }
-            } else {
-                registry.order[key].push(middleware.id);
             }
         }
     }
 
     if (middleware.init !== undefined) {
-        initResolvers.push(new Promise(async (resolve, reject) => {
+        if (sync && initPure) {
+            initPure = false;
+        }
+
+        const promise = () => new Promise<void>(async (resolve, reject) => {
             try {
                 const state = middleware.init !== undefined ? await middleware.init() : {};
                 registry.state[middleware.id] = state;
@@ -142,12 +201,18 @@ export const register = <H extends Handler>(middleware: Middleware<H>) => {
             } catch (e) {
                 reject(e);
             }
-        }));
+        });
+
+        initResolvers.push({
+            promise: !sync && initPure ? promise() : promise,
+            sync,
+        });
     }
 };
 
 export const clear = () => {
     initResolvers = [];
+    initPure = true;
     registry.all = {};
     registry.state = {};
     registry.order.before = [];

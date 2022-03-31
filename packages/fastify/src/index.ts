@@ -44,7 +44,6 @@ declare module 'fastify' {
 
 export const fastify = (setup?: SetupFunction, config?: Config): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
     id: 'fastify',
-    pure: true,
     init: async () => {
         let app = config?.client ?? createFastify(config ?? {});
 

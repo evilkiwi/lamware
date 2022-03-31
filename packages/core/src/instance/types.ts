@@ -22,7 +22,8 @@ export interface DestructuredHandlerOptions<H extends Handler, S extends object 
 export type DestructuredHandler<H extends Handler = Handler, S extends object = {}, R = PromiseType<Exclude<ReturnType<H>, void>>> = (options: DestructuredHandlerOptions<H, S>) => R|Promise<R>;
 
 export interface Instance<H extends Handler, S extends object = {}> {
-    use: <M extends Middleware<H, any>>(middleware: M, filter?: FilterFunction) => Instance<H, S & NonNullable<M['state']>>;
+    use: <M extends Middleware<H, any>>(middleware: M, filter?: FilterFunction, sync?: boolean) => Instance<H, S & NonNullable<M['state']>>;
+    useSync: <M extends Middleware<H, any>>(middleware: M, filter?: FilterFunction, sync?: boolean) => Instance<H, S & NonNullable<M['state']>>;
     execute: (handler: DestructuredHandler<H, S>) => {
         clear: () => void;
         handler: H;

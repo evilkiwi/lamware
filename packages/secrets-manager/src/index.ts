@@ -28,7 +28,6 @@ export interface State<S> {
 
 export const secretsManager = <S = {}>(config: Config): Middleware<Handler, State<S>> => ({
     id: 'secrets-manager',
-    pure: true,
     init: async () => {
         // Either use the supplied Client or create one.
         const secretsManager = config.client ?? new SecretsManagerClient(config);

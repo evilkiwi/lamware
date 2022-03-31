@@ -59,3 +59,53 @@ const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
 
 export { handler };
 ```
+
+## Initialization Order
+
+The order in which you `.use()` Middleware is important - since it is the order in which it will run hooks and initialize.
+
+By default, **all middleware registered via `.use()` will initialize in parallel.** Since most Middleware doesn't rely on state from other Middleware, this works great and helps with cold-start performance. However, should you need to use state from other Middleware, you can register Middleware with the `.useSync()` registrar.
+
+```typescript
+import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
+import { lamware, state } from '@lamware/core';
+import { appconfig } from '@lamware/appconfig';
+import { memoize } from '@lamware/memoize';
+import { sentry } from '@lamware/sentry';
+
+const { instance, handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+    .use(appconfig<{ test: boolean }>({
+        app: 'evilkiwi-lamware-example',
+        env: 'production',
+        config: 'production',
+    }))
+    /**
+     * Instead of initializing this Middleware at the same time as the
+     * previous Middleware, it creates a break in the chain and initializes
+     * alone _after_ the previous middleware but _before_ any of the following
+     * Middleware.
+     */
+    .useSync(memoize(async () => {
+        /**
+         * Since we know for sure AppConfig has loaded at this point, we can
+         * safely use the state.
+         */
+        const myState = state<typeof instance>();
+
+        if (myState.config.test) {
+            throw new Error('oops!');
+        }
+    }))
+    .use(sentry({
+        config: {
+            dsn: 'my-sentry-dsn',
+        },
+    }))
+    .execute(async ({ logger }) => {
+        logger.error('Hello world!');
+
+        return { statusCode: 200 };
+    });
+
+export { handler };
+```

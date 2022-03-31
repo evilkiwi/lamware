@@ -10,7 +10,6 @@ export interface Config {
 
 export const sentry = (config?: Config): Middleware => ({
     id: 'sentry',
-    pure: true,
     init: async () => {
         try {
             AWSLambda.init(config?.config ?? {});

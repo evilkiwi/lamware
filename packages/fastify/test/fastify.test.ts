@@ -34,7 +34,6 @@ test('should pass state to the request handlers', async () => {
     const { instance, handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use<Middleware<APIGatewayProxyHandlerV2<any>, { helloWorld: string }>>({
             id: 'test-1',
-            pure: true,
             init: async () => ({
                 helloWorld: '123',
             }),
@@ -63,7 +62,6 @@ test('should allow disabling request state injection', async () => {
     const { instance, handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use<Middleware<APIGatewayProxyHandlerV2<any>, { helloWorld: string }>>({
             id: 'test-1',
-            pure: true,
             init: async () => ({
                 helloWorld: '123',
             }),

@@ -13,20 +13,21 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
 
     const instance: Instance<H> = {
         // @ts-expect-error TODO:
-        use: (middleware, filter) => {
+        use: (middleware, filter, sync = false) => {
             if (filter !== undefined) {
                 if (middleware.filter === undefined) {
                     middleware.filter = filter;
                 } else {
-                    const originalFilter = middleware.filter;
-                    middleware.filter = () => filter() && originalFilter();
+                    const originalFilter = typeof middleware.filter === 'function' ? middleware.filter : () => middleware.filter as boolean;
+                    middleware.filter = () => (typeof filter === 'function' ? filter() : filter) && originalFilter();
                 }
             }
 
-            register<H>(middleware);
+            register<H>(middleware, sync);
 
             return instance;
         },
+        useSync: (middleware, filter) => instance.use(middleware, filter, true),
         execute: handler => {
             // @ts-ignore TODO: Really need a better base instead of `Handler`...
             const wrappedHandler: H = async (event, context, callback) => {

@@ -20,12 +20,38 @@ export interface State {
     apolloHandler: DestructuredHandler;
 }
 
-export const apollo = (config?: Config|ApolloServer): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
+export type SetupFunction = () => Promise<ApolloServer>|ApolloServer;
+
+export const apollo = (config?: Config|ApolloServer|SetupFunction): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
     id: 'apollo',
-    pure: true,
     init: async () => {
-        const localConfig = config instanceof ApolloServer ? {} : (config ?? {});
-        const apollo = config instanceof ApolloServer ? config : (localConfig.server ?? new ApolloServer(localConfig));
+        let setup: SetupFunction|undefined;
+        let localConfig: Config = {};
+        let apollo!: ApolloServer;
+
+        // Parse the argument.
+        if (config instanceof ApolloServer) {
+            apollo = config;
+        } else if (typeof config === 'function') {
+            setup = config;
+        } else if (config) {
+            localConfig = config;
+
+            if (localConfig.server) {
+                apollo = localConfig.server;
+            }
+        }
+
+        // Create the Apollo Server, if one wasn't provided.
+        if (!apollo) {
+            if (setup) {
+                apollo = await setup();
+            } else {
+                apollo = new ApolloServer(localConfig);
+            }
+        }
+
+        // Create the `apollo-server-lambda` handler.
         const handler = apollo.createHandler({ ...(localConfig.handlerOptions ?? {}) });
 
         return {

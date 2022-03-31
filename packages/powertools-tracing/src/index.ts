@@ -12,39 +12,38 @@ export interface Options extends TracerOptions {
     autoAttachResponse?: boolean;
 }
 
-export const powertoolsTracing = (options: Options): Middleware<Handler, {
+export interface State {
     tracer: Tracer;
     segment: Subsegment|Segment;
     subsegment: Subsegment;
-}> => {
-    return {
-        id: 'powertools-tracing',
-        pure: true,
-        init: async () => ({ tracer: new Tracer(options) }),
-        before: async (payload) => {
-            payload.state.segment = payload.state.tracer.getSegment();
+}
 
-            payload.state.subsegment = payload.state.segment.addNewSubsegment(`## ${process.env._HANDLER}`);
-            payload.state.tracer.setSegment(payload.state.subsegment);
+export const powertoolsTracing = (options: Options): Middleware<Handler, State> => ({
+    id: 'powertools-tracing',
+    init: async () => ({ tracer: new Tracer(options) }),
+    before: async (payload) => {
+        payload.state.segment = payload.state.tracer.getSegment();
 
-            payload.state.tracer.annotateColdStart();
-            payload.state.tracer.addServiceNameAnnotation();
+        payload.state.subsegment = payload.state.segment.addNewSubsegment(`## ${process.env._HANDLER}`);
+        payload.state.tracer.setSegment(payload.state.subsegment);
 
-            return payload;
-        },
-        after: async (payload) => {
-            if (options.autoAttachResponse !== false) {
-                if (payload.response instanceof Error) {
-                    payload.state.tracer.addErrorAsMetadata(payload.response);
-                } else {
-                    payload.state.tracer.addResponseAsMetadata(payload.response);
-                }
+        payload.state.tracer.annotateColdStart();
+        payload.state.tracer.addServiceNameAnnotation();
+
+        return payload;
+    },
+    after: async (payload) => {
+        if (options.autoAttachResponse !== false) {
+            if (payload.response instanceof Error) {
+                payload.state.tracer.addErrorAsMetadata(payload.response);
+            } else {
+                payload.state.tracer.addResponseAsMetadata(payload.response);
             }
+        }
 
-            payload.state.subsegment.close();
-            payload.state.tracer.setSegment(payload.state.segment);
+        payload.state.subsegment.close();
+        payload.state.tracer.setSegment(payload.state.segment);
 
-            return payload;
-        },
-    };
-};
+        return payload;
+    },
+});

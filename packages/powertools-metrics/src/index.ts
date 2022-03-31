@@ -9,36 +9,33 @@ export interface Options extends MetricsOptions {
     throwOnEmptyMetrics?: boolean;
 }
 
-export const powertoolsMetrics = (options: Options): Middleware<Handler, { metrics: Metrics }> => {
-    return {
-        id: 'powertools-metrics',
-        pure: true,
-        init: async () => ({ metrics: new Metrics(options) }),
-        before: async (payload) => {
-            if (options.captureFunctionName !== false) {
-                payload.state.metrics.setFunctionName(payload.context.functionName);
-            }
+export const powertoolsMetrics = (options: Options): Middleware<Handler, { metrics: Metrics }> => ({
+    id: 'powertools-metrics',
+    init: async () => ({ metrics: new Metrics(options) }),
+    before: async (payload) => {
+        if (options.captureFunctionName !== false) {
+            payload.state.metrics.setFunctionName(payload.context.functionName);
+        }
 
-            const { throwOnEmptyMetrics, defaultDimensions, captureColdStartMetric } = options;
+        const { throwOnEmptyMetrics, defaultDimensions, captureColdStartMetric } = options;
 
-            if (throwOnEmptyMetrics !== false) {
-                payload.state.metrics.throwOnEmptyMetrics();
-            }
+        if (throwOnEmptyMetrics !== false) {
+            payload.state.metrics.throwOnEmptyMetrics();
+        }
 
-            if (defaultDimensions !== undefined) {
-                payload.state.metrics.setDefaultDimensions(defaultDimensions);
-            }
+        if (defaultDimensions !== undefined) {
+            payload.state.metrics.setDefaultDimensions(defaultDimensions);
+        }
 
-            if (captureColdStartMetric !== false) {
-                payload.state.metrics.captureColdStartMetric();
-            }
+        if (captureColdStartMetric !== false) {
+            payload.state.metrics.captureColdStartMetric();
+        }
 
-            return payload;
-        },
-        after: async (payload) => {
-            payload.state.metrics.publishStoredMetrics();
+        return payload;
+    },
+    after: async (payload) => {
+        payload.state.metrics.publishStoredMetrics();
 
-            return payload;
-        },
-    };
-};
+        return payload;
+    },
+});

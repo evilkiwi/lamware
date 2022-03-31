@@ -12,7 +12,6 @@ export interface Options {
 export const appconfig = <Config = any>({ url, app, env, config }: Options): Middleware<Handler, { config: Config }> => {
     return {
         id: 'appconfig',
-        pure: true,
         init: async () => {
             try {
                 const res = await new Promise<http.IncomingMessage>(resolve => {

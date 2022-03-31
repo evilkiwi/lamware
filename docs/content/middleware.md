@@ -201,3 +201,21 @@ const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
     },
 });
 ```
+
+### Middleware Purity
+
+When running Middleware hooks, Lamware will run them in parallel. This improves performance, but should your Middleware modify the state in some way (i.e. changing the Lambda `context` or anything else in the `payload`) you should tell Lamware that the Middleware **isn't pure.**
+
+By telling Lamware that your Middleware isn't pure, it will be sure to run it alone. The order in which Middleware hooks are executed is based on the order the Developer registers them in via `.use()`, so if your impure Middleware is registered between two pure Middlewares, it will break the chain and run your impure Middleware inbetween them.
+
+You can do this via the `pure` property of Middleware:
+
+```typescript
+import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
+import type { Middleware } from '@lamware/core';
+
+const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
+    id: 'my-middleware',
+    pure: false, // `true` by default.
+});
+```

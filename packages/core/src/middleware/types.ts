@@ -2,7 +2,14 @@ import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
 import type { DestructuredHandler, Logger } from '@/instance';
 
-export type FilterFunction = () => boolean;
+export type FilterFunction = (() => boolean)|boolean;
+
+export type InitResolver = (() => Promise<void>)|Promise<void>;
+
+export interface Resolver {
+    promise: (() => Promise<void>)|Promise<void>;
+    sync: boolean;
+}
 
 export type Hook = 'before'|'after';
 

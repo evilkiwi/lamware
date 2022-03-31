@@ -7,7 +7,6 @@ export interface Options {
 
 export const memoize = <S extends object>(closure: () => Promise<Partial<S>|void>, options?: Options): Middleware<Handler, S> => ({
     id: 'memoize',
-    pure: true,
     init: async () => {
         try {
             return await closure();
