@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.26](https://github.com/evilkiwi/lamware/compare/@lamware/sentry@1.0.25...@lamware/sentry@1.0.26) (2022-04-02)
+
+**Note:** Version bump only for package @lamware/sentry
+
+
+
+
+
 ## [1.0.25](https://github.com/evilkiwi/lamware/compare/@lamware/sentry@1.0.24...@lamware/sentry@1.0.25) (2022-04-02)
 
 **Note:** Version bump only for package @lamware/sentry
