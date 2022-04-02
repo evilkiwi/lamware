@@ -1,13 +1,10 @@
 import type { Handler, APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { afterEach, expect, test } from 'vitest';
 import { execute } from '@lamware/test';
-import { Wrapper, Middleware, Logger, clearMiddleware } from '../src';
+import { expect, test } from 'vitest';
+import { Wrapper, Middleware, Logger } from '../src';
 import { lamware, wrapCompat } from '../src';
-import { clear } from '../src/middleware';
 
-afterEach(() => clear());
-
-test('should return a valid response', async () => {
+test.concurrent('should return a valid response', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .execute(async (payload) => {
             return {
@@ -21,7 +18,7 @@ test('should return a valid response', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
 });
 
-test('should allow "after" middleware to mutate the response object', async () => {
+test.concurrent('should allow "after" middleware to mutate the response object', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use({
             id: 'test-1',
@@ -42,7 +39,7 @@ test('should allow "after" middleware to mutate the response object', async () =
     expect(result.body).toBe(JSON.stringify({ hello: 'world2' }));
 });
 
-test('should allow "before" middleware to modify event/context', async () => {
+test.concurrent('should allow "before" middleware to modify event/context', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use({
             id: 'test-1',
@@ -63,7 +60,7 @@ test('should allow "before" middleware to modify event/context', async () => {
     expect(result.body).toBe(JSON.stringify({ rawPath: '/todo' }));
 });
 
-test('should allow wrapping the handler once', async () => {
+test.concurrent('should allow wrapping the handler once', async () => {
     const wrapper: Wrapper<APIGatewayProxyHandlerV2> = handler => {
         return async (payload) => {
             const result = await handler(payload);
@@ -90,7 +87,7 @@ test('should allow wrapping the handler once', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
 });
 
-test('should allow wrapping the handler multiple times', async () => {
+test.concurrent('should allow wrapping the handler multiple times', async () => {
     const wrapper1: Wrapper<APIGatewayProxyHandlerV2> = handler => {
         return async (payload) => {
             const result = await handler(payload);
@@ -141,7 +138,7 @@ test('should allow wrapping the handler multiple times', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: 'world2' }));
 });
 
-test('should allow a middleware to exit early', async () => {
+test.concurrent('should allow a middleware to exit early', async () => {
     let hasRun = false;
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -171,7 +168,7 @@ test('should allow a middleware to exit early', async () => {
     expect(result.body).toBe('Unauthorized');
 });
 
-test('should allow middleware to initialize before executing', async () => {
+test.concurrent('should allow middleware to initialize before executing', async () => {
     let hasRun = false;
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -196,7 +193,7 @@ test('should allow middleware to initialize before executing', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: true }));
 });
 
-test('should allow middleware to initialize with global state', async () => {
+test.concurrent('should allow middleware to initialize with global state', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use<Middleware<APIGatewayProxyHandlerV2<any>, { testing123: boolean }>>({
             id: 'test-1',
@@ -222,7 +219,7 @@ test('should allow middleware to initialize with global state', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: true, hello2: false }));
 });
 
-test('should allow middleware to access state set by init', async () => {
+test.concurrent('should allow middleware to access state set by init', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use<Middleware<APIGatewayProxyHandlerV2<any>, { testing123: boolean; testing1234: boolean }>>({
             id: 'test-1',
@@ -244,7 +241,7 @@ test('should allow middleware to access state set by init', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: true }));
 });
 
-test('should allow middleware to modify a global state', async () => {
+test.concurrent('should allow middleware to modify a global state', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use<Middleware<APIGatewayProxyHandlerV2<any>, { testing123: boolean }>>({
             id: 'test-1',
@@ -265,7 +262,7 @@ test('should allow middleware to modify a global state', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: true }));
 });
 
-test('should allow wrapping handler with compatibility layer', async () => {
+test.concurrent('should allow wrapping handler with compatibility layer', async () => {
     const wrapper: Wrapper<APIGatewayProxyHandlerV2> = handler => {
         return wrapCompat(handler, compatHandler => {
             return async (event, context, callback) => {
@@ -294,7 +291,7 @@ test('should allow wrapping handler with compatibility layer', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
 });
 
-test('should allow wrapping handler with compatibility layer and passing state', async () => {
+test.concurrent('should allow wrapping handler with compatibility layer and passing state', async () => {
     const wrapper: Wrapper<APIGatewayProxyHandlerV2> = handler => {
         return wrapCompat(handler, compatHandler => {
             return async (event, context, callback) => {
@@ -324,7 +321,7 @@ test('should allow wrapping handler with compatibility layer and passing state',
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
 });
 
-test('should throw errors emitted by the handler', async () => {
+test.concurrent('should throw errors emitted by the handler', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .execute(async (payload) => {
             throw new Error('debug');
@@ -333,7 +330,7 @@ test('should throw errors emitted by the handler', async () => {
     await expect(() => execute(handler, 'apiGateway')).rejects.toThrowError();
 });
 
-test('should allow middleware filter at runtime', async () => {
+test.concurrent('should allow middleware filter at runtime', async () => {
     let didRun = false;
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -359,7 +356,7 @@ test('should allow middleware filter at runtime', async () => {
     expect(didRun).toBe(false);
 });
 
-test('should allow middleware filter at runtime with a boolean', async () => {
+test.concurrent('should allow middleware filter at runtime with a boolean', async () => {
     let didRun = false;
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -385,7 +382,7 @@ test('should allow middleware filter at runtime with a boolean', async () => {
     expect(didRun).toBe(false);
 });
 
-test('should allow middleware self filtering', async () => {
+test.concurrent('should allow middleware self filtering', async () => {
     let didRun = false;
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -412,7 +409,7 @@ test('should allow middleware self filtering', async () => {
     expect(didRun).toBe(false);
 });
 
-test('should allow both middleware self filtering and runtime filtering', async () => {
+test.concurrent('should allow both middleware self filtering and runtime filtering', async () => {
     let didRun = false;
 
     const { handler: handler1 } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -457,7 +454,7 @@ test('should allow both middleware self filtering and runtime filtering', async 
     expect(didRun).toBe(false);
 });
 
-test('should allow both middleware self filtering and runtime filtering with mixed filter types', async () => {
+test.concurrent('should allow both middleware self filtering and runtime filtering with mixed filter types', async () => {
     let didRun = false;
 
     const { handler: handler1 } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -502,7 +499,7 @@ test('should allow both middleware self filtering and runtime filtering with mix
     expect(didRun).toBe(false);
 });
 
-test('should allow a custom logger to be manually set', async () => {
+test.concurrent('should allow a custom logger to be manually set', async () => {
     let text = '';
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>({
@@ -524,7 +521,7 @@ test('should allow a custom logger to be manually set', async () => {
     expect(text).toBe('hello world');
 });
 
-test('should allow middleware to set a custom logger', async () => {
+test.concurrent('should allow middleware to set a custom logger', async () => {
     let text = '';
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -551,31 +548,7 @@ test('should allow middleware to set a custom logger', async () => {
     expect(text).toBe('hello world');
 });
 
-test('should allow clearing middleware', async () => {
-    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
-        .use<Middleware<APIGatewayProxyHandlerV2<any>, { testing123: boolean }>>({
-            id: 'test-1',
-            before: async (payload) => {
-                payload.state.testing123 = true;
-                return payload;
-            },
-        })
-        .execute(async ({ state }) => {
-            return {
-                statusCode: 200,
-                body: JSON.stringify({ hello: state.testing123 ?? false }),
-            };
-        });
-
-    clearMiddleware();
-
-    const result = await execute(handler, 'apiGateway');
-
-    expect(result.statusCode).toBe(200);
-    expect(result.body).toBe(JSON.stringify({ hello: false }));
-});
-
-test('should re-throw errors that happen during middleware `init`', async () => {
+test.concurrent('should re-throw errors that happen during middleware `init`', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use<Middleware<APIGatewayProxyHandlerV2<any>>>({
             id: 'test-1',
@@ -590,7 +563,7 @@ test('should re-throw errors that happen during middleware `init`', async () => 
     await expect(() => execute(handler, 'apiGateway')).rejects.toThrowError();
 });
 
-test('should break initialization chain for `useSync()` Middleware', async () => {
+test.concurrent('should break initialization chain for `useSync()` Middleware', async () => {
     const runTimes: [number, number, number, number] = [0, 0, 0, 0];
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -633,7 +606,7 @@ test('should break initialization chain for `useSync()` Middleware', async () =>
     expect(runTimes[3] - runTimes[2]).toBeGreaterThanOrEqual(199);
 });
 
-test('should allow `useSync()` Middleware first', async () => {
+test.concurrent('should allow `useSync()` Middleware first', async () => {
     const runTimes: [number, number, number] = [0, 0, 0];
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
@@ -670,7 +643,7 @@ test('should allow `useSync()` Middleware first', async () => {
     expect(runTimes[1] - runTimes[0]).toBeGreaterThanOrEqual(199);
 });
 
-test('should allow `useSync()` Middleware last', async () => {
+test.concurrent('should allow `useSync()` Middleware last', async () => {
     const runTimes: [number, number, number] = [0, 0, 0];
 
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()

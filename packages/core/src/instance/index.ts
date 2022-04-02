@@ -1,38 +1,45 @@
 import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
-import { register, runMiddleware, init, wrap, clear, compileState, loggerOverride } from '@/middleware';
 import type { BeforeMiddlewarePayload, MiddlewarePayload } from '@/middleware';
+import { middleware } from '@/middleware';
 import type { Instance, Options } from './types';
 
-export const lamware = <H extends Handler = Handler>(options?: Options) => {
-    options = options ?? {};
-
-    const debug = options.debug ?? false;
+export const lamware = function<H extends Handler = Handler>(options: Options = {}) {
+    // Set some defaults for root options.
     const logger = options.logger ?? console;
+    const debug = options.debug ?? false;
 
-    const instance: Instance<H> = {
-        // @ts-expect-error TODO:
-        use: (middleware, filter, sync = false) => {
+    // Create the Middleware state.
+    const { init, register, compileState, run, clear, wrap, logger: loggerOverride } = middleware<H>();
+
+    // Create the Lamware instance.
+    return {
+        use(item, filter, sync = false) {
+            // If provided, compile the filter with the Middleware filter.
             if (filter !== undefined) {
-                if (middleware.filter === undefined) {
-                    middleware.filter = filter;
+                if (item.filter === undefined) {
+                    item.filter = filter;
                 } else {
-                    const originalFilter = typeof middleware.filter === 'function' ? middleware.filter : () => middleware.filter as boolean;
-                    middleware.filter = () => (typeof filter === 'function' ? filter() : filter) && originalFilter();
+                    const originalFilter = typeof item.filter === 'function' ? item.filter : () => item.filter as boolean;
+                    item.filter = () => (typeof filter === 'function' ? filter() : filter) && originalFilter();
                 }
             }
 
-            register<H>(middleware, sync);
+            // Register the Middleware in to state.
+            register(item, sync);
 
-            return instance;
+            return this;
         },
-        useSync: (middleware, filter) => instance.use(middleware, filter, true),
-        execute: handler => {
+        useSync(item, filter) {
+            return this.use(item, filter, true);
+        },
+        execute(handler) {
             // @ts-ignore TODO: Really need a better base instead of `Handler`...
             const wrappedHandler: H = async (event, context, callback) => {
                 let response: PromiseType<Exclude<ReturnType<H>, void>>|Error;
 
+                // Ensure the async initialization has completed.
                 try {
                     await init();
                 } catch (e) {
@@ -48,15 +55,15 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                     logger: localLogger,
                     state: compileState(),
                 };
-
                 let payload: BeforeMiddlewarePayload<H> = {
                     ...basePayload,
                     event,
                     context,
                 };
 
+                // Run the `before` Middleware and the Handler itself.
                 try {
-                    payload = await runMiddleware('before', payload);
+                    payload = await run('before', payload);
 
                     if (payload.response === undefined) {
                         const wrapped = wrap(handler);
@@ -75,7 +82,8 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                     response = e as Error;
                 }
 
-                const mixed = await runMiddleware('after', {
+                // Run the `after` Middleware.
+                const mixed = await run('after', {
                     ...basePayload,
                     response,
                 });
@@ -84,18 +92,17 @@ export const lamware = <H extends Handler = Handler>(options?: Options) => {
                     throw mixed.response;
                 }
 
+                // And finally, return the merged payload.
                 return merge(response, mixed.response);
             };
 
             return {
                 clear,
                 handler: wrappedHandler,
-                instance,
+                instance: this,
             };
         },
-    };
-
-    return instance;
+    } as Instance<H>;
 };
 
 export * from './types';

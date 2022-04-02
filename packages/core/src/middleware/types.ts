@@ -38,16 +38,18 @@ export interface AfterMiddlewarePayload<H extends Handler = Handler, S extends o
 
 export type MiddlewareHandler<H extends Handler, P extends MiddlewarePayload<H>> = (payload: P) => Promise<P>;
 
+export type InitHandler<S extends object = {}> = () => Promise<Partial<S>|void>;
+
 export interface Middleware<H extends Handler = Handler, S extends object = {}> {
     id: string;
     pure?: boolean;
-    init?: () => Promise<Partial<S>|void>;
-    logger?: (state: S) => Logger;
+    state?: S;
     wrap?: Wrapper<H>;
+    logger?: (state: S) => Logger;
+    filter?: FilterFunction;
+    init?: InitHandler<S>;
     before?: MiddlewareHandler<H, BeforeMiddlewarePayload<H, S>>;
     after?: MiddlewareHandler<H, AfterMiddlewarePayload<H, S>>;
-    filter?: FilterFunction;
-    state?: S;
 }
 
 export interface MiddlewareRegistry {
