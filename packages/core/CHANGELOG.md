@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.16](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.14...@lamware/core@1.2.16) (2022-04-02)
+
+**Note:** Version bump only for package @lamware/core
+
+
+
+
+
 ## [1.2.14](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.13...@lamware/core@1.2.14) (2022-03-31)
 
 **Note:** Version bump only for package @lamware/core

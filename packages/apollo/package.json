@@ -1,6 +1,6 @@
 {
     "name": "@lamware/apollo",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Lamware Middleware for initializing and memoizing Apollo Server in Lambda",
     "files": [
         "build"
@@ -37,7 +37,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@lamware/core": "^1.2.14",
+        "@lamware/core": "^1.2.16",
         "apollo-server-lambda": "^3.6.7"
     },
     "devDependencies": {

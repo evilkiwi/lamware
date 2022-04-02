@@ -1,6 +1,6 @@
 {
     "name": "@lamware/prisma",
-    "version": "1.2.14",
+    "version": "1.2.15",
     "description": "Lamware Middleware for initializing and memoizing Prisma ORM",
     "files": [
         "build"
@@ -37,7 +37,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@lamware/core": "^1.2.14"
+        "@lamware/core": "^1.2.16"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.93",
