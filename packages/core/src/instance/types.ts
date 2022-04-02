@@ -9,7 +9,7 @@ export interface Options {
     logger?: Logger;
 }
 
-export type LamwareState<C extends Instance<any, any>> = C extends Instance<infer A, infer B> ? B : unknown;
+export type LamwareState<C extends Instance<Handler>> = C extends Instance<infer A, infer B> ? B : unknown;
 
 export interface DestructuredHandlerOptions<H extends Handler, S extends object = {}> {
     event: Parameters<H>[0];
@@ -25,8 +25,9 @@ export interface Instance<H extends Handler, S extends object = {}> {
     use: <M extends Middleware<H, any>>(middleware: M, filter?: FilterFunction, sync?: boolean) => Instance<H, S & NonNullable<M['state']>>;
     useSync: <M extends Middleware<H, any>>(middleware: M, filter?: FilterFunction) => Instance<H, S & NonNullable<M['state']>>;
     execute: (handler: DestructuredHandler<H, S>) => {
+        getState: () => S;
+        instance: Instance<H, S>;
         clear: () => void;
         handler: H;
-        instance: Instance<H, S>;
     };
 }

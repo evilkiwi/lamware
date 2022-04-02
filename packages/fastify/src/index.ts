@@ -2,7 +2,6 @@ import type { FastifyInstance, FastifyServerOptions } from 'fastify';
 import type { DestructuredHandler, Middleware } from '@lamware/core';
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import lambdaFastify from 'aws-lambda-fastify';
-import { state } from '@lamware/core';
 import createFastify from 'fastify';
 
 export interface Config extends FastifyServerOptions {
@@ -15,12 +14,6 @@ export interface Config extends FastifyServerOptions {
      * See: https://github.com/fastify/aws-lambda-fastify/issues/89#issuecomment-1009721855
      */
     enforceReady?: boolean;
-
-    /**
-     * Whether Lamware should attach its state to each request.
-     * Defaults to `true`.
-     */
-    attachState?: boolean;
 
     /**
      * Optionally provide a Fastify Client instead, otherwise one will
@@ -36,12 +29,6 @@ export interface State {
 
 export type SetupFunction = (app: State['fastify']) => Promise<State['fastify']>|State['fastify'];
 
-declare module 'fastify' {
-    interface FastifyRequest {
-        state: unknown; // TODO: Fastify really needs better typing support...
-    }
-}
-
 export const fastify = (setup?: SetupFunction, config?: Config): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
     id: 'fastify',
     init: async () => {
@@ -50,10 +37,6 @@ export const fastify = (setup?: SetupFunction, config?: Config): Middleware<APIG
         if (setup) {
             app = await setup(app);
         }
-
-        app.addHook('onRequest', async (request) => {
-            request.state = config?.attachState !== false ? state() : {};
-        });
 
         const handler = lambdaFastify(app);
 

@@ -97,9 +97,10 @@ export const lamware = function<H extends Handler = Handler>(options: Options = 
             };
 
             return {
-                clear,
                 handler: wrappedHandler,
+                getState: compileState,
                 instance: this,
+                clear,
             };
         },
     } as Instance<H>;

@@ -679,3 +679,27 @@ test.concurrent('should allow `useSync()` Middleware last', async () => {
     expect(runTimes[1] - runTimes[0]).toBeLessThanOrEqual(10);
     expect(runTimes[2] - runTimes[1]).toBeGreaterThanOrEqual(199);
 });
+
+test.concurrent('should allow Middleware to access in-progress state', async () => {
+    const { handler, getState } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use<Middleware<APIGatewayProxyHandlerV2<any>, { test: string }>>({
+            id: 'test-1',
+            init: async () => ({ test: 'hello!' }),
+        })
+        .useSync<Middleware<APIGatewayProxyHandlerV2<any>, { test2: string }>>({
+            id: 'test-2',
+            init: async () => {
+                return { test2: getState().test };
+            },
+        })
+        .execute(async ({ state }) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ hello: state.test2 }),
+            };
+        });
+    const result = await execute(handler, 'apiGateway');
+
+    expect(result.statusCode).toBe(200);
+    expect(result.body).toBe(JSON.stringify({ hello: 'hello!' }));
+});
