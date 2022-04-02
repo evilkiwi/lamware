@@ -44,6 +44,14 @@ const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         debug: false,
         schema: ...,
     })))
+    // Or even an (a)synchronous closure!
+    .use(apollo(async () => {
+        return new ApolloServer({
+            introspection: false,
+            debug: false,
+            schema: ...,
+        });
+    }))
     .execute(async (payload) => {
         return payload.state.apolloHandler(payload);
     });
