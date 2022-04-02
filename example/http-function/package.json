@@ -11,7 +11,7 @@
         "watch": "NODE_ENV=development ts-node dev/build.ts"
     },
     "dependencies": {
-        "aws-sdk": "^2.1096.0",
+        "aws-sdk": "^2.1106.0",
         "lambda-warmer": "^1.2.2"
     },
     "devDependencies": {
