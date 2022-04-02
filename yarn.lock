@@ -1750,17 +1750,38 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@lamware/example-sqs@workspace:example/sqs-function":
+"@lamware/example-closure@workspace:examples/http-closure":
   version: 0.0.0-use.local
-  resolution: "@lamware/example-sqs@workspace:example/sqs-function"
+  resolution: "@lamware/example-closure@workspace:examples/http-closure"
+  dependencies:
+    "@types/aws-lambda": ^8.10.93
+    "@types/cookie": ^0.4.1
+    "@types/cors": ^2.8.12
+    "@types/vhost": ^3.0.4
+    aws-sdk: ^2.1106.0
+    concurrently: ^7.0.0
+    cors: ^2.8.5
+    express: ^4.17.3
+    lambda-local: ^2.0.2
+    lambda-warmer: ^1.2.2
+    nodemon: ^2.0.15
+    rimraf: ^3.0.2
+    ts-node: ^10.7.0
+    vhost: ^3.0.2
+  languageName: unknown
+  linkType: soft
+
+"@lamware/example-sqs@workspace:examples/sqs-function":
+  version: 0.0.0-use.local
+  resolution: "@lamware/example-sqs@workspace:examples/sqs-function"
   dependencies:
     "@types/aws-lambda": ^8.10.93
   languageName: unknown
   linkType: soft
 
-"@lamware/example-stack@workspace:example/stack":
+"@lamware/example-stack@workspace:examples/stack":
   version: 0.0.0-use.local
-  resolution: "@lamware/example-stack@workspace:example/stack"
+  resolution: "@lamware/example-stack@workspace:examples/stack"
   dependencies:
     "@aws-cdk/aws-apigatewayv2-alpha": ^2.19.0-alpha.0
     "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.19.0-alpha.0
@@ -1783,9 +1804,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@lamware/example@workspace:example/http-function":
+"@lamware/example@workspace:examples/http-function":
   version: 0.0.0-use.local
-  resolution: "@lamware/example@workspace:example/http-function"
+  resolution: "@lamware/example@workspace:examples/http-function"
   dependencies:
     "@types/aws-lambda": ^8.10.93
     "@types/cookie": ^0.4.1
