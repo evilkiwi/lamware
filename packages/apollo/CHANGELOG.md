@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/evilkiwi/lamware/compare/@lamware/apollo@1.0.5...@lamware/apollo@1.0.6) (2022-04-02)
+
+**Note:** Version bump only for package @lamware/apollo
+
+
+
+
+
 ## [1.0.5](https://github.com/evilkiwi/lamware/compare/@lamware/apollo@1.0.4...@lamware/apollo@1.0.5) (2022-04-02)
 
 **Note:** Version bump only for package @lamware/apollo
