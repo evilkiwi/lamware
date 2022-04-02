@@ -1,10 +1,8 @@
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { lamware, clearMiddleware } from '@lamware/core';
-import { afterEach, expect, test } from 'vitest';
+import { lamware } from '@lamware/core';
 import { execute } from '@lamware/test';
+import { expect, test } from 'vitest';
 import { warmer } from '../src';
-
-afterEach(() => clearMiddleware());
 
 test('should execute given a non-warming event', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()

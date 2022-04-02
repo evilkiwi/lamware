@@ -1,10 +1,8 @@
-import { lamware, clearMiddleware } from '@lamware/core';
-import { afterEach, expect, test } from 'vitest';
 import type { SQSHandler } from 'aws-lambda';
+import { lamware } from '@lamware/core';
 import { execute } from '@lamware/test';
+import { expect, test } from 'vitest';
 import { sqsJsonParser } from '../src';
-
-afterEach(() => clearMiddleware());
 
 interface DebugRecord {
     title: string;
