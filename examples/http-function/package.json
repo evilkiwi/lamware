@@ -11,7 +11,7 @@
         "watch": "NODE_ENV=development ts-node dev/build.ts"
     },
     "dependencies": {
-        "aws-sdk": "^2.1106.0",
+        "aws-sdk": "^2.1111.0",
         "lambda-warmer": "^1.2.2"
     },
     "devDependencies": {
@@ -19,7 +19,7 @@
         "@types/cookie": "^0.4.1",
         "@types/cors": "^2.8.12",
         "@types/vhost": "^3.0.4",
-        "concurrently": "^7.0.0",
+        "concurrently": "^7.1.0",
         "cors": "^2.8.5",
         "express": "^4.17.3",
         "lambda-local": "^2.0.2",
