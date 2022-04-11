@@ -1,6 +1,6 @@
 {
     "name": "@lamware/fastify",
-    "version": "1.0.13",
+    "version": "1.0.14",
     "description": "Lamware Middleware for setting-up and memoizing Fastify",
     "files": [
         "build"
@@ -40,12 +40,12 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@lamware/core": "^1.2.18",
+        "@lamware/core": "^1.2.19",
         "aws-lambda-fastify": "^2.1.2",
         "fastify": "^3.28.0"
     },
     "devDependencies": {
-        "@lamware/test": "^1.0.10",
+        "@lamware/test": "^1.0.11",
         "@types/aws-lambda": "^8.10.93",
         "@types/node": "^16.11.26",
         "c8": "^7.11.0",

@@ -1,6 +1,6 @@
 {
     "name": "@lamware/powertools-metrics",
-    "version": "1.0.19",
+    "version": "1.0.20",
     "description": "Lamware Middleware to utilize the official Metrics powertools",
     "files": [
         "build"
@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "@aws-lambda-powertools/metrics": "^0.8.0",
-        "@lamware/core": "^1.2.18"
+        "@lamware/core": "^1.2.19"
     },
     "devDependencies": {
         "@types/node": "^16.11.26",
