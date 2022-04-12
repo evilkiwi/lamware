@@ -18,6 +18,7 @@ export const fastify = (setup?: SetupFunction, config?: Config): Middleware<APIG
         if (config?.attachState !== false) {
             app.decorateRequest('state', null);
             app.addHook('preHandler', async (request) => {
+                // @ts-expect-error
                 request.state = state();
             });
         }

@@ -20,11 +20,11 @@ export interface State {
     apolloHandler: DestructuredHandler;
 }
 
-export type SetupFunction = () => Promise<ApolloServer>|ApolloServer;
+export type SetupFunction = (state: () => State) => Promise<ApolloServer>|ApolloServer;
 
 export const apollo = (config?: Config|ApolloServer|SetupFunction): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
     id: 'apollo',
-    init: async () => {
+    init: async (state) => {
         let setup: SetupFunction|undefined;
         let localConfig: Config = {};
         let apollo!: ApolloServer;
@@ -45,7 +45,7 @@ export const apollo = (config?: Config|ApolloServer|SetupFunction): Middleware<A
         // Create the Apollo Server, if one wasn't provided.
         if (!apollo) {
             if (setup) {
-                apollo = await setup();
+                apollo = await setup(state);
             } else {
                 apollo = new ApolloServer(localConfig);
             }
