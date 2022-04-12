@@ -1,6 +1,6 @@
 import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
-import type { DestructuredHandler, Logger } from '@/instance';
+import type { DestructuredHandler, Logger, Instance, StateCompiler, LamwareState } from '@/instance';
 
 export type FilterFunction = (() => boolean)|boolean;
 
@@ -38,7 +38,7 @@ export interface AfterMiddlewarePayload<H extends Handler = Handler, S extends o
 
 export type MiddlewareHandler<H extends Handler, P extends MiddlewarePayload<H>> = (payload: P) => Promise<P>;
 
-export type InitHandler<S extends object = {}> = () => Promise<Partial<S>|void>;
+export type InitHandler<S extends object = {}> = (state: () => S) => Promise<Partial<S>|void>;
 
 export interface Middleware<H extends Handler = Handler, S extends object = {}> {
     id: string;

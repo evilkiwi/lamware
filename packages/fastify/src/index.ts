@@ -1,37 +1,12 @@
-import type { FastifyInstance, FastifyServerOptions } from 'fastify';
-import type { DestructuredHandler, Middleware } from '@lamware/core';
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
+import type { Middleware } from '@lamware/core';
 import lambdaFastify from 'aws-lambda-fastify';
 import createFastify from 'fastify';
-
-export interface Config extends FastifyServerOptions {
-    /**
-     * When using provisioned concurrency, enforcing ready state will
-     * mean Fastify will get ready _before_ handling requests, so outside
-     * of the handler. This has no real performance gain if not using
-     * provisioned concurrency.
-     *
-     * See: https://github.com/fastify/aws-lambda-fastify/issues/89#issuecomment-1009721855
-     */
-    enforceReady?: boolean;
-
-    /**
-     * Optionally provide a Fastify Client instead, otherwise one will
-     * be created for you.
-     */
-    client?: FastifyInstance;
-}
-
-export interface State {
-    fastify: FastifyInstance;
-    fastifyHandler: DestructuredHandler;
-}
-
-export type SetupFunction = (app: State['fastify']) => Promise<State['fastify']>|State['fastify'];
+import { Config, SetupFunction, State } from './types';
 
 export const fastify = (setup?: SetupFunction, config?: Config): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
     id: 'fastify',
-    init: async () => {
+    init: async (state) => {
         let app = config?.client ?? createFastify(config ?? {});
 
         if (setup) {
@@ -39,6 +14,13 @@ export const fastify = (setup?: SetupFunction, config?: Config): Middleware<APIG
         }
 
         const handler = lambdaFastify(app);
+
+        if (config?.attachState !== false) {
+            app.decorateRequest('state', null);
+            app.addHook('preHandler', async (request) => {
+                request.state = state;
+            });
+        }
 
         if (config?.enforceReady === true) {
             await app.ready();
@@ -50,3 +32,5 @@ export const fastify = (setup?: SetupFunction, config?: Config): Middleware<APIG
         };
     },
 });
+
+export * from './types';

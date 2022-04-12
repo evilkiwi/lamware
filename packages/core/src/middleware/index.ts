@@ -1,6 +1,6 @@
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
-import type { DestructuredHandler, LamwareState, Instance } from '@/instance';
+import type { DestructuredHandler, LamwareState, Instance, StateCompiler } from '@/instance';
 import type { Hook, HookReturns, Middleware, MiddlewareRegistry, InitResolver, Resolver } from './types';
 
 export const middleware = <H extends Handler>() => {
@@ -105,7 +105,7 @@ export const middleware = <H extends Handler>() => {
 
             const promise = () => new Promise<void>(async (resolve, reject) => {
                 try {
-                    const state = middleware.init !== undefined ? await middleware.init() : {};
+                    const state = middleware.init !== undefined ? await middleware.init(compileState) : {};
                     registry.state[middleware.id] = state;
                     resolve();
                 } catch (e) {
@@ -172,10 +172,10 @@ export const middleware = <H extends Handler>() => {
     };
 
     // Compiles a State object based on the current per-Middleware state.
-    const compileState = <I extends Instance<any, any>, S = LamwareState<I>>() => {
+    const compileState = <I extends Instance<any, any>>(): StateCompiler<I> => {
         return Object.values(registry.state).reduce((obj, middlewareState) => {
             return merge(obj, middlewareState);
-        }, {}) as S;
+        }, {}) as LamwareState<I>;
     };
 
     // Fetches the first available logger from registered Middleware, if any.

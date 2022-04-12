@@ -10,6 +10,7 @@ export interface Options {
 }
 
 export type LamwareState<C extends Instance<Handler>> = C extends Instance<infer A, infer B> ? B : unknown;
+export type StateCompiler<I extends Instance<any, any>, S = LamwareState<I>> = () => S;
 
 export interface DestructuredHandlerOptions<H extends Handler, S extends object = {}> {
     event: Parameters<H>[0];

@@ -703,3 +703,28 @@ test.concurrent('should allow Middleware to access in-progress state', async () 
     expect(result.statusCode).toBe(200);
     expect(result.body).toBe(JSON.stringify({ hello: 'hello!' }));
 });
+
+test.concurrent('should allow init to fetch injected state', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use<Middleware<APIGatewayProxyHandlerV2<any>, { test: string }>>({
+            id: 'test-1',
+            init: async () => ({ test: 'hello!' }),
+        })
+        .useSync<Middleware<APIGatewayProxyHandlerV2<any>, { test2: string }>>({
+            id: 'test-2',
+            init: async (state) => {
+                // @ts-expect-error
+                return { test2: state().test };
+            },
+        })
+        .execute(async ({ state }) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ hello: state.test2 }),
+            };
+        });
+    const result = await execute(handler, 'apiGateway');
+
+    expect(result.statusCode).toBe(200);
+    expect(result.body).toBe(JSON.stringify({ hello: 'hello!' }));
+});
