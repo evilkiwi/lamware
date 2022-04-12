@@ -31,9 +31,3 @@ export interface State {
 }
 
 export type SetupFunction = (app: State['fastify']) => Promise<State['fastify']>|State['fastify'];
-
-declare module 'fastify' {
-    interface FastifyRequest {
-        state: unknown; // Fastify should really improve typing support...
-    }
-}
