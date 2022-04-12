@@ -1,6 +1,6 @@
 {
     "name": "@lamware/apollo",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "Lamware Middleware for initializing and memoizing Apollo Server in Lambda",
     "files": [
         "build"
