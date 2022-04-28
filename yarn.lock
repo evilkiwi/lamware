@@ -1716,7 +1716,6 @@ __metadata:
     tslib: ^2.3.1
     tsup: ^5.12.4
     typescript: ^4.6.3
-    utility-types: ^3.10.0
     vite: ^2.9.1
     vitest: ^0.9.3
   languageName: unknown
@@ -13610,13 +13609,6 @@ typescript@^4.6.3:
   dependencies:
     object.getownpropertydescriptors: ^2.0.3
   checksum: 75e74c46213e49e8d6a85cef942dcbfd8abf2389e789eddfde10e354349778cfca36fe33fa7c74a3ff1c7170462a7f856d5471bd69b06eb37a69362ffe21434e
-  languageName: node
-  linkType: hard
-
-"utility-types@npm:^3.10.0":
-  version: 3.10.0
-  resolution: "utility-types@npm:3.10.0"
-  checksum: 8f274415c6196ab62883b8bd98c9d2f8829b58016e4269aaa1ebd84184ac5dda7dc2ca45800c0d5e0e0650966ba063bf9a412aaeaea6850ca4440a391283d5c8
   languageName: node
   linkType: hard
 

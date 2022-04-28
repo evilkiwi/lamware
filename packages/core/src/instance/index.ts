@@ -1,7 +1,7 @@
-import type { PromiseType } from 'utility-types';
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
 import type { BeforeMiddlewarePayload, MiddlewarePayload } from '@/middleware';
+import type { PromiseType } from '@/types';
 import { middleware } from '@/middleware';
 import type { Instance, Options } from './types';
 

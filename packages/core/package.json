@@ -55,7 +55,6 @@
         "tslib": "^2.3.1",
         "tsup": "^5.12.4",
         "typescript": "^4.6.3",
-        "utility-types": "^3.10.0",
         "vite": "^2.9.1",
         "vitest": "^0.9.3"
     }
