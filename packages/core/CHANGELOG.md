@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.23](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.22...@lamware/core@1.2.23) (2022-04-28)
+
+
+### Bug Fixes
+
+* **core:** add event and context to after middleware ([d6a1610](https://github.com/evilkiwi/lamware/commit/d6a1610a1d144a4f6ed0c979c3a6e6855c9d49cf))
+
+
+
+
+
 ## [1.2.22](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.21...@lamware/core@1.2.22) (2022-04-28)
 
 

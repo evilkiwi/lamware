@@ -1,6 +1,6 @@
 {
     "name": "@lamware/sentry",
-    "version": "1.0.29",
+    "version": "1.0.30",
     "description": "Lamware Middleware for tracking with Sentry",
     "files": [
         "build"
@@ -37,7 +37,7 @@
         "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@lamware/core": "^1.2.22",
+        "@lamware/core": "^1.2.23",
         "@sentry/serverless": "^6.19.6"
     },
     "devDependencies": {
