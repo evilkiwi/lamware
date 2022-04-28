@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.29](https://github.com/evilkiwi/lamware/compare/@lamware/do-not-wait@1.0.28...@lamware/do-not-wait@1.0.29) (2022-04-28)
+
+**Note:** Version bump only for package @lamware/do-not-wait
+
+
+
+
+
 ## [1.0.28](https://github.com/evilkiwi/lamware/compare/@lamware/do-not-wait@1.0.27...@lamware/do-not-wait@1.0.28) (2022-04-12)
 
 **Note:** Version bump only for package @lamware/do-not-wait

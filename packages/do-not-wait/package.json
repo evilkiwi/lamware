@@ -1,6 +1,6 @@
 {
     "name": "@lamware/do-not-wait",
-    "version": "1.0.28",
+    "version": "1.0.29",
     "description": "Lamware Middleware to disable Lambda waiting for an empty event loop",
     "files": [
         "build"
@@ -40,7 +40,7 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@lamware/core": "^1.2.21"
+        "@lamware/core": "^1.2.22"
     },
     "devDependencies": {
         "@lamware/test": "^1.0.11",

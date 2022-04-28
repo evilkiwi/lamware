@@ -1,6 +1,6 @@
 {
     "name": "@lamware/appconfig",
-    "version": "1.0.28",
+    "version": "1.0.29",
     "description": "Lamware Middleware to asynchronously load AppConfig",
     "files": [
         "build"
@@ -37,7 +37,7 @@
         "lint": "eslint --ext .ts --ignore-path .gitignore src"
     },
     "dependencies": {
-        "@lamware/core": "^1.2.21"
+        "@lamware/core": "^1.2.22"
     },
     "devDependencies": {
         "@types/node": "^16.11.26",

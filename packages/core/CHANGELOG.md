@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.22](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.21...@lamware/core@1.2.22) (2022-04-28)
+
+
+### Bug Fixes
+
+* **core:** inline PromiseType and remove utility-types dependency ([40150f9](https://github.com/evilkiwi/lamware/commit/40150f901abaea3a28a1d8060851cc6b9277eace))
+
+
+
+
+
 ## [1.2.21](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.19...@lamware/core@1.2.21) (2022-04-12)
 
 **Note:** Version bump only for package @lamware/core
