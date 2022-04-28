@@ -1675,7 +1675,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/apollo@workspace:packages/apollo"
   dependencies:
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^16.11.26
     apollo-server-lambda: ^3.6.7
@@ -1690,7 +1690,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/appconfig@workspace:packages/appconfig"
   dependencies:
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@types/node": ^16.11.26
     eslint: ^8.13.0
     tslib: ^2.3.1
@@ -1699,7 +1699,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@lamware/core@^1.2.21, @lamware/core@workspace:packages/core":
+"@lamware/core@^1.2.22, @lamware/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@lamware/core@workspace:packages/core"
   dependencies:
@@ -1725,7 +1725,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/do-not-wait@workspace:packages/do-not-wait"
   dependencies:
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@lamware/test": ^1.0.11
     "@types/node": ^16.11.26
     c8: ^7.11.0
@@ -1828,7 +1828,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/fastify@workspace:packages/fastify"
   dependencies:
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@lamware/test": ^1.0.11
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^16.11.26
@@ -1851,7 +1851,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/memoize@workspace:packages/memoize"
   dependencies:
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^16.11.26
     eslint: ^8.13.0
@@ -1866,7 +1866,7 @@ __metadata:
   resolution: "@lamware/powertools-logger@workspace:packages/powertools-logger"
   dependencies:
     "@aws-lambda-powertools/logger": ^0.8.0
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@types/node": ^16.11.26
     eslint: ^8.13.0
     tslib: ^2.3.1
@@ -1880,7 +1880,7 @@ __metadata:
   resolution: "@lamware/powertools-metrics@workspace:packages/powertools-metrics"
   dependencies:
     "@aws-lambda-powertools/metrics": ^0.8.0
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@types/node": ^16.11.26
     eslint: ^8.13.0
     tslib: ^2.3.1
@@ -1894,7 +1894,7 @@ __metadata:
   resolution: "@lamware/powertools-tracing@workspace:packages/powertools-tracing"
   dependencies:
     "@aws-lambda-powertools/tracer": ^0.8.0
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@types/node": ^16.11.26
     aws-xray-sdk-core: ^3.3.4
     eslint: ^8.13.0
@@ -1908,7 +1908,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/prisma@workspace:packages/prisma"
   dependencies:
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^16.11.26
     eslint: ^8.13.0
@@ -1924,7 +1924,7 @@ __metadata:
   resolution: "@lamware/secrets-manager@workspace:packages/secrets-manager"
   dependencies:
     "@aws-sdk/client-secrets-manager": ^3.67.0
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^16.11.26
     eslint: ^8.13.0
@@ -1938,7 +1938,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/sentry@workspace:packages/sentry"
   dependencies:
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@sentry/serverless": ^6.19.6
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^16.11.26
@@ -1953,7 +1953,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/sqs-json-parser@workspace:packages/sqs-json-parser"
   dependencies:
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@lamware/test": ^1.0.11
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^16.11.26
@@ -1989,7 +1989,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lamware/warmer@workspace:packages/warmer"
   dependencies:
-    "@lamware/core": ^1.2.21
+    "@lamware/core": ^1.2.22
     "@types/aws-lambda": ^8.10.93
     "@types/node": ^16.11.26
     c8: ^7.11.0

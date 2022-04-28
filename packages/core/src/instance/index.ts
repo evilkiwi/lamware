@@ -49,14 +49,11 @@ export const lamware = function<H extends Handler = Handler>(options: Options = 
                 // Find a logger from the Middleware.
                 const localLogger = loggerOverride() ?? logger;
 
-                // Create the various middleware payloads.
-                const basePayload: MiddlewarePayload<H> = {
+                // Create the base Middleware payload for mutating.
+                let payload: BeforeMiddlewarePayload<H> = {
                     debug,
                     logger: localLogger,
                     state: compileState(),
-                };
-                let payload: BeforeMiddlewarePayload<H> = {
-                    ...basePayload,
                     event,
                     context,
                 };
@@ -66,9 +63,7 @@ export const lamware = function<H extends Handler = Handler>(options: Options = 
                     payload = await run('before', payload);
 
                     if (payload.response === undefined) {
-                        const wrapped = wrap(handler);
-
-                        response = await wrapped({
+                        response = await wrap(handler)({
                             event: payload.event,
                             context: payload.context,
                             logger: localLogger,
@@ -84,7 +79,7 @@ export const lamware = function<H extends Handler = Handler>(options: Options = 
 
                 // Run the `after` Middleware.
                 const mixed = await run('after', {
-                    ...basePayload,
+                    ...payload,
                     response,
                 });
 

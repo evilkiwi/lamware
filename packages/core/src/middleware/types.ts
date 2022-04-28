@@ -21,14 +21,14 @@ export interface HookReturns {
 export type Wrapper<H extends Handler = Handler> = (handler: DestructuredHandler<H>) => DestructuredHandler<H>;
 
 export interface MiddlewarePayload<H extends Handler, S extends object = {}> {
+    event: Parameters<H>['0'];
+    context: Parameters<H>['1'];
     debug: boolean;
     logger: Logger;
     state: S;
 }
 
 export interface BeforeMiddlewarePayload<H extends Handler = Handler, S extends object = {}> extends MiddlewarePayload<H, S> {
-    event: Parameters<H>['0'];
-    context: Parameters<H>['1'];
     response?: PromiseType<Exclude<ReturnType<H>, void>>|Error;
 }
 
