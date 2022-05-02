@@ -32,7 +32,14 @@ import { prisma } from '@lamware/prisma';
 import { lamware } from '@lamware/core';
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+    // You can provide your PrismaClient directly.
     .use(prisma(PrismaClient))
+
+    // Or an (a)synchronous set-up closure.
+    .use(prisma(async () => {
+        return new PrismaClient();
+    }))
+
     .execute(async ({ state }) => {
         const user = await state.prisma.user.findUnique({
             where: { id: 1 },
