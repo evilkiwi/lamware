@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.23](https://github.com/evilkiwi/lamware/compare/@lamware/prisma@1.2.22...@lamware/prisma@1.2.23) (2022-05-02)
+
+
+### Bug Fixes
+
+* **prisma:** typings for set-up function ([f1a33ef](https://github.com/evilkiwi/lamware/commit/f1a33efcdabb8a418d278debc0a0d088d1db8dbe))
+
+
+
+
+
 ## [1.2.22](https://github.com/evilkiwi/lamware/compare/@lamware/prisma@1.2.21...@lamware/prisma@1.2.22) (2022-05-02)
 
 **Note:** Version bump only for package @lamware/prisma
