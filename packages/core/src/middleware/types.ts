@@ -11,11 +11,12 @@ export interface Resolver {
     sync: boolean;
 }
 
-export type Hook = 'before'|'after';
+export type Hook = 'before'|'after'|'uncaughtException';
 
 export interface HookReturns {
     before: BeforeMiddlewarePayload;
     after: AfterMiddlewarePayload;
+    uncaughtException: UncaughtExceptionMiddlewarePayload;
 }
 
 export type Wrapper<H extends Handler = Handler> = (handler: DestructuredHandler<H>) => DestructuredHandler<H>;
@@ -36,6 +37,10 @@ export interface AfterMiddlewarePayload<H extends Handler = Handler, S extends o
     response: PromiseType<Exclude<ReturnType<H>, void>>|Error;
 }
 
+export interface UncaughtExceptionMiddlewarePayload<H extends Handler = Handler, S extends object = {}> extends AfterMiddlewarePayload<H, S> {
+    cause: UncaughtException;
+}
+
 export type MiddlewareHandler<H extends Handler, P extends MiddlewarePayload<H>> = (payload: P) => Promise<P>;
 
 export type InitHandler<S extends object = {}> = (state: () => S) => Promise<Partial<S>|void>;
@@ -50,13 +55,15 @@ export interface Middleware<H extends Handler = Handler, S extends object = {}> 
     init?: InitHandler<S>;
     before?: MiddlewareHandler<H, BeforeMiddlewarePayload<H, S>>;
     after?: MiddlewareHandler<H, AfterMiddlewarePayload<H, S>>;
+    uncaughtException?: MiddlewareHandler<H, UncaughtExceptionMiddlewarePayload<H, S>>;
 }
 
 export interface MiddlewareRegistry {
     all: Record<string, Middleware>;
     state: Record<string, any>;
-    order: {
-        before: (string|string[])[];
-        after: (string|string[])[];
-    };
+    order: Record<Hook, (string|string[])[]>;
+}
+
+export interface UncaughtException {
+    exception: Error;
 }

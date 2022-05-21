@@ -4,6 +4,10 @@ import { expect, test } from 'vitest';
 import { Wrapper, Middleware, Logger } from '../src';
 import { lamware, wrapCompat } from '../src';
 
+const sleep = (length: number) => new Promise<void>(resolve => {
+    setTimeout(() => resolve(), length);
+});
+
 test.concurrent('should return a valid response', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .execute(async (payload) => {
@@ -18,7 +22,7 @@ test.concurrent('should return a valid response', async () => {
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
 });
 
-test.concurrent('should allow "after" middleware to mutate the response object', async () => {
+test.concurrent('should allow `after` middleware to mutate the response object', async () => {
     const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         .use({
             id: 'test-1',
@@ -319,15 +323,6 @@ test.concurrent('should allow wrapping handler with compatibility layer and pass
 
     expect(result.statusCode).toBe(401);
     expect(result.body).toBe(JSON.stringify({ hello: 'world' }));
-});
-
-test.concurrent('should throw errors emitted by the handler', async () => {
-    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
-        .execute(async (payload) => {
-            throw new Error('debug');
-        });
-
-    await expect(() => execute(handler, 'apiGateway')).rejects.toThrowError();
 });
 
 test.concurrent('should allow middleware filter at runtime', async () => {
@@ -727,4 +722,145 @@ test.concurrent('should allow init to fetch injected state', async () => {
 
     expect(result.statusCode).toBe(200);
     expect(result.body).toBe(JSON.stringify({ hello: 'hello!' }));
+});
+
+test.concurrent('should throw top-level error if no uncaughtException middleware is present', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .execute(async (payload) => {
+            throw new Error('debug');
+        });
+
+    await expect(() => execute(handler, 'apiGateway')).rejects.toThrowError();
+});
+
+test.concurrent('should not throw top-level error if an uncaughtException middleware is present', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use({
+            id: 'test-1',
+            uncaughtException: async (payload) => {
+                return payload;
+            },
+        })
+        .execute(async (payload) => {
+            throw new Error('debug');
+        });
+    const result = await execute(handler, 'apiGateway');
+
+    expect(result).toEqual({});
+});
+
+test.concurrent('should execute uncaughtException for `before` hook exceptions', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use({
+            id: 'test-1',
+            before: async () => {
+                throw new Error('Testing');
+            },
+        })
+        .use({
+            id: 'test-2',
+            uncaughtException: async (payload) => {
+                payload.response = {
+                    statusCode: 200,
+                    body: JSON.stringify({ hello: 'world2' }),
+                };
+
+                return payload;
+            },
+        })
+        .execute(async (payload) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ hello: 'world' }),
+            };
+        });
+    const result = await execute(handler, 'apiGateway');
+
+    expect(result.body).toBe(JSON.stringify({ hello: 'world2' }));
+});
+
+test.concurrent('should execute uncaughtException for `after` hook exceptions', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use({
+            id: 'test-1',
+            after: async () => {
+                throw new Error('Testing');
+            },
+        })
+        .use({
+            id: 'test-2',
+            uncaughtException: async (payload) => {
+                payload.response = {
+                    statusCode: 200,
+                    body: JSON.stringify({ hello: 'world2' }),
+                };
+
+                return payload;
+            },
+        })
+        .execute(async (payload) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ hello: 'world' }),
+            };
+        });
+    const result = await execute(handler, 'apiGateway');
+
+    expect(result.body).toBe(JSON.stringify({ hello: 'world2' }));
+});
+
+test.concurrent('should allow asynchronous clean-up through an uncaughtException middleware', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use({
+            id: 'test-1',
+            after: async () => {
+                throw new Error('Testing');
+            },
+        })
+        .use({
+            id: 'test-2',
+            uncaughtException: async (payload) => {
+                await sleep(500);
+
+                payload.response = {
+                    statusCode: 200,
+                    body: JSON.stringify({ hello: 'world2' }),
+                };
+
+                return payload;
+            },
+        })
+        .execute(async (payload) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ hello: 'world' }),
+            };
+        });
+    const result = await execute(handler, 'apiGateway');
+
+    expect(result.body).toBe(JSON.stringify({ hello: 'world2' }));
+});
+
+test.concurrent('should throw top-level error if throwing an uncaught exception during uncaughtException hook', async () => {
+    const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+        .use({
+            id: 'test-1',
+            after: async () => {
+                throw new Error('Testing');
+            },
+        })
+        .use({
+            id: 'test-2',
+            uncaughtException: async (payload) => {
+                throw new Error('Testing');
+            },
+        })
+        .execute(async (payload) => {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ hello: 'world' }),
+            };
+        });
+
+    await expect(() => execute(handler, 'apiGateway')).rejects.toThrowError();
 });

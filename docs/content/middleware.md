@@ -72,7 +72,11 @@ export { handler };
 
 ### Hooks
 
-Lamware provides two runtime hooks - `before` and `after`. As the name suggests, these hooks are ran **before** the function is executed, and **after** it has (but prior to resolving the result).
+Lamware provides three runtime hooks:
+
+- `before` - Runs _before_ the Handler is executed.
+- `after` - Runs _after_ the Handler is executed.
+- `uncaughtException` - Runs if an uncaught exception happens during `before`, `after` or the Handler itself. Useful for error/crash reporting, cleaning up after a failure, etc.
 
 ```typescript
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
@@ -98,6 +102,11 @@ const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
         payload.response.statusCode = 200;
 
         return payload;
+    },
+    uncaughtException: async ({ context, cause }) => {
+        /**
+         * See "Handling Errors" below!
+         */
     },
 });
 ```
@@ -147,6 +156,47 @@ const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
         return {
             helloWorld: '123',
         };
+    },
+});
+```
+
+### Handling Errors
+
+As mentioned previously, Lamware has an `uncaughtException` hook. If provided, this will be executed whenever an uncaught exception occurs within:
+
+- `before` hooks
+- `after` hooks
+- `execute()` handler
+
+You can use this to log errors, handle clean-up and anything else that you might want to do if all else fails.
+
+**Note:** If an uncaught exception happens during the `uncaughtException` hook, it will be thrown top-level. It's important to catch these yourself if you don't want anything to potentially return an error for the Lambda Function. For example, if you report errors to an external service via `uncaughtException`, wrap in a `try/catch` as the external service may go down.
+
+```typescript
+import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
+import type { Middleware } from '@lamware/core';
+
+const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
+    id: 'my-middleware',
+    uncaughtException: async (payload) => {
+        const { exception } = payload.cause;
+
+        /**
+         * `exception` is the `Error` instance that caused the
+         * `uncaughtException` hook to run.
+         */
+        await sendToSentry(exception);
+
+        /**
+         * You should also provide a response. By default it will
+         * be an empty object, which will break for APIG v1/v2.
+         */
+        payload.response = {
+            statusCode: 200,
+            body: JSON.stringify({ hello: 'world' }),
+        };
+
+        return payload;
     },
 });
 ```

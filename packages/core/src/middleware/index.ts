@@ -9,6 +9,7 @@ export const middleware = <H extends Handler>() => {
         all: {},
         state: {},
         order: {
+            uncaughtException: [],
             before: [],
             after: [],
         },
@@ -79,8 +80,8 @@ export const middleware = <H extends Handler>() => {
 
         registry.all[middleware.id] = (middleware as unknown) as Middleware<Handler>;
 
-        for (let i = 0; i < 2; i++) {
-            const key = i === 0 ? 'before' : 'after';
+        for (let i = 0; i < 3; i++) {
+            const key = i === 0 ? 'before' : (i === 1 ? 'after' : 'uncaughtException');
 
             if (middleware[key] !== undefined) {
                 if (middleware.pure === false) {
@@ -187,6 +188,13 @@ export const middleware = <H extends Handler>() => {
         return middleware?.logger?.(registry.state[middleware?.id ?? ''] ?? {});
     };
 
+    // Check if at least 1 of the registered Middleware provides the given hook.
+    const has = (hook: Hook) => {
+        return Object.values(registry.all).find(middleware => {
+            return middleware[hook] !== undefined;
+        }) !== undefined;
+    };
+
     // Allow doing a Middleware reset - mostly useful for testing.
     const clear = () => {
         initResolvers = [];
@@ -197,7 +205,7 @@ export const middleware = <H extends Handler>() => {
         registry.order.after = [];
     };
 
-    return { clear, compileState, init, register, wrap, run, logger };
+    return { clear, compileState, init, register, wrap, run, logger, has };
 };
 
 export const shouldRun = (middleware: Middleware) => {

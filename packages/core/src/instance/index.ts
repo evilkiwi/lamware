@@ -11,7 +11,7 @@ export const lamware = function<H extends Handler = Handler>(options: Options = 
     const debug = options.debug ?? false;
 
     // Create the Middleware state.
-    const { init, register, compileState, run, clear, wrap, logger: loggerOverride } = middleware<H>();
+    const { init, register, has, compileState, run, clear, wrap, logger: loggerOverride } = middleware<H>();
 
     // Create the Lamware instance.
     return {
@@ -73,22 +73,45 @@ export const lamware = function<H extends Handler = Handler>(options: Options = 
                     } else {
                         response = payload.response;
                     }
+
+                    // Run the `after` Middleware.
+                    const mixed = await run('after', {
+                        ...payload,
+                        response,
+                    });
+
+                    // Merge the `after` response.
+                    response = merge(response, mixed.response);
                 } catch (e) {
                     response = e as Error;
                 }
 
-                // Run the `after` Middleware.
-                const mixed = await run('after', {
-                    ...payload,
-                    response,
-                });
+                if (response instanceof Error) {
+                    if (has('uncaughtException')) {
+                        try {
+                            // Run the exception hooks.
+                            const mixed = await run('uncaughtException', {
+                                ...payload,
+                                response: {},
+                                cause: {
+                                    exception: response,
+                                },
+                            });
 
-                if (mixed.response instanceof Error) {
-                    throw mixed.response;
+                            // Set the response to an empty object or whatever mutated response `uncaughtException` cooked up.
+                            response = mixed.response;
+                        } catch (e) {
+                            response = e as Error;
+                        }
+                    }
+
+                    // If it's _still_ uncaught, throw it top-level.
+                    if (response instanceof Error) {
+                        throw response;
+                    }
                 }
 
-                // And finally, return the merged payload.
-                return merge(response, mixed.response);
+                return response;
             };
 
             return {
