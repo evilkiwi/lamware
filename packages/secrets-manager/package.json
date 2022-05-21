@@ -1,6 +1,6 @@
 {
     "name": "@lamware/secrets-manager",
-    "version": "1.0.21",
+    "version": "1.0.22",
     "description": "Lamware Middleware for AWS Secrets Manager",
     "files": [
         "build"
@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "@aws-sdk/client-secrets-manager": "^3.67.0",
-        "@lamware/core": "^1.2.23"
+        "@lamware/core": "^1.3.0"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.93",

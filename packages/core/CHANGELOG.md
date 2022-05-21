@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.23...@lamware/core@1.3.0) (2022-05-21)
+
+
+### Features
+
+* **core:** added new uncaughtException hook ([a69136a](https://github.com/evilkiwi/lamware/commit/a69136a71db20fbb391e8f5c62d0a5e853ebb2af))
+
+
+
+
+
 ## [1.2.23](https://github.com/evilkiwi/lamware/compare/@lamware/core@1.2.22...@lamware/core@1.2.23) (2022-04-28)
 
 

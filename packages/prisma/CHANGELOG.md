@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.24](https://github.com/evilkiwi/lamware/compare/@lamware/prisma@1.2.23...@lamware/prisma@1.2.24) (2022-05-21)
+
+**Note:** Version bump only for package @lamware/prisma
+
+
+
+
+
 ## [1.2.23](https://github.com/evilkiwi/lamware/compare/@lamware/prisma@1.2.22...@lamware/prisma@1.2.23) (2022-05-02)
 
 
