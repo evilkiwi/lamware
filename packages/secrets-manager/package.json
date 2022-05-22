@@ -1,6 +1,6 @@
 {
     "name": "@lamware/secrets-manager",
-    "version": "1.0.22",
+    "version": "1.0.23",
     "description": "Lamware Middleware for AWS Secrets Manager",
     "files": [
         "build"

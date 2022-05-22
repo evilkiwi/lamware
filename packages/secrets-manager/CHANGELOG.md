@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.23](https://github.com/evilkiwi/lamware/compare/@lamware/secrets-manager@1.0.22...@lamware/secrets-manager@1.0.23) (2022-05-22)
+
+
+### Bug Fixes
+
+* **secrets-manager:** properly parse json secrets, closes [#3](https://github.com/evilkiwi/lamware/issues/3) ([8a96faf](https://github.com/evilkiwi/lamware/commit/8a96faf3d64f750885642cb75faf3ce591d14002))
+
+
+
+
+
 ## [1.0.22](https://github.com/evilkiwi/lamware/compare/@lamware/secrets-manager@1.0.21...@lamware/secrets-manager@1.0.22) (2022-05-21)
 
 **Note:** Version bump only for package @lamware/secrets-manager
