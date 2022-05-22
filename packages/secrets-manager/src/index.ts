@@ -55,9 +55,9 @@ export const secretsManager = <S = {}>(config: Config): Middleware<Handler, Stat
                         let value: unknown = null;
 
                         if (SecretString) {
-                            if (SecretString.charAt(0) === '{' || SecretString.charAt(0) === '[') {
+                            try {
                                 value = JSON.parse(SecretString);
-                            } else {
+                            } catch {
                                 value = SecretString;
                             }
                         } else if (SecretBinary) {
