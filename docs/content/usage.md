@@ -73,7 +73,7 @@ import { appconfig } from '@lamware/appconfig';
 import { memoize } from '@lamware/memoize';
 import { sentry } from '@lamware/sentry';
 
-const { getState, handler } = lamware<APIGatewayProxyHandlerV2<any>>()
+const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
     .use(appconfig<{ test: boolean }>({
         app: 'evilkiwi-lamware-example',
         env: 'production',
@@ -85,7 +85,7 @@ const { getState, handler } = lamware<APIGatewayProxyHandlerV2<any>>()
      * alone _after_ the previous middleware but _before_ any of the following
      * Middleware.
      */
-    .useSync(memoize(async () => {
+    .useSync(memoize('test', async (getState) => {
         /**
          * Since we know for sure AppConfig has loaded at this point, we can
          * safely use the state.
