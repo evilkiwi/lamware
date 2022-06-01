@@ -5,11 +5,11 @@ export interface Options {
     throwOnError?: boolean;
 }
 
-export const memoize = <S extends object>(closure: () => Promise<Partial<S>|void>, options?: Options): Middleware<Handler, S> => ({
+export const memoize = <S extends object>(closure: (getState: () => S) => Promise<Partial<S>|void>, options?: Options): Middleware<Handler, S> => ({
     id: 'memoize',
-    init: async () => {
+    init: async (getState) => {
         try {
-            return await closure();
+            return await closure(getState);
         } catch (e) {
             if (options?.throwOnError !== false) {
                 throw new Error(`failed to memoize: ${e}`);
