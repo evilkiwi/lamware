@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/evilkiwi/lamware/compare/@lamware/memoize@1.2.22...@lamware/memoize@1.3.0) (2022-06-01)
+
+
+### Features
+
+* **memoize:** allow fetching state ([b8746c2](https://github.com/evilkiwi/lamware/commit/b8746c2dc0cbf85f7e4d03eaabca284d64fb6593))
+
+
+
+
+
 ## [1.2.22](https://github.com/evilkiwi/lamware/compare/@lamware/memoize@1.2.21...@lamware/memoize@1.2.22) (2022-05-21)
 
 **Note:** Version bump only for package @lamware/memoize
