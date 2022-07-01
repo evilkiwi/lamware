@@ -23,6 +23,9 @@ jobs:
     name: Publish
     if: github.event_name == 'push' || github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
       - name: Clone Repo
         uses: actions/checkout@v2
@@ -33,20 +36,32 @@ jobs:
         uses: actions/setup-node@v2
         with:
           registry-url: https://registry.npmjs.org
-          node-version: 14
-          cache: yarn
+          node-version: 16
       - name: Check if able to publish changes
         run: npm whoami
-      - name: Install Dependencies
-        run: yarn
       - name: Set-up Git Credentials
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "admin@evil.kiwi"
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          run_install: false
+      - name: Fetch PNPM Store
+        id: pnpm-cache
+        run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+      - name: Restore PNPM Cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-store-
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
       - name: Build packages
-        run: yarn build
+        run: pnpm build
       - name: Run Tests
-        run: yarn test
+        run: pnpm test
       - name: Increment Versions
         run: npx lerna version --conventional-commits --create-release github --yes
       - name: Publish to NPM

@@ -1,7 +1,7 @@
 import type { Middleware } from '@lamware/core';
-import { wrapCompat } from '@lamware/core';
 import { AWSLambda } from '@sentry/serverless';
 import type * as Sentry from '@sentry/node';
+import { wrapCompat } from '@lamware/core';
 
 export interface Config {
     wrapper?: AWSLambda.WrapperOptions;

@@ -108,3 +108,6 @@ sw.*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# Turborepo
+.turbo

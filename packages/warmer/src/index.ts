@@ -1,6 +1,6 @@
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import type { Middleware } from '@lamware/core';
 import type { WarmerConfig } from 'lambda-warmer';
+import type { Middleware } from '@lamware/core';
 import lambdaWarmer from 'lambda-warmer';
 
 export const warmer = (config?: typeof WarmerConfig): Middleware<APIGatewayProxyHandlerV2, { is_warmed: boolean }> => ({

@@ -11,6 +11,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
       - name: Clone Repo
         uses: actions/checkout@v2
@@ -19,12 +22,24 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: 14
-          cache: yarn
+          node-version: 16
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          run_install: false
+      - name: Fetch PNPM Store
+        id: pnpm-cache
+        run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+      - name: Restore PNPM Cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-store-
       - name: Install Dependencies
-        run: yarn install --immutable
-      - name: Build Static
-        run: yarn docs build
+        run: pnpm install --frozen-lockfile
+      - name: Build
+        run: pnpm build --filter=@lamware/docs
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
