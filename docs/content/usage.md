@@ -109,3 +109,16 @@ const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
 
 export { handler };
 ```
+
+## Consuming State
+
+If defining Middleware in-line, you can consume the current Lamware state defined before your own Middleware is executed. This is exceptionally useful for edge-cases where you need to split-up a Middleware chain using `useSync` for your own custom logic, for example.
+
+This is a **huge** gray-area for the following reasons:
+
+1. There is no defined way of providing full TypeScript typings to partial, mid-chain state
+2. The state that is available is based on the execution order (and [a]synchronous nature) of the Middleware you use
+
+Regardless, the `init` method in your Middleware has a state getter passed as the first parameter - which, when called, will return the current state at that moment in time.
+
+See the [above example](#initialization-order) to understand exactly how this works with the generic `memoize` middleware.
