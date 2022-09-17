@@ -1,7 +1,6 @@
-import type { DefaultThemeOptions, ViteBundlerOptions } from 'vuepress-vite';
-import { defineUserConfig } from 'vuepress-vite';
+import { defaultTheme, defineUserConfig } from 'vuepress';
 
-export default defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
+export default defineUserConfig({
     base: '/lamware/',
     lang: 'en-US',
     title: 'Lamware',
@@ -11,7 +10,7 @@ export default defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
             lang: 'en-US',
         },
     },
-    themeConfig: {
+    theme: defaultTheme({
         home: '/',
         logo: 'https://vuejs.org/images/logo.png',
         repo: 'evilkiwi/lamware',
@@ -35,5 +34,5 @@ export default defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
                 link: '/middleware.html',
             }],
         }],
-    },
+    }),
 });

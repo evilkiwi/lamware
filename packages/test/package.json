@@ -13,16 +13,16 @@
         "dev": "NODE_ENV=development tsup-node"
     },
     "dependencies": {
-        "lambda-local": "^2.0.2",
-        "merge-anything": "^5.0.2",
-        "uuid": "^8.3.2"
+        "lambda-local": "^2.0.3",
+        "merge-anything": "^5.0.4",
+        "uuid": "^9.0.0"
     },
     "devDependencies": {
-        "@types/aws-lambda": "^8.10.101",
-        "@types/node": "^16.11.42",
+        "@types/aws-lambda": "^8.10.104",
+        "@types/node": "^16.11.59",
         "@types/uuid": "^8.3.4",
         "tslib": "^2.4.0",
-        "tsup": "^6.1.2",
-        "typescript": "^4.7.4"
+        "tsup": "^6.2.3",
+        "typescript": "^4.8.3"
     }
 }
