@@ -9,7 +9,7 @@
     <h3>Lamware - Do Not Wait</h3>
 </div>
 
-This [Lamware](https://github.com/evilkiwi/lamware) Middleware implements a Lambda best-practice of making sure Lambda doesn't wait for the event loop to be empty prior to responding by ensuring the `callbackWaitsForEmptyEventLoop` context variable is set to `false`.
+This [Lamware](https://github.com/oyed/lamware) Middleware implements a Lambda best-practice of making sure Lambda doesn't wait for the event loop to be empty prior to responding by ensuring the `callbackWaitsForEmptyEventLoop` context variable is set to `false`.
 
 ## Installation
 

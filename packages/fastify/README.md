@@ -9,7 +9,7 @@
     <h3>Lamware - Fastify</h3>
 </div>
 
-This [Lamware](https://github.com/evilkiwi/lamware) Middleware utilizes the [official AWS Lambda Fastify Client](https://github.com/fastify/aws-lambda-fastify) to provide a convenient, and performant, method of intializing and memoizing Fastify in AWS Lambda:
+This [Lamware](https://github.com/oyed/lamware) Middleware utilizes the [official AWS Lambda Fastify Client](https://github.com/fastify/aws-lambda-fastify) to provide a convenient, and performant, method of intializing and memoizing Fastify in AWS Lambda:
 
 - Enforces memoization of Fastify Client outside of function handler
 - Allow for top-level ready state initialization, perfect for Provisioned Concurrency

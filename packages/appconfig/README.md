@@ -9,7 +9,7 @@
     <h3>Lamware - AWS AppConfig</h3>
 </div>
 
-This [Lamware](https://github.com/evilkiwi/lamware) Middleware utilizes an API exposed by the [AWS Lambda AppConfig Layer Extension](https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-integration-lambda-extensions.html) to pull-down a copy of an AppConfig configuration and allows you to easily provide TypeScript typings for it.
+This [Lamware](https://github.com/oyed/lamware) Middleware utilizes an API exposed by the [AWS Lambda AppConfig Layer Extension](https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-integration-lambda-extensions.html) to pull-down a copy of an AppConfig configuration and allows you to easily provide TypeScript typings for it.
 
 ## Installation
 
@@ -41,7 +41,7 @@ const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
      **/
     .use(appconfig<AppConfig>({
         // Ensure you provide the info required to pull down a configuration.
-        app: 'evilkiwi-api',
+        app: 'oyed-api',
         env: 'production',
         config: 'production',
         // You can also optionally provide an override URL for the AppConfig API.

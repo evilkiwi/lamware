@@ -38,19 +38,19 @@ export class LamwareStack extends Stack {
 
         // Fetch the DNS Zone.
         const zone = HostedZone.fromLookup(this, 'dnsZone', {
-            domainName: 'evil.kiwi',
+            domainName: 'oyed.dev',
         });
 
         // Ensure there is a Certificate and fetch the ARN.
         const certificate = new DnsValidatedCertificate(this, 'sslCertificate', {
-            domainName: 'lamware-example.evil.kiwi',
+            domainName: 'lamware-example.oyed.dev',
             hostedZone: zone,
             region: Aws.REGION,
         });
 
         // Create the API Gateway Domain Mapping.
         const domainName = new DomainName(this, 'apigDomain', {
-            domainName: 'lamware-example.evil.kiwi',
+            domainName: 'lamware-example.oyed.dev',
             certificate,
         });
 
@@ -117,7 +117,7 @@ export class LamwareStack extends Stack {
 
         // Create a DNS Record for the CloudFront Ingress.
         new ARecord(this, 'dnsRecord', {
-            recordName: 'lamware-example.evil.kiwi',
+            recordName: 'lamware-example.oyed.dev',
             target: RecordTarget.fromAlias(
                 new ApiGatewayv2DomainProperties(domainName.regionalDomainName, domainName.regionalHostedZoneId),
             ),

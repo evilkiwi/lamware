@@ -1,6 +1,6 @@
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import type { Middleware } from '@lamware/core';
-import lambdaFastify from 'aws-lambda-fastify';
+import lambdaFastify from '@fastify/aws-lambda';
 import createFastify from 'fastify';
 import { Config, SetupFunction, State } from './types';
 

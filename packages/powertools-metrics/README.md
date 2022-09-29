@@ -9,7 +9,7 @@
     <h3>Lamware - AWS Powertools Metrics</h3>
 </div>
 
-This [Lamware](https://github.com/evilkiwi/lamware) Middleware utilizes the official [Lambda TypeScript Powertools](https://awslabs.github.io/aws-lambda-powertools-typescript/latest/core/metrics/) provided by AWS to:
+This [Lamware](https://github.com/oyed/lamware) Middleware utilizes the official [Lambda TypeScript Powertools](https://awslabs.github.io/aws-lambda-powertools-typescript/latest/core/metrics/) provided by AWS to:
 
 - Set-up and memoize a root `Metrics` instance
 - Publish Metrics automatically after the Function handler executes
@@ -41,7 +41,7 @@ import { lamware } from '@lamware/core';
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
     .use(powertoolsMetrics({
         // Options are pass-through to the Tracing instance.
-        namespace: 'evilkiwi',
+        namespace: 'oyed',
         serviceName: 'my-api',
     }))
     .execute(async ({ state }) => {

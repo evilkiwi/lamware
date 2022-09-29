@@ -9,7 +9,7 @@
     <h3>Lamware - SQS JSON Parser</h3>
 </div>
 
-This [Lamware](https://github.com/evilkiwi/lamware) Middleware allows you to automatically parse an SQS Queue payload and optionally provide TypeScript typings for the records.
+This [Lamware](https://github.com/oyed/lamware) Middleware allows you to automatically parse an SQS Queue payload and optionally provide TypeScript typings for the records.
 
 ## Installation
 

@@ -9,7 +9,7 @@
     <h3>Lamware - Prisma ORM</h3>
 </div>
 
-This [Lamware](https://github.com/evilkiwi/lamware) Middleware allows you to initialize and memoize your [Prisma](https://prisma.io) Client.
+This [Lamware](https://github.com/oyed/lamware) Middleware allows you to initialize and memoize your [Prisma](https://prisma.io) Client.
 
 ## Installation
 

@@ -18,7 +18,7 @@ export const setup = <H extends Handler = APIGatewayProxyHandlerV2<any>>() => {
             logLevel: 'DEBUG',
         }))
         .use(appconfig<{ hello: string }>({
-            app: 'evilkiwi-lamware-example',
+            app: 'oyed-lamware-example',
             env: 'production',
             config: 'production',
         }))

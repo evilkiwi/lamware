@@ -4,5 +4,3 @@
 - `http-closure` - Same as the above, but using a setup closure for shared initialization
 - `sqs-function` - SQS Lambda Handler using Lamware
 - `stack` - AWS CDK stack for deploying the `http-function` function
-
-You can see the demo live [here](https://lamware-example.evil.kiwi)!
