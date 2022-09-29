@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/oyed/lamware/compare/@lamware/fastify@1.1.0...@lamware/fastify@1.1.1) (2022-09-29)
+
+**Note:** Version bump only for package @lamware/fastify
+
+
+
+
+
 # [1.1.0](https://github.com/oyed/lamware/compare/@lamware/fastify@1.0.21...@lamware/fastify@1.1.0) (2022-09-17)
 
 
