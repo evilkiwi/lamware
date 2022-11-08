@@ -1,11 +1,11 @@
 <div align="center">
-    <a href="https://www.npmjs.com/package/@oyed/lamware" target="_blank">
-        <img src="https://img.shields.io/npm/v/@oyed/lamware?style=flat-square" alt="NPM" />
+    <a href="https://www.npmjs.com/package/@lamware/core" target="_blank">
+        <img src="https://img.shields.io/npm/v/@lamware/core?style=flat-square" alt="NPM" />
     </a>
     <a href="https://discord.gg/3S6AKZ2GR9" target="_blank">
         <img src="https://img.shields.io/discord/1000565079789535324?color=7289DA&label=discord&logo=discord&logoColor=FFFFFF&style=flat-square" alt="Discord" />
     </a>
-    <img src="https://img.shields.io/npm/l/@oyed/lamware?style=flat-square" alt="GPL-3.0-only" />
+    <img src="https://img.shields.io/npm/l/@lamware/core?style=flat-square" alt="GPL-3.0-only" />
     <h3>AWS Lambda Middleware Pattern (NodeJS)</h3>
 </div>
 
