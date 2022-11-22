@@ -32,7 +32,7 @@ importers:
     specifiers:
       '@apollo/server': ^4.1.1
       '@as-integrations/aws-lambda': ^1.0.1
-      '@lamware/core': ^1.4.1
+      '@lamware/core': ^1.5.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       eslint: ^8.28.0
@@ -55,7 +55,7 @@ importers:
 
   packages/appconfig:
     specifiers:
-      '@lamware/core': ^1.4.1
+      '@lamware/core': ^1.5.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       eslint: ^8.28.0
@@ -74,7 +74,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@lamware/test': ^1.1.1
+      '@lamware/test': ^1.2.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       c8: ^7.12.0
@@ -109,8 +109,8 @@ importers:
 
   packages/do-not-wait:
     specifiers:
-      '@lamware/core': ^1.4.1
-      '@lamware/test': ^1.1.1
+      '@lamware/core': ^1.5.0
+      '@lamware/test': ^1.2.0
       '@types/node': ^16.18.3
       c8: ^7.12.0
       eslint: ^8.28.0
@@ -141,8 +141,8 @@ importers:
   packages/fastify:
     specifiers:
       '@fastify/aws-lambda': ^3.1.3
-      '@lamware/core': ^1.4.1
-      '@lamware/test': ^1.1.1
+      '@lamware/core': ^1.5.0
+      '@lamware/test': ^1.2.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       c8: ^7.12.0
@@ -177,7 +177,7 @@ importers:
 
   packages/memoize:
     specifiers:
-      '@lamware/core': ^1.4.1
+      '@lamware/core': ^1.5.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       eslint: ^8.28.0
@@ -197,7 +197,7 @@ importers:
   packages/powertools-logger:
     specifiers:
       '@aws-lambda-powertools/logger': ^1.4.1
-      '@lamware/core': ^1.4.1
+      '@lamware/core': ^1.5.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       eslint: ^8.28.0
@@ -218,7 +218,7 @@ importers:
   packages/powertools-metrics:
     specifiers:
       '@aws-lambda-powertools/metrics': ^1.4.1
-      '@lamware/core': ^1.4.1
+      '@lamware/core': ^1.5.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       eslint: ^8.28.0
@@ -239,7 +239,7 @@ importers:
   packages/powertools-tracing:
     specifiers:
       '@aws-lambda-powertools/tracer': ^1.4.1
-      '@lamware/core': ^1.4.1
+      '@lamware/core': ^1.5.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       aws-xray-sdk-core: ^3.4.0
@@ -261,7 +261,7 @@ importers:
 
   packages/prisma:
     specifiers:
-      '@lamware/core': ^1.4.1
+      '@lamware/core': ^1.5.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       eslint: ^8.28.0
@@ -283,7 +283,7 @@ importers:
   packages/secrets-manager:
     specifiers:
       '@aws-sdk/client-secrets-manager': 3.215.0
-      '@lamware/core': ^1.4.1
+      '@lamware/core': ^1.5.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       eslint: ^8.28.0
@@ -303,7 +303,7 @@ importers:
 
   packages/sentry:
     specifiers:
-      '@lamware/core': ^1.4.1
+      '@lamware/core': ^1.5.0
       '@sentry/node': ^7.20.1
       '@sentry/serverless': ^7.20.1
       '@types/aws-lambda': ^8.10.108
@@ -326,8 +326,8 @@ importers:
 
   packages/sqs-json-parser:
     specifiers:
-      '@lamware/core': ^1.4.1
-      '@lamware/test': ^1.1.1
+      '@lamware/core': ^1.5.0
+      '@lamware/test': ^1.2.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       c8: ^7.12.0
@@ -380,8 +380,8 @@ importers:
 
   packages/warmer:
     specifiers:
-      '@lamware/core': ^1.4.1
-      '@lamware/test': ^1.1.1
+      '@lamware/core': ^1.5.0
+      '@lamware/test': ^1.2.0
       '@types/aws-lambda': ^8.10.108
       '@types/node': ^16.18.3
       aws-sdk: ^2.1259.0
