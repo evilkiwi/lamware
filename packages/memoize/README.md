@@ -9,7 +9,7 @@
     <h3>Lamware - Variable Memoize</h3>
 </div>
 
-This [Lamware](https://github.com/oyed/lamware) Middleware allows you to memoize variables and instances outside of the Lambda Handler with ease.
+This [Lamware](https://github.com/evilkiwi/lamware) Middleware allows you to memoize variables and instances outside of the Lambda Handler with ease.
 
 ## Why?
 

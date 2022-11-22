@@ -13,7 +13,7 @@ export default defineUserConfig({
     theme: defaultTheme({
         home: '/',
         logo: 'https://vuejs.org/images/logo.png',
-        repo: 'oyed/lamware',
+        repo: 'evilkiwi/lamware',
         docsDir: 'docs/content',
         docsBranch: 'master',
         locales: {

@@ -155,7 +155,7 @@ export const middleware = <H extends Handler>() => {
                 }
 
                 (await Promise.all(payloads)).forEach(newPayload => {
-                    localPayload = merge(localPayload, newPayload) as HookReturns[H];
+                    localPayload = merge(localPayload, newPayload) as unknown as HookReturns[H];
                 });
 
                 return localPayload;

@@ -42,7 +42,7 @@ jobs:
       - name: Set-up Git Credentials
         run: |
           git config --global user.name "GitHub Actions"
-          git config --global user.email "admin@oyed.dev"
+          git config --global user.email "admin@evil.kiwi"
       - name: Set up PNPM
         uses: pnpm/action-setup@v2.2.2
         with:

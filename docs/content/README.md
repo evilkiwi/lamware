@@ -15,5 +15,5 @@ features:
     details: Ensure your initialization code runs first
   - title: First-class TypeScript
     details: Maintain dynamic typings across middleware usage
-footer: GPL-3.0 Licensed | Copyright © 2022 OYED
+footer: GPL-3.0 Licensed | Copyright © 2022 Evil Kiwi Limited
 ---

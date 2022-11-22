@@ -9,7 +9,7 @@
     },
     "devDependencies": {
         "@vuepress/client": "^2.0.0-beta.50",
-        "vue": "^3.2.39",
+        "vue": "^3.2.45",
         "vuepress": "next"
     }
 }

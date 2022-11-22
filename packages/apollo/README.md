@@ -9,7 +9,7 @@
     <h3>Lamware - Apollo Server</h3>
 </div>
 
-This [Lamware](https://github.com/oyed/lamware) Middleware utilizes the official [`apollo-server-lambda`](https://www.npmjs.com/package/apollo-server-lambda) package to set-up your Apollo Server outside of the main handler, improving performance.
+This [Lamware](https://github.com/evilkiwi/lamware) Middleware utilizes the official [`apollo-server-lambda`](https://www.npmjs.com/package/apollo-server-lambda) package to set-up your Apollo Server outside of the main handler, improving performance.
 
 ## Installation
 

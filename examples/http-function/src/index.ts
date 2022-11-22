@@ -17,7 +17,7 @@ const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
         logLevel: 'DEBUG',
     }))
     .use(appconfig<{ hello: string }>({
-        app: 'oyed-lamware-example',
+        app: 'evilkiwi-lamware-example',
         env: 'production',
         config: 'production',
     }))

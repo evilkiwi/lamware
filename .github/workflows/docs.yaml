@@ -61,4 +61,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           destination_dir: docs
-          cname: docs.oyed.dev
+          cname: docs.evil.kiwi

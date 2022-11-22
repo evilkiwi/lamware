@@ -1,9 +1,11 @@
-import type { Config as ApolloConfig, CreateHandlerOptions } from 'apollo-server-lambda';
+import type { ApolloServerOptions as ApolloConfig, BaseContext } from '@apollo/server';
+import { startServerAndCreateLambdaHandler } from '@as-integrations/aws-lambda';
+import type { LambdaHandlerOptions } from '@as-integrations/aws-lambda';
 import type { DestructuredHandler, Middleware } from '@lamware/core';
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { ApolloServer } from 'apollo-server-lambda';
+import { ApolloServer } from '@apollo/server';
 
-export interface Config extends ApolloConfig {
+export type LamwareApolloConfig = {
     /**
      * Optionally provide an existing Apollo Server instance.
      */
@@ -12,8 +14,10 @@ export interface Config extends ApolloConfig {
     /**
      * Optionally provide options to the serverless handler.
      */
-    handlerOptions?: CreateHandlerOptions;
+    handlerOptions?: LambdaHandlerOptions<BaseContext>;
 }
+
+export type Config = LamwareApolloConfig & ApolloConfig<BaseContext>;
 
 export interface State {
     apollo: ApolloServer;
@@ -26,6 +30,7 @@ export const apollo = (config?: Config|ApolloServer|SetupFunction): Middleware<A
     id: 'apollo',
     init: async (state) => {
         let setup: SetupFunction|undefined;
+        // @ts-expect-error
         let localConfig: Config = {};
         let apollo!: ApolloServer;
 
@@ -51,8 +56,8 @@ export const apollo = (config?: Config|ApolloServer|SetupFunction): Middleware<A
             }
         }
 
-        // Create the `apollo-server-lambda` handler.
-        const handler = apollo.createHandler({ ...(localConfig.handlerOptions ?? {}) });
+        // Create the Lambda handler.
+        const handler = startServerAndCreateLambdaHandler(apollo, { ...(localConfig.handlerOptions ?? {}) });
 
         return {
             apollo,
