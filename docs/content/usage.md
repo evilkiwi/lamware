@@ -2,11 +2,11 @@
 title: Usage
 head:
   - - meta
-  - name: description
-    content: Learn how to use Lamware in a Function
+    - name: description
+      content: Learn how to use Lamware in a Function
   - - meta
-  - name: description
-    content: Learn how to use Lamware in a Function
+    - name: description
+      content: Learn how to use Lamware in a Function
 ---
 
 # Usage

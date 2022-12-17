@@ -1,6 +1,6 @@
-import { defaultTheme, defineUserConfig } from 'vuepress';
+import { defineConfig } from 'vitepress';
 
-export default defineUserConfig({
+export default defineConfig({
   base: '/lamware/',
   lang: 'en-US',
   title: 'Lamware',
@@ -10,20 +10,10 @@ export default defineUserConfig({
       lang: 'en-US',
     },
   },
-  theme: defaultTheme({
-    home: '/',
-    logo: 'https://vuejs.org/images/logo.png',
-    repo: 'evilkiwi/lamware',
-    docsDir: 'docs/content',
-    docsBranch: 'master',
-    locales: {
-      '/': {
-        selectLanguageName: 'English',
-      },
-    },
+  themeConfig: {
     sidebar: [{
       text: 'Introduction',
-      children: [{
+      items: [{
         text: 'Getting Started',
         link: '/getting-started.html',
       }, {
@@ -34,5 +24,9 @@ export default defineUserConfig({
         link: '/middleware.html',
       }],
     }],
-  }),
+    footer: {
+      message: 'GPL-3.0 Licensed',
+      copyright: 'Copyright © 2022 Evil Kiwi Limited',
+    },
+  },
 });

@@ -2,11 +2,11 @@
 title: Getting Started
 head:
   - - meta
-  - name: description
-    content: Get started using Lamware for AWS Lambda
+    - name: description
+      content: Get started using Lamware for AWS Lambda
   - - meta
-  - name: description
-    content: Get started using Lamware for AWS Lambda
+    - name: description
+      content: Get started using Lamware for AWS Lambda
 ---
 
 # Getting Started

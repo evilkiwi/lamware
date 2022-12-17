@@ -2,11 +2,11 @@
 title: Middleware
 head:
   - - meta
-  - name: description
-    content: Middleware is the core feature of Lamware
+    - name: description
+      content: Middleware is the core feature of Lamware
   - - meta
-  - name: description
-    content: Middleware is the core feature of Lamware
+    - name: description
+      content: Middleware is the core feature of Lamware
 ---
 
 # Middleware

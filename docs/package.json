@@ -3,13 +3,12 @@
   "name": "@lamware/docs",
   "version": "1.2.0",
   "scripts": {
-    "dev": "vuepress dev content",
-    "build": "vuepress build content",
-    "serve": "vuepress serve content"
+    "dev": "vitepress dev content",
+    "build": "vitepress build content",
+    "serve": "vitepress serve content"
   },
   "devDependencies": {
-    "@vuepress/client": "^2.0.0-beta.50",
-    "vue": "^3.2.45",
-    "vuepress": "next"
+    "vitepress": "^1.0.0-alpha.32",
+    "vue": "^3.2.45"
   }
 }
