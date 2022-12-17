@@ -13,7 +13,7 @@ export const fastify = (setup?: SetupFunction, config?: Config): Middleware<APIG
       app = await setup(app);
     }
 
-    const handler = lambdaFastify(app as any);
+    const handler = lambdaFastify(app);
 
     if (config?.attachState !== false) {
       app.decorateRequest('state', null);
