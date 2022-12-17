@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: Lamware
-  text: Middleware Design Pattern Framework for AWS Lambda
+  text: Middleware Design Pattern Framework for AWS Lambda Functions
   actions:
     - theme: brand
       text: Get Started

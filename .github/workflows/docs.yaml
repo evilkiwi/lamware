@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: dist
-          path: ./docs/content/.vuepress/dist
+          path: ./docs/content/.vitepress/dist
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
