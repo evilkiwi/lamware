@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@lamware/docs",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "scripts": {
     "dev": "vitepress dev content",
     "build": "vitepress build content",

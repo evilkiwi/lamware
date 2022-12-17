@@ -1,6 +1,6 @@
 {
   "name": "@lamware/warmer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Lamware Middleware for keeping Functions warm",
   "files": [
     "build"
@@ -40,7 +40,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@lamware/core": "^1.5.0",
+    "@lamware/core": "^1.5.1",
     "lambda-warmer": "^1.2.2"
   },
   "peerDependencies": {
@@ -48,7 +48,7 @@
     "lambda-warmer": "^1.2.2"
   },
   "devDependencies": {
-    "@lamware/test": "^1.2.0",
+    "@lamware/test": "^1.2.1",
     "@types/aws-lambda": "^8.10.109",
     "@types/node": "^18.11.16",
     "aws-sdk": "^2.1277.0",

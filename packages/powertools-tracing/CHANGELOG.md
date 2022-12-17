@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/evilkiwi/lamware/compare/@lamware/powertools-tracing@1.2.0...@lamware/powertools-tracing@1.2.1) (2022-12-17)
+
+**Note:** Version bump only for package @lamware/powertools-tracing
+
+
+
+
+
 # [1.2.0](https://github.com/evilkiwi/lamware/compare/@lamware/powertools-tracing@1.1.1...@lamware/powertools-tracing@1.2.0) (2022-11-22)
 
 
