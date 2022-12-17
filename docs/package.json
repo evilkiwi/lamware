@@ -1,15 +1,15 @@
 {
-    "private": true,
-    "name": "@lamware/docs",
-    "version": "1.2.0",
-    "scripts": {
-        "dev": "vuepress dev content",
-        "build": "vuepress build content",
-        "serve": "vuepress serve content"
-    },
-    "devDependencies": {
-        "@vuepress/client": "^2.0.0-beta.50",
-        "vue": "^3.2.45",
-        "vuepress": "next"
-    }
+  "private": true,
+  "name": "@lamware/docs",
+  "version": "1.2.0",
+  "scripts": {
+    "dev": "vuepress dev content",
+    "build": "vuepress build content",
+    "serve": "vuepress serve content"
+  },
+  "devDependencies": {
+    "@vuepress/client": "^2.0.0-beta.50",
+    "vue": "^3.2.45",
+    "vuepress": "next"
+  }
 }

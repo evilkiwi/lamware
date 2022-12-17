@@ -1,12 +1,12 @@
 <div align="center">
-    <a href="https://www.npmjs.com/package/@lamware/memoize" target="_blank">
-        <img src="https://img.shields.io/npm/v/@lamware/memoize?style=flat-square" alt="NPM" />
-    </a>
-    <a href="https://discord.gg/XMrHXtN" target="_blank">
-        <img src="https://img.shields.io/discord/123906549860139008?color=7289DA&label=discord&logo=discord&logoColor=FFFFFF&style=flat-square" alt="Discord" />
-    </a>
-    <img src="https://img.shields.io/npm/l/@lamware/memoize?style=flat-square" alt="Apache-2.0" />
-    <h3>Lamware - Variable Memoize</h3>
+  <a href="https://www.npmjs.com/package/@lamware/memoize" target="_blank">
+    <img src="https://img.shields.io/npm/v/@lamware/memoize?style=flat-square" alt="NPM" />
+  </a>
+  <a href="https://discord.gg/XMrHXtN" target="_blank">
+    <img src="https://img.shields.io/discord/123906549860139008?color=7289DA&label=discord&logo=discord&logoColor=FFFFFF&style=flat-square" alt="Discord" />
+  </a>
+  <img src="https://img.shields.io/npm/l/@lamware/memoize?style=flat-square" alt="Apache-2.0" />
+  <h3>Lamware - Variable Memoize</h3>
 </div>
 
 This [Lamware](https://github.com/evilkiwi/lamware) Middleware allows you to memoize variables and instances outside of the Lambda Handler with ease.
@@ -37,23 +37,23 @@ import { memoize } from '@lamware/memoize';
 import { lamware } from '@lamware/core';
 
 interface MemoizePayload {
-    count: number;
+  count: number;
 }
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
-    .use(memoize<MemoizePayload>(async () => {
-        return { count: 1 };
-    }, {
-        // [optional] Whether to throw an `Error` if the memoize closure fails [default: true]
-        throwOnError: false,
-    }))
-    .execute(async ({ state }) => {
-        return {
-            statusCode: 200,
-            message: 'count should always be `1` since it is memoized!',
-            count: state.count,
-        };
-    });
+  .use(memoize<MemoizePayload>(async () => {
+    return { count: 1 };
+  }, {
+    // [optional] Whether to throw an `Error` if the memoize closure fails [default: true]
+    throwOnError: false,
+  }))
+  .execute(async ({ state }) => {
+    return {
+      statusCode: 200,
+      message: 'count should always be `1` since it is memoized!',
+      count: state.count,
+    };
+  });
 
 export { handler };
 ```

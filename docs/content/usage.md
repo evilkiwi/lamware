@@ -2,11 +2,11 @@
 title: Usage
 head:
   - - meta
-    - name: description
-      content: Learn how to use Lamware in a Function
+  - name: description
+    content: Learn how to use Lamware in a Function
   - - meta
-    - name: description
-      content: Learn how to use Lamware in a Function
+  - name: description
+    content: Learn how to use Lamware in a Function
 ---
 
 # Usage
@@ -23,16 +23,16 @@ import { sentry } from '@lamware/sentry';
 import { lamware } from '@lamware/core';
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
-    .use(sentry({
-        config: {
-            dsn: 'my-sentry-dsn',
-        },
-    }), () => {
-        return process.env.NODE_ENV === 'production';
-    })
-    .execute(async () => {
-        return { statusCode: 200 };
-    });
+  .use(sentry({
+    config: {
+      dsn: 'my-sentry-dsn',
+    },
+  }), () => {
+    return process.env.NODE_ENV === 'production';
+  })
+  .execute(async () => {
+    return { statusCode: 200 };
+  });
 
 export { handler };
 ```
@@ -47,15 +47,15 @@ import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { lamware } from '@lamware/core';
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
-    .use(powertoolsLogger({
-        serviceName: 'lamware-example',
-        logLevel: 'DEBUG',
-    }))
-    .execute(async ({ logger }) => {
-        logger.error('Hello world!');
+  .use(powertoolsLogger({
+    serviceName: 'lamware-example',
+    logLevel: 'DEBUG',
+  }))
+  .execute(async ({ logger }) => {
+    logger.error('Hello world!');
 
-        return { statusCode: 200 };
-    });
+    return { statusCode: 200 };
+  });
 
 export { handler };
 ```
@@ -74,38 +74,38 @@ import { memoize } from '@lamware/memoize';
 import { sentry } from '@lamware/sentry';
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
-    .use(appconfig<{ test: boolean }>({
-        app: 'evilkiwi-lamware-example',
-        env: 'production',
-        config: 'production',
-    }))
+  .use(appconfig<{ test: boolean }>({
+    app: 'evilkiwi-lamware-example',
+    env: 'production',
+    config: 'production',
+  }))
+  /**
+   * Instead of initializing this Middleware at the same time as the
+   * previous Middleware, it creates a break in the chain and initializes
+   * alone _after_ the previous middleware but _before_ any of the following
+   * Middleware.
+   */
+  .useSync(memoize('test', async (getState) => {
     /**
-     * Instead of initializing this Middleware at the same time as the
-     * previous Middleware, it creates a break in the chain and initializes
-     * alone _after_ the previous middleware but _before_ any of the following
-     * Middleware.
+     * Since we know for sure AppConfig has loaded at this point, we can
+     * safely use the state.
      */
-    .useSync(memoize('test', async (getState) => {
-        /**
-         * Since we know for sure AppConfig has loaded at this point, we can
-         * safely use the state.
-         */
-        const myState = getState();
+    const myState = getState();
 
-        if (myState.config.test) {
-            throw new Error('oops!');
-        }
-    }))
-    .use(sentry({
-        config: {
-            dsn: 'my-sentry-dsn',
-        },
-    }))
-    .execute(async ({ logger }) => {
-        logger.error('Hello world!');
+    if (myState.config.test) {
+      throw new Error('oops!');
+    }
+  }))
+  .use(sentry({
+    config: {
+      dsn: 'my-sentry-dsn',
+    },
+  }))
+  .execute(async ({ logger }) => {
+    logger.error('Hello world!');
 
-        return { statusCode: 200 };
-    });
+    return { statusCode: 200 };
+  });
 
 export { handler };
 ```

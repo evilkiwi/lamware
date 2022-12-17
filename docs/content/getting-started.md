@@ -2,11 +2,11 @@
 title: Getting Started
 head:
   - - meta
-    - name: description
-      content: Get started using Lamware for AWS Lambda
+  - name: description
+    content: Get started using Lamware for AWS Lambda
   - - meta
-    - name: description
-      content: Get started using Lamware for AWS Lambda
+  - name: description
+    content: Get started using Lamware for AWS Lambda
 ---
 
 # Getting Started
@@ -31,7 +31,7 @@ npm install --save @lamware/core
 import { lamware } from '@lamware/core';
 
 const { handler } = lamware().execute(async () => {
-    return { statusCode: 200 };
+  return { statusCode: 200 };
 });
 
 export { handler };
@@ -50,9 +50,9 @@ import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { lamware } from '@lamware/core';
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>().execute(async ({ event, context }) => {
-    // `event` and `context`, as well as the response type, are now properly typed for API Gateway.
+  // `event` and `context`, as well as the response type, are now properly typed for API Gateway.
 
-    return { statusCode: 200 };
+  return { statusCode: 200 };
 });
 
 export { handler };

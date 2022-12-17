@@ -14,114 +14,114 @@ import { hash, importXrayPolicy } from '../../helpers';
 import type { StackProps } from './types';
 
 export class LamwareStack extends Stack {
-    constructor(scope: Construct, id: string, props: StackProps) {
-        super(scope, id, props);
+  constructor(scope: Construct, id: string, props: StackProps) {
+    super(scope, id, props);
 
-        // Fetch some base resources.
-        const xray = importXrayPolicy();
+    // Fetch some base resources.
+    const xray = importXrayPolicy();
 
-        // Fetch the VPC.
-        const vpc = Vpc.fromLookup(this, 'vpc', {
-            vpcId: 'vpc-034a477d9d931104a',
-        });
+    // Fetch the VPC.
+    const vpc = Vpc.fromLookup(this, 'vpc', {
+      vpcId: 'vpc-034a477d9d931104a',
+    });
 
-        // Create the Security Group.
-        const securityGroup = new SecurityGroup(this, 'securityGroup', {
-            vpc,
-            description: 'Generic all-purpose internal group',
-            allowAllOutbound: true,
-        });
-        securityGroup.addIngressRule(securityGroup, Port.allTraffic(), 'Allow all inbound in the same SG');
+    // Create the Security Group.
+    const securityGroup = new SecurityGroup(this, 'securityGroup', {
+      vpc,
+      description: 'Generic all-purpose internal group',
+      allowAllOutbound: true,
+    });
+    securityGroup.addIngressRule(securityGroup, Port.allTraffic(), 'Allow all inbound in the same SG');
 
-        // Fetch an AppConfig Layer.
-        const appConfig = new AppConfig(this, 'appconfigLayer');
+    // Fetch an AppConfig Layer.
+    const appConfig = new AppConfig(this, 'appconfigLayer');
 
-        // Fetch the DNS Zone.
-        const zone = HostedZone.fromLookup(this, 'dnsZone', {
-            domainName: 'evil.kiwi',
-        });
+    // Fetch the DNS Zone.
+    const zone = HostedZone.fromLookup(this, 'dnsZone', {
+      domainName: 'evil.kiwi',
+    });
 
-        // Ensure there is a Certificate and fetch the ARN.
-        const certificate = new DnsValidatedCertificate(this, 'sslCertificate', {
-            domainName: 'lamware-example.evil.kiwi',
-            hostedZone: zone,
-            region: Aws.REGION,
-        });
+    // Ensure there is a Certificate and fetch the ARN.
+    const certificate = new DnsValidatedCertificate(this, 'sslCertificate', {
+      domainName: 'lamware-example.evil.kiwi',
+      hostedZone: zone,
+      region: Aws.REGION,
+    });
 
-        // Create the API Gateway Domain Mapping.
-        const domainName = new DomainName(this, 'apigDomain', {
-            domainName: 'lamware-example.evil.kiwi',
-            certificate,
-        });
+    // Create the API Gateway Domain Mapping.
+    const domainName = new DomainName(this, 'apigDomain', {
+      domainName: 'lamware-example.evil.kiwi',
+      certificate,
+    });
 
-        // Create the API Gateway.
-        const api = new HttpApi(this, 'apigIngress', {
-            createDefaultStage: true,
-            description: 'HTTP Ingress for API',
-            defaultDomainMapping: { domainName },
-            corsPreflight: {
-                allowMethods: [CorsHttpMethod.ANY],
-                allowOrigins: ['*'],
-                allowHeaders: ['*'],
-                allowCredentials: false,
-                maxAge: Duration.hours(1),
-            },
-        });
+    // Create the API Gateway.
+    const api = new HttpApi(this, 'apigIngress', {
+      createDefaultStage: true,
+      description: 'HTTP Ingress for API',
+      defaultDomainMapping: { domainName },
+      corsPreflight: {
+        allowMethods: [CorsHttpMethod.ANY],
+        allowOrigins: ['*'],
+        allowHeaders: ['*'],
+        allowCredentials: false,
+        maxAge: Duration.hours(1),
+      },
+    });
 
-        // Create the HTTP Ingress Function.
-        const func = new LambdaFunction(this, 'apigHandler', {
-            root: props.root,
-            vpc,
-            securityGroups: [securityGroup],
-            projectRoot: join(props.root, 'http-function'),
-            memorySize: 512,
-            description: 'Generic API Handler',
-            insightsVersion: LambdaInsightsVersion.VERSION_1_0_119_0,
-            timeout: Duration.seconds(30),
-            runtime: Runtime.NODEJS_14_X,
-            tracing: Tracing.ACTIVE,
-            layers: [appConfig.layer],
-            handler: 'src/index.handler',
-            hash: hash({
-                name: 'example',
-                path: join(props.root, 'http-function'),
-                folders: ['src'],
-                files: ['package.json'],
-            }),
-            environment: {
-                ...appConfig.env,
-                NODE_OPTIONS: '--enable-source-maps',
-            },
-        });
-        func.addToRolePolicy(appConfig.policy);
-        func.addToRolePolicy(xray);
-        func.addToRolePolicy(new PolicyStatement({
-            resources: ['*'],
-            actions: ['secretsmanager:GetSecretValue'],
-            effect: Effect.ALLOW,
-        }));
+    // Create the HTTP Ingress Function.
+    const func = new LambdaFunction(this, 'apigHandler', {
+      root: props.root,
+      vpc,
+      securityGroups: [securityGroup],
+      projectRoot: join(props.root, 'http-function'),
+      memorySize: 512,
+      description: 'Generic API Handler',
+      insightsVersion: LambdaInsightsVersion.VERSION_1_0_119_0,
+      timeout: Duration.seconds(30),
+      runtime: Runtime.NODEJS_14_X,
+      tracing: Tracing.ACTIVE,
+      layers: [appConfig.layer],
+      handler: 'src/index.handler',
+      hash: hash({
+        name: 'example',
+        path: join(props.root, 'http-function'),
+        folders: ['src'],
+        files: ['package.json'],
+      }),
+      environment: {
+        ...appConfig.env,
+        NODE_OPTIONS: '--enable-source-maps',
+      },
+    });
+    func.addToRolePolicy(appConfig.policy);
+    func.addToRolePolicy(xray);
+    func.addToRolePolicy(new PolicyStatement({
+      resources: ['*'],
+      actions: ['secretsmanager:GetSecretValue'],
+      effect: Effect.ALLOW,
+    }));
 
-        const integration = new HttpLambdaIntegration('lambdaIntegration', func);
+    const integration = new HttpLambdaIntegration('lambdaIntegration', func);
 
-        api.addRoutes({
-            path: '/{proxy+}',
-            methods: [HttpMethod.GET, HttpMethod.POST],
-            integration,
-        });
+    api.addRoutes({
+      path: '/{proxy+}',
+      methods: [HttpMethod.GET, HttpMethod.POST],
+      integration,
+    });
 
-        // Create the Warmer.
-        new Warmer(this, 'warmer', {
-            concurrency: 5,
-            function: func,
-        });
+    // Create the Warmer.
+    new Warmer(this, 'warmer', {
+      concurrency: 5,
+      function: func,
+    });
 
-        // Create a DNS Record for the CloudFront Ingress.
-        new ARecord(this, 'dnsRecord', {
-            recordName: 'lamware-example.evil.kiwi',
-            target: RecordTarget.fromAlias(
-                new ApiGatewayv2DomainProperties(domainName.regionalDomainName, domainName.regionalHostedZoneId),
-            ),
-            zone,
-        });
-    }
+    // Create a DNS Record for the CloudFront Ingress.
+    new ARecord(this, 'dnsRecord', {
+      recordName: 'lamware-example.evil.kiwi',
+      target: RecordTarget.fromAlias(
+        new ApiGatewayv2DomainProperties(domainName.regionalDomainName, domainName.regionalHostedZoneId),
+      ),
+      zone,
+    });
+  }
 }

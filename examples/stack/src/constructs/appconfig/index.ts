@@ -5,23 +5,23 @@ import { Construct } from 'constructs';
 import { Aws } from 'aws-cdk-lib';
 
 export class AppConfig extends Construct {
-    policy: PolicyStatement;
-    layer: ILayerVersion;
-    env = {
-        AWS_APPCONFIG_EXTENSION_POLL_INTERVAL_SECONDS: '30',
-        AWS_APPCONFIG_EXTENSION_POLL_TIMEOUT_MILLIS: '3000',
-        AWS_APPCONFIG_EXTENSION_HTTP_PORT: '2772',
-    };
+  policy: PolicyStatement;
+  layer: ILayerVersion;
+  env = {
+    AWS_APPCONFIG_EXTENSION_POLL_INTERVAL_SECONDS: '30',
+    AWS_APPCONFIG_EXTENSION_POLL_TIMEOUT_MILLIS: '3000',
+    AWS_APPCONFIG_EXTENSION_HTTP_PORT: '2772',
+  };
 
-    constructor(scope: Construct, id: string) {
-        super(scope, id);
+  constructor(scope: Construct, id: string) {
+    super(scope, id);
 
-        this.policy = new PolicyStatement({
-            resources: [`arn:aws:appconfig:${Aws.REGION}:${Aws.ACCOUNT_ID}:application/*`],
-            actions: ['appconfig:GetConfiguration'],
-            effect: Effect.ALLOW,
-        });
+    this.policy = new PolicyStatement({
+      resources: [`arn:aws:appconfig:${Aws.REGION}:${Aws.ACCOUNT_ID}:application/*`],
+      actions: ['appconfig:GetConfiguration'],
+      effect: Effect.ALLOW,
+    });
 
-        this.layer = LayerVersion.fromLayerVersionArn(this, 'appconfigLayerVersion', 'arn:aws:lambda:us-east-2:728743619870:layer:AWS-AppConfig-Extension:15');
-    }
+    this.layer = LayerVersion.fromLayerVersionArn(this, 'appconfigLayerVersion', 'arn:aws:lambda:us-east-2:728743619870:layer:AWS-AppConfig-Extension:15');
+  }
 }

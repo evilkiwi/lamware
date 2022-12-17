@@ -5,33 +5,33 @@ import createFastify from 'fastify';
 import { Config, SetupFunction, State } from './types';
 
 export const fastify = (setup?: SetupFunction, config?: Config): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
-    id: 'fastify',
-    init: async (state) => {
-        let app = config?.client ?? createFastify(config ?? {});
+  id: 'fastify',
+  init: async (state) => {
+    let app = config?.client ?? createFastify(config ?? {});
 
-        if (setup) {
-            app = await setup(app);
-        }
+    if (setup) {
+      app = await setup(app);
+    }
 
-        const handler = lambdaFastify(app as any);
+    const handler = lambdaFastify(app as any);
 
-        if (config?.attachState !== false) {
-            app.decorateRequest('state', null);
-            app.addHook('preHandler', async (request) => {
-                // @ts-expect-error
-                request.state = state();
-            });
-        }
+    if (config?.attachState !== false) {
+      app.decorateRequest('state', null);
+      app.addHook('preHandler', async (request) => {
+        // @ts-expect-error
+        request.state = state();
+      });
+    }
 
-        if (config?.enforceReady === true) {
-            await app.ready();
-        }
+    if (config?.enforceReady === true) {
+      await app.ready();
+    }
 
-        return {
-            fastify: app,
-            fastifyHandler: async ({ event, context }) => handler(event, context),
-        };
-    },
+    return {
+      fastify: app,
+      fastifyHandler: async ({ event, context }) => handler(event, context),
+    };
+  },
 });
 
 export * from './types';

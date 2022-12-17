@@ -2,11 +2,11 @@
 title: Middleware
 head:
   - - meta
-    - name: description
-      content: Middleware is the core feature of Lamware
+  - name: description
+    content: Middleware is the core feature of Lamware
   - - meta
-    - name: description
-      content: Middleware is the core feature of Lamware
+  - name: description
+    content: Middleware is the core feature of Lamware
 ---
 
 # Middleware
@@ -48,7 +48,7 @@ import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import type { Middleware } from '@lamware/core';
 
 const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
-    id: 'my-middleware',
+  id: 'my-middleware',
 });
 ```
 
@@ -60,12 +60,12 @@ import type { Middleware } from '@lamware/core';
 import { lamware } from '@lamware/core';
 
 const { handler } = lamware<APIGatewayProxyHandlerV2<any>>()
-    .use<Middleware<APIGatewayProxyHandlerV2<any>>>({
-        id: 'my-middleware',
-    })
-    .execute(async () => {
-        return { statusCode: 200 };
-    });
+  .use<Middleware<APIGatewayProxyHandlerV2<any>>>({
+    id: 'my-middleware',
+  })
+  .execute(async () => {
+    return { statusCode: 200 };
+  });
 
 export { handler };
 ```
@@ -83,31 +83,31 @@ import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import type { Middleware } from '@lamware/core';
 
 const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
-    id: 'my-middleware',
-    before: async (payload) => {
-        // You can set state (see below)
-        payload.state = { helloWorld = '123' };
+  id: 'my-middleware',
+  before: async (payload) => {
+    // You can set state (see below)
+    payload.state = { helloWorld = '123' };
 
-        // Or return a response and exit the function early.
-        payload.response = { statusCode: 401 };
+    // Or return a response and exit the function early.
+    payload.response = { statusCode: 401 };
 
-        // You can also modify the function event and context.
-        payload.event.rawPath = '/hello-world';
-        payload.context.debug = true;
+    // You can also modify the function event and context.
+    payload.event.rawPath = '/hello-world';
+    payload.context.debug = true;
 
-        return payload;
-    },
-    after: async (payload) => {
-        // The response here is from the function itself, and you can modify it.
-        payload.response.statusCode = 200;
+    return payload;
+  },
+  after: async (payload) => {
+    // The response here is from the function itself, and you can modify it.
+    payload.response.statusCode = 200;
 
-        return payload;
-    },
-    uncaughtException: async ({ context, cause }) => {
-        /**
-         * See "Handling Errors" below!
-         */
-    },
+    return payload;
+  },
+  uncaughtException: async ({ context, cause }) => {
+    /**
+     * See "Handling Errors" below!
+     */
+  },
 });
 ```
 
@@ -120,18 +120,18 @@ import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import type { Middleware } from '@lamware/core';
 
 interface State {
-    helloWorld: string;
+  helloWorld: string;
 }
 
 const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
-    id: 'my-middleware',
-    before: async (payload) => {
-        payload.state = {
-            helloWorld = '123',
-        };
+  id: 'my-middleware',
+  before: async (payload) => {
+    payload.state = {
+      helloWorld = '123',
+    };
 
-        return payload;
-    },
+    return payload;
+  },
 });
 ```
 
@@ -144,19 +144,19 @@ import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import type { Middleware } from '@lamware/core';
 
 interface State {
-    helloWorld: string;
+  helloWorld: string;
 }
 
 const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
-    id: 'my-middleware',
-    init: async () => {
-        // Pull data from API etc.
+  id: 'my-middleware',
+  init: async () => {
+    // Pull data from API etc.
 
-        // You can also return your initial state here.
-        return {
-            helloWorld: '123',
-        };
-    },
+    // You can also return your initial state here.
+    return {
+      helloWorld: '123',
+    };
+  },
 });
 ```
 
@@ -177,27 +177,27 @@ import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import type { Middleware } from '@lamware/core';
 
 const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
-    id: 'my-middleware',
-    uncaughtException: async (payload) => {
-        const { exception } = payload.cause;
+  id: 'my-middleware',
+  uncaughtException: async (payload) => {
+    const { exception } = payload.cause;
 
-        /**
-         * `exception` is the `Error` instance that caused the
-         * `uncaughtException` hook to run.
-         */
-        await sendToSentry(exception);
+    /**
+     * `exception` is the `Error` instance that caused the
+     * `uncaughtException` hook to run.
+     */
+    await sendToSentry(exception);
 
-        /**
-         * You should also provide a response. By default it will
-         * be an empty object, which will break for APIG v1/v2.
-         */
-        payload.response = {
-            statusCode: 200,
-            body: JSON.stringify({ hello: 'world' }),
-        };
+    /**
+     * You should also provide a response. By default it will
+     * be an empty object, which will break for APIG v1/v2.
+     */
+    payload.response = {
+      statusCode: 200,
+      body: JSON.stringify({ hello: 'world' }),
+    };
 
-        return payload;
-    },
+    return payload;
+  },
 });
 ```
 
@@ -210,8 +210,8 @@ import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import type { Middleware } from '@lamware/core';
 
 const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
-    id: 'my-middleware',
-    wrap: handler => handler,
+  id: 'my-middleware',
+  wrap: handler => handler,
 });
 ```
 
@@ -224,15 +224,15 @@ import { AWSLambda } from '@sentry/serverless';
 import { wrapCompat } from '@lamware/core';
 
 const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
-    id: 'my-middleware',
-    wrap: handler => wrapCompat(handler, compatHandler => {
-        return AWSLambda.wrapHandler(compatHandler, {
-            captureTimeoutWarning: false,
-            rethrowAfterCapture: true,
-            callbackWaitsForEmptyEventLoop: false,
-            ...(config?.wrapper ?? {}),
-        });
-    }),
+  id: 'my-middleware',
+  wrap: handler => wrapCompat(handler, compatHandler => {
+    return AWSLambda.wrapHandler(compatHandler, {
+      captureTimeoutWarning: false,
+      rethrowAfterCapture: true,
+      callbackWaitsForEmptyEventLoop: false,
+      ...(config?.wrapper ?? {}),
+    });
+  }),
 });
 ```
 
@@ -245,10 +245,10 @@ import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import type { Middleware } from '@lamware/core';
 
 const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
-    id: 'my-middleware',
-    filter: () => {
-        return false; // Returning `false` will prevent the Middleware being registered.
-    },
+  id: 'my-middleware',
+  filter: () => {
+    return false; // Returning `false` will prevent the Middleware being registered.
+  },
 });
 ```
 
@@ -265,7 +265,7 @@ import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import type { Middleware } from '@lamware/core';
 
 const myMiddleware = (): Middleware<APIGatewayProxyHandlerV2<any>> => ({
-    id: 'my-middleware',
-    pure: false, // `true` by default.
+  id: 'my-middleware',
+  pure: false, // `true` by default.
 });
 ```

@@ -1,4 +1,4 @@
 export interface RootStackProps {
-    stage: string;
-    root: string;
+  stage: string;
+  root: string;
 }

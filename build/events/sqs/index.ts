@@ -1,3 +1,3 @@
 export const sqs = {
-    Records: [],
+  Records: [],
 };

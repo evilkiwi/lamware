@@ -1,7 +1,7 @@
 export interface Options {
-    path: string;
-    folders?: string[];
-    files?: string[];
-    root?: string;
-    name?: string;
+  path: string;
+  folders?: string[];
+  files?: string[];
+  root?: string;
+  name?: string;
 }

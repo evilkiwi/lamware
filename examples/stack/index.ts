@@ -8,12 +8,12 @@ import { LamwareStack } from './src/stacks';
 const root = new App();
 
 const props = {
-    root: resolve(__dirname, '..'),
-    stage: 'production',
-    env: {
-        account: '590074468791',
-        region: 'us-east-2',
-    },
+  root: resolve(__dirname, '..'),
+  stage: 'production',
+  env: {
+    account: '590074468791',
+    region: 'us-east-2',
+  },
 };
 
 const lamware = new LamwareStack(root, 'evilkiwi-lamware-example', props);
