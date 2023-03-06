@@ -11,11 +11,11 @@
     "watch": "NODE_ENV=development ts-node dev/build.ts"
   },
   "dependencies": {
-    "aws-sdk": "^2.1277.0",
-    "lambda-warmer": "^1.2.2"
+    "aws-sdk": "^2.1328.0",
+    "lambda-warmer": "^2.0.0"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.109",
+    "@types/aws-lambda": "^8.10.111",
     "@types/cookie": "^0.5.1",
     "@types/cors": "^2.8.13",
     "@types/vhost": "^3.0.4",
@@ -23,8 +23,8 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "lambda-local": "^2.0.3",
-    "nodemon": "^2.0.20",
-    "rimraf": "^3.0.2",
+    "nodemon": "^2.0.21",
+    "rimraf": "^4.3.0",
     "ts-node": "^10.9.1",
     "vhost": "^3.0.2"
   }

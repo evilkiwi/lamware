@@ -3,6 +3,6 @@
   "name": "@lamware/example-sqs",
   "version": "1.0.0",
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.109"
+    "@types/aws-lambda": "^8.10.111"
   }
 }

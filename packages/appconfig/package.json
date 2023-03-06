@@ -40,14 +40,14 @@
     "@lamware/core": "^1.5.1"
   },
   "peerDependencies": {
-    "@lamware/core": "^1.5.0"
+    "@lamware/core": "^1.5.1"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.109",
-    "@types/node": "^18.11.16",
-    "eslint": "^8.30.0",
-    "tslib": "^2.4.1",
-    "tsup": "^6.5.0",
-    "typescript": "^4.9.4"
+    "@types/aws-lambda": "^8.10.111",
+    "@types/node": "^18.14.6",
+    "eslint": "^8.35.0",
+    "tslib": "^2.5.0",
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5"
   }
 }

@@ -1,3 +1,4 @@
+import type { RequestHandler } from '@as-integrations/aws-lambda/dist/request-handlers/_create';
 import type { ApolloServerOptions as ApolloConfig, BaseContext } from '@apollo/server';
 import { startServerAndCreateLambdaHandler } from '@as-integrations/aws-lambda';
 import type { LambdaHandlerOptions } from '@as-integrations/aws-lambda';
@@ -5,7 +6,7 @@ import type { DestructuredHandler, Middleware } from '@lamware/core';
 import type { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { ApolloServer } from '@apollo/server';
 
-export type LamwareApolloConfig = {
+export type LamwareApolloConfig<RH extends RequestHandler<any, any>> = {
   /**
    * Optionally provide an existing Apollo Server instance.
    */
@@ -14,10 +15,10 @@ export type LamwareApolloConfig = {
   /**
    * Optionally provide options to the serverless handler.
    */
-  handlerOptions?: LambdaHandlerOptions<BaseContext>;
+  handlerOptions?: LambdaHandlerOptions<RH, BaseContext>;
 }
 
-export type Config = LamwareApolloConfig & ApolloConfig<BaseContext>;
+export type Config<RH extends RequestHandler<any, any>> = LamwareApolloConfig<RH> & ApolloConfig<BaseContext>;
 
 export interface State {
   apollo: ApolloServer;
@@ -26,7 +27,7 @@ export interface State {
 
 export type SetupFunction = (state: () => State) => Promise<ApolloServer>|ApolloServer;
 
-export const apollo = (config?: Config|ApolloServer|SetupFunction): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
+export const apollo = <RH extends RequestHandler<any, any>>(config?: Config<RH>|ApolloServer|SetupFunction): Middleware<APIGatewayProxyHandlerV2<any>, State> => ({
   id: 'apollo',
   init: async (state) => {
     let setup: SetupFunction|undefined;
@@ -57,7 +58,7 @@ export const apollo = (config?: Config|ApolloServer|SetupFunction): Middleware<A
     }
 
     // Create the Lambda handler.
-    const handler = startServerAndCreateLambdaHandler(apollo, { ...(localConfig.handlerOptions ?? {}) });
+    const handler = startServerAndCreateLambdaHandler<RH>(apollo, { ...(localConfig.handlerOptions ?? {}) });
 
     return {
       apollo,
