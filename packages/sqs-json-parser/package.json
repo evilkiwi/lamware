@@ -1,6 +1,6 @@
 {
   "name": "@lamware/sqs-json-parser",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Lamware Middleware for parsing and providing types for SQS",
   "files": [
     "build"
@@ -40,13 +40,13 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@lamware/core": "^1.5.1"
+    "@lamware/core": "^1.5.2"
   },
   "peerDependencies": {
     "@lamware/core": "^1.5.1"
   },
   "devDependencies": {
-    "@lamware/test": "^1.2.1",
+    "@lamware/test": "^1.2.2",
     "@types/aws-lambda": "^8.10.111",
     "@types/node": "^18.14.6",
     "c8": "^7.13.0",
