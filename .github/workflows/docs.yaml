@@ -12,6 +12,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env:
+      COMMIT: ${{ github.sha }}
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
@@ -20,11 +21,11 @@ jobs:
         with:
           submodules: recursive
       - name: Set up Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 18
       - name: Set up PNPM
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2
         with:
           run_install: false
       - name: Fetch PNPM Store

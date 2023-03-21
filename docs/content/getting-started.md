@@ -13,7 +13,7 @@ head:
 
 ## Installing
 
-Lamware is distributed via NPM and can be installed via `@lamware/core`:
+Lamware is distributed via NPM and can be installed by the `@lamware/core` package:
 
 ```bash
 yarn add @lamware/core
