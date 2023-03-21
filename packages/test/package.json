@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@lamware/test",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "files": [
     "build"
   ],
@@ -9,8 +9,7 @@
   "module": "./build/index.mjs",
   "types": "./build/index.d.ts",
   "scripts": {
-    "build": "NODE_ENV=production tsup-node",
-    "dev": "NODE_ENV=development tsup-node"
+    "build": "node build.mjs && tsc"
   },
   "dependencies": {
     "lambda-local": "^2.0.3",
@@ -18,11 +17,11 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.111",
-    "@types/node": "^18.14.6",
+    "@types/aws-lambda": "^8.10.114",
+    "@types/node": "^18.15.5",
     "@types/uuid": "^9.0.1",
+    "esbuild": "^0.17.12",
     "tslib": "^2.5.0",
-    "tsup": "^6.6.3",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.2"
   }
 }

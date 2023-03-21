@@ -1,5 +1,5 @@
 import type { Handler } from 'aws-lambda';
-import type { DestructuredHandler } from '@/instance';
+import type { DestructuredHandler } from '../instance';
 
 /**
  * Wraps a Lamware-compatible Handler with a stock AWS Lambda handler.

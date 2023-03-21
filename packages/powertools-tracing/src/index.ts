@@ -22,7 +22,11 @@ export const powertoolsTracing = (options: Options): Middleware<Handler, State> 
   id: 'powertools-tracing',
   init: async () => ({ tracer: new Tracer(options) }),
   before: async (payload) => {
-    payload.state.segment = payload.state.tracer.getSegment();
+    const segment = payload.state.tracer.getSegment();
+
+    if (segment) {
+      payload.state.segment = segment;
+    }
 
     payload.state.subsegment = payload.state.segment.addNewSubsegment(`## ${process.env._HANDLER}`);
     payload.state.tracer.setSegment(payload.state.subsegment);

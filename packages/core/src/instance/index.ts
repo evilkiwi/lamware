@@ -1,8 +1,8 @@
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
-import type { BeforeMiddlewarePayload, MiddlewarePayload } from '@/middleware';
-import type { PromiseType } from '@/types';
-import { middleware } from '@/middleware';
+import type { BeforeMiddlewarePayload } from '../middleware';
+import type { PromiseType } from '../types';
+import { middleware } from '../middleware';
 import type { Instance, Options } from './types';
 
 export const lamware = function<H extends Handler = Handler>(options: Options = {}) {

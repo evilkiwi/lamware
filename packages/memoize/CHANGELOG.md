@@ -1,54 +1,13 @@
-# Change Log
+# @lamware/memoize
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 3.0.0
 
-## [2.2.2](https://github.com/evilkiwi/lamware/compare/@lamware/memoize@2.2.1...@lamware/memoize@2.2.2) (2023-03-06)
+### Major Changes
 
-**Note:** Version bump only for package @lamware/memoize
+- - updated dependencies
+  - transitioned to a more "modern" stack
 
+### Patch Changes
 
-
-
-
-## [2.2.1](https://github.com/evilkiwi/lamware/compare/@lamware/memoize@2.2.0...@lamware/memoize@2.2.1) (2022-12-17)
-
-**Note:** Version bump only for package @lamware/memoize
-
-
-
-
-
-# [2.2.0](https://github.com/evilkiwi/lamware/compare/@lamware/memoize@2.1.1...@lamware/memoize@2.2.0) (2022-11-22)
-
-
-### Features
-
-* update deps ([56c10cf](https://github.com/evilkiwi/lamware/commit/56c10cf693d4dbab4f98b9ca8867423e1792a1ac))
-
-
-
-
-
-## [2.1.1](https://github.com/evilkiwi/lamware/compare/@lamware/memoize@2.1.0...@lamware/memoize@2.1.1) (2022-09-29)
-
-**Note:** Version bump only for package @lamware/memoize
-
-
-
-
-
-# [2.1.0](https://github.com/evilkiwi/lamware/compare/@lamware/memoize@2.0.2...@lamware/memoize@2.1.0) (2022-09-17)
-
-
-### Features
-
-* general maintenance ([02b8730](https://github.com/evilkiwi/lamware/commit/02b8730fc776181b6be8c8950e17a186380d975e))
-
-
-
-
-
-## [2.0.2](https://github.com/evilkiwi/lamware/compare/@lamware/memoize@2.0.1...@lamware/memoize@2.0.2) (2022-07-01)
-
-**Note:** Version bump only for package @lamware/memoize
+- Updated dependencies []:
+  - @lamware/core@2.0.0

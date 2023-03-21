@@ -1,7 +1,6 @@
 import type { Handler } from 'aws-lambda';
-import type * as events from '@/../../../build/events';
 
-export type EventType = keyof typeof events;
+export type EventType = 'sqs'|'apiGateway'|'apiGatewayV2';
 
 export interface Options<H extends Handler, E extends EventType> {
   handler: H;

@@ -31,7 +31,7 @@ yarn add @lamware/core
 npm install @lamware/core
 ```
 
-We maintain and ship various middlewares for public use - you can [install them too!](https://github.com/evilkiwi/lamware/tree/master/packages)
+We maintain and ship various middlewares for public use - you can [install them too](https://github.com/evilkiwi/lamware/tree/master/packages)!
 
 ## Usage
 

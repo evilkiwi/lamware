@@ -4,8 +4,7 @@
     "baseUrl": ".",
     "outDir": "./build/",
     "paths": {
-      "*": ["./src/types/*.d.ts"],
-      "@/*": ["./src/*"]
+      "*": ["./src/types/*.d.ts"]
     },
     "lib": ["esnext.asynciterable"]
   },

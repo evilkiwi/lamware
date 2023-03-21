@@ -1,6 +1,6 @@
 import type { Handler } from 'aws-lambda';
-import type { FilterFunction, Middleware } from '@/middleware';
-import type { PromiseType } from '@/types';
+import type { FilterFunction, Middleware } from '../middleware';
+import type { PromiseType } from '../types';
 
 export type Logger = Pick<typeof console, 'debug'|'log'|'error'|'info'>;
 

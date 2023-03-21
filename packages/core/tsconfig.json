@@ -1,29 +1,16 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "strict": true,
-    "jsx": "preserve",
-    "importHelpers": true,
-    "experimentalDecorators": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
     "baseUrl": ".",
     "outDir": "./build/",
-    "module": "commonjs",
+    "module": "es2020",
     "moduleResolution": "node",
-    "target": "es2018",
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ],
+    "target": "es2022",
+    "lib": ["esnext"],
     "paths": {
-      "*": ["./src/types/*.d.ts"],
-      "@/*": ["./src/*"]
+      "*": ["./src/types/*.d.ts"]
     }
   },
   "include": [

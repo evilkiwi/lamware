@@ -1,6 +1,6 @@
 {
   "name": "@lamware/powertools-tracing",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "Lamware Middleware to utilize the official Tracing powertools",
   "files": [
     "build"
@@ -31,26 +31,25 @@
     "access": "public"
   },
   "scripts": {
-    "prepack": "yarn build",
-    "build": "NODE_ENV=production tsup-node",
-    "dev": "NODE_ENV=development tsup-node",
+    "prepack": "pnpm run build",
+    "build": "node build.mjs && tsc",
     "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
   },
   "dependencies": {
-    "@aws-lambda-powertools/tracer": "^1.6.0",
-    "@lamware/core": "^1.5.2"
+    "@aws-lambda-powertools/tracer": "^1.7.0",
+    "@lamware/core": "^2.0.0"
   },
   "peerDependencies": {
-    "@aws-lambda-powertools/tracer": "^1.6.0",
-    "@lamware/core": "^1.5.1"
+    "@aws-lambda-powertools/tracer": "^1.7.0",
+    "@lamware/core": "^2.0.0"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.111",
-    "@types/node": "^18.14.6",
+    "@types/aws-lambda": "^8.10.114",
+    "@types/node": "^18.15.5",
     "aws-xray-sdk-core": "^3.4.1",
-    "eslint": "^8.35.0",
+    "esbuild": "^0.17.12",
+    "eslint": "^8.36.0",
     "tslib": "^2.5.0",
-    "tsup": "^6.6.3",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.2"
   }
 }

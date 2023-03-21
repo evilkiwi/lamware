@@ -1,11 +1,16 @@
 {
-  "extends": "../../build/tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "declaration": true,
     "baseUrl": ".",
     "outDir": "./build/",
+    "module": "es2020",
+    "moduleResolution": "node",
+    "target": "es2022",
+    "lib": ["esnext"],
     "paths": {
-      "*": ["./src/types/*.d.ts"],
-      "@/*": ["./src/*"]
+      "*": ["./src/types/*.d.ts"]
     }
   },
   "include": [

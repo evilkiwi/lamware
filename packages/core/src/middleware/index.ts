@@ -1,6 +1,6 @@
 import type { Handler } from 'aws-lambda';
 import { merge } from 'merge-anything';
-import type { DestructuredHandler, LamwareState, Instance, StateCompiler } from '@/instance';
+import type { DestructuredHandler, LamwareState, Instance, StateCompiler } from '../instance';
 import type { Hook, HookReturns, Middleware, MiddlewareRegistry, InitResolver, Resolver } from './types';
 
 export const middleware = <H extends Handler>() => {

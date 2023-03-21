@@ -1,6 +1,6 @@
 import type { Handler } from 'aws-lambda';
-import type { DestructuredHandler, Logger } from '@/instance';
-import type { PromiseType } from '@/types';
+import type { DestructuredHandler, Logger } from '../instance';
+import type { PromiseType } from '../types';
 
 export type FilterFunction = (() => boolean)|boolean;
 

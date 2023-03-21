@@ -3,43 +3,36 @@ import { execute as executeLambda } from 'lambda-local';
 import { merge } from 'merge-anything';
 import { createHash } from 'crypto';
 import { v4 as uuid } from 'uuid';
-import * as events from '@/../../../build/events';
-import type { ApiGatewayOptions, EventOptions, EventType, Options, SqsOptions } from './types';
+import type { ApiGatewayOptions, EventOptions, EventType, SqsOptions } from './types';
+import { events } from './events';
 
 export const execute = async <H extends Handler = APIGatewayProxyHandlerV2, E extends EventType = 'apiGateway'>(handler: H, eventType: E, options: EventOptions[E] = {}) => {
-  let event: any = {...events[eventType]};
+  let event: any = events[eventType];
 
   switch (eventType) {
     case 'apiGateway': {
-      const localEvent = event as typeof events.apiGateway;
       const localOptions = options as ApiGatewayOptions;
 
-      localEvent.path = localOptions.path ?? '/';
-      localEvent.requestContext.resourcePath = localOptions.path ?? '/';
-      localEvent.resource = localOptions.path ?? '/';
-      localEvent.headers = localOptions.headers ?? {};
-      localEvent.requestContext.httpMethod = localOptions.method ?? 'GET';
-      localEvent.httpMethod = localOptions.method ?? 'GET';
-      localEvent.queryStringParameters = localOptions.query ?? {};
-      localEvent.body = JSON.stringify(localOptions.body ?? {});
-
-      event = localEvent;
+      event.path = localOptions.path ?? '/';
+      event.requestContext.resourcePath = localOptions.path ?? '/';
+      event.resource = localOptions.path ?? '/';
+      event.headers = localOptions.headers ?? {};
+      event.requestContext.httpMethod = localOptions.method ?? 'GET';
+      event.httpMethod = localOptions.method ?? 'GET';
+      event.queryStringParameters = localOptions.query ?? {};
+      event.body = JSON.stringify(localOptions.body ?? {});
       break;
     }
     case 'apiGatewayV2': {
-      const localEvent = event as typeof events.apiGatewayV2;
       const localOptions = options as ApiGatewayOptions;
 
       // TODO:
-
-      event = localEvent;
       break;
     }
     case 'sqs': {
-      const localEvent = event as typeof events.sqs;
       const localOptions = options as SqsOptions;
 
-      localEvent.Records = (localOptions.items ?? []).map(item => ({
+      event.Records = (localOptions.items ?? []).map(item => ({
         messageId: uuid(),
         receiptHandle: uuid(),
         body: JSON.stringify(item),
@@ -55,8 +48,6 @@ export const execute = async <H extends Handler = APIGatewayProxyHandlerV2, E ex
         eventSourceARN: 'arn:aws:sqs:us-east-2:123456789012:my-queue',
         awsRegion: 'us-east-2',
       })) as any;
-
-      event = localEvent;
       break;
     }
   }

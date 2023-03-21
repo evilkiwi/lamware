@@ -1,6 +1,6 @@
 {
   "name": "@lamware/memoize",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "Lamware Middleware for memoizing outside the Lambda handler",
   "files": [
     "build"
@@ -31,23 +31,22 @@
     "access": "public"
   },
   "scripts": {
-    "prepack": "yarn build",
-    "build": "NODE_ENV=production tsup-node",
-    "dev": "NODE_ENV=development tsup-node",
+    "prepack": "pnpm run build",
+    "build": "node build.mjs && tsc",
     "lint": "eslint --ext .ts,vue --ignore-path .gitignore src"
   },
   "dependencies": {
-    "@lamware/core": "^1.5.2"
+    "@lamware/core": "^2.0.0"
   },
   "peerDependencies": {
-    "@lamware/core": "^1.5.1"
+    "@lamware/core": "^2.0.0"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.111",
-    "@types/node": "^18.14.6",
-    "eslint": "^8.35.0",
+    "@types/aws-lambda": "^8.10.114",
+    "@types/node": "^18.15.5",
+    "esbuild": "^0.17.12",
+    "eslint": "^8.36.0",
     "tslib": "^2.5.0",
-    "tsup": "^6.6.3",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.2"
   }
 }

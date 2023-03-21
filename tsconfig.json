@@ -3,6 +3,7 @@
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
+    "moduleResolution": "node",
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -10,14 +11,6 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "target": "es2018",
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "disableSizeLimit": true
   }
 }
