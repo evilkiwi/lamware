@@ -19,3 +19,8 @@ await build({
   outExtension: { '.js': '.mjs' },
   format: 'esm',
 });
+
+await build({
+  ...options,
+  format: 'cjs',
+});
