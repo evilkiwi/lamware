@@ -1,6 +1,6 @@
 {
   "name": "@lamware/apollo",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Lamware Middleware for initializing and memoizing Apollo Server in Lambda",
   "files": [
     "build"
@@ -38,13 +38,13 @@
   "dependencies": {
     "@apollo/server": "^4.5.0",
     "@as-integrations/aws-lambda": "^2.0.1",
-    "@lamware/core": "^2.0.0",
+    "@lamware/core": "^2.0.1",
     "graphql": "^16.6.0"
   },
   "peerDependencies": {
     "@apollo/server": "^4.5.0",
     "@as-integrations/aws-lambda": "^2.0.1",
-    "@lamware/core": "^2.0.0",
+    "@lamware/core": "^2.0.1",
     "graphql": "^16.6.0"
   },
   "devDependencies": {
