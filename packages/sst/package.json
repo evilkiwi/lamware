@@ -1,0 +1,55 @@
+{
+  "name": "@lamware/sst",
+  "version": "1.0.0",
+  "description": "Lamware Middleware to enable SST runtime",
+  "files": [
+    "build"
+  ],
+  "main": "./build/index.js",
+  "module": "./build/index.mjs",
+  "types": "./build/index.d.ts",
+  "license": "GPL-3.0-only",
+  "author": {
+    "name": "Evil Kiwi Limited",
+    "url": "https://evil.kiwi",
+    "email": "support@evil.kiwi"
+  },
+  "homepage": "https://github.com/evilkiwi/lamware",
+  "bugs": {
+    "url": "https://github.com/evilkiwi/lamware/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evilkiwi/lamware.git"
+  },
+  "keywords": [
+    "lambda",
+    "sst",
+    "middleware",
+    "typescript"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepack": "pnpm run build",
+    "build": "node build.mjs && tsc",
+    "lint": "eslint --ext .ts --ignore-path .gitignore src"
+  },
+  "dependencies": {
+    "@lamware/core": "^2.0.1",
+    "sst": "^2.3.2"
+  },
+  "peerDependencies": {
+    "@lamware/core": "^2.0.1",
+    "sst": "^2.3.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.114",
+    "@types/node": "^18.15.5",
+    "esbuild": "^0.17.12",
+    "eslint": "^8.36.0",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.2"
+  }
+}

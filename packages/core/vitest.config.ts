@@ -24,7 +24,7 @@ export default defineConfig({
     outDir: 'build',
     assetsDir: '.',
     minify: process.env.MODE === 'development' ? false : 'terser',
-    target: 'node14',
+    target: 'node18',
     terserOptions: {
       ecma: 2020,
       compress: {
